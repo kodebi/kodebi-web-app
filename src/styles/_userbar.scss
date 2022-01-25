@@ -1,0 +1,20 @@
+.user-bar {
+  display: inline-flex;
+  z-index: 2;
+  border: none;
+  background-color: $bckgrnd-clr;
+  transition: $trnstn;
+  margin-left: 0.5rem;
+  color: $brnd-clr;
+  transform: perspective(1px) translateZ(0);
+
+  &:hover {
+    animation: buzz-up 3s 75ms;
+  }
+}
+
+@media (min-width: 800px) {
+  .user-bar {
+    margin-left: 2rem;
+  }
+}

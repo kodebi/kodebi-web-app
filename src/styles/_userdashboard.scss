@@ -1,0 +1,10 @@
+.dashboard {
+  max-width: $mx-wdth;
+  padding: 1rem;
+}
+
+@media (min-width: 800px) {
+  .dashboard {
+    text-align: left;
+  }
+}

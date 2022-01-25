@@ -1,0 +1,32 @@
+.tab-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top-right-radius: $brdr-rds-2;
+  border-top-left-radius: $brdr-rds-2;
+}
+
+.tab-btn {
+  display: block;
+  border: none;
+  background-color: transparent;
+  padding: 0.5rem 0;
+  cursor: pointer;
+
+  &:nth-child(1) {
+    border-top-left-radius: $brdr-rds-2;
+  }
+
+  &:nth-child(2) {
+    border-top-right-radius: $brdr-rds-2;
+  }
+}
+
+@media (min-width: 800px) {
+  .tab-btn {
+    padding: 1rem 0;
+  }
+}
+
+.not-active {
+  background-color: $bckgrnd-trnsprnt-1;
+}

@@ -1,0 +1,20 @@
+/* Search Bar */
+.search-bar {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+
+  .search-form {
+    padding: 0.75rem;
+    border: 1px solid $brnd-clr;
+    border-radius: $brdr-rds-3;
+    box-shadow: $mn-shdw;
+  }
+}
+
+@media (min-width: 800px) {
+  .search-form {
+    width: 25vw;
+    padding: 1rem;
+  }
+}

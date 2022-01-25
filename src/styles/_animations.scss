@@ -1,0 +1,78 @@
+@keyframes navBar-slideIn {
+  0% {
+    top: -80px;
+  }
+
+  100% {
+    top: 0px;
+  }
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes alert-popup {
+  0% {
+    opacity: 0;
+  }
+
+  25% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    bottom: -10vh;
+  }
+
+  100% {
+    opacity: 1;
+    bottom: 0;
+  }
+}
+
+@keyframes buzz-up {
+  2% {
+    transform: translateX(3px) rotate(2deg);
+  }
+  4% {
+    transform: translateX(-3px) rotate(-2deg);
+  }
+  6% {
+    transform: translateX(3px) rotate(2deg);
+  }
+  8% {
+    transform: translateX(-3px) rotate(-2deg);
+  }
+  10% {
+    transform: translateX(2px) rotate(1deg);
+  }
+  12% {
+    transform: translateX(-2px) rotate(-1deg);
+  }
+  14% {
+    transform: translateX(2px) rotate(1deg);
+  }
+  16% {
+    transform: translateX(-2px) rotate(-1deg);
+  }
+  18% {
+    transform: translateX(1px) rotate(0);
+  }
+  20% {
+    transform: translateX(-1px) rotate(0);
+  }
+}

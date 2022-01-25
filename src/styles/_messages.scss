@@ -1,0 +1,140 @@
+.message-container {
+  max-width: $mx-wdth;
+  -moz-max-wdth: $mx-wdth;
+  display: grid;
+  width: 100vw;
+  grid-template-columns: 1fr 2fr;
+  -moz-grid-template-columns: 1fr 2fr;
+  height: calc(100vh - 15vh);
+  border-top: 1px solid $clr-gry;
+  border-bottom: 1px solid $clr-gry;
+}
+
+.conversations {
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+  width: 100%;
+}
+
+.conversation {
+  display: grid;
+  grid-template-columns: 25% 75%;
+  border: none;
+  border-bottom: 1px solid $clr-gry;
+  color: $fnt-clr;
+  background-color: $bckgrnd-clr;
+  padding: 0.25rem;
+  cursor: pointer;
+  transition: $trnstn;
+
+  &:last-child {
+    border: none;
+  }
+
+  &:hover {
+    background-color: $brnd-clr;
+    border-color: $brnd-clr;
+    color: $bckgrnd-clr;
+  }
+}
+
+.glimpse-message {
+  margin-left: 0.1rem;
+  text-align: left;
+  padding: 0.25rem;
+
+  h4 {
+    margin: 0;
+  }
+
+  p {
+    margin-bottom: 0;
+  }
+}
+
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: flex-end;
+  overflow: hidden;
+  border-left: 1px solid $clr-gry;
+
+  .chat {
+    overflow: auto;
+  }
+}
+
+.message {
+  padding: 0.5rem 0.75rem;
+
+  .message-header {
+    margin-bottom: 0.25rem;
+    display: flex;
+    flex-direction: column;
+
+    h4 {
+      display: flex;
+    }
+  }
+
+  .message-body {
+    display: inline-block;
+  }
+}
+
+.input-message {
+  display: flex;
+  padding: 0.5rem;
+  border-top: 1px solid $clr-gry;
+
+  .enter-message {
+    border-color: $clr-gry;
+    margin-right: 0.5rem;
+    width: 100%;
+    flex-grow: 1;
+  }
+}
+
+@media (min-width: 800px) {
+  .conversation {
+    grid-template-columns: 20% 80%;
+    padding: 0.5rem;
+  }
+
+  .glimpse-message {
+    margin-left: 0.5rem;
+    width: 100%;
+
+    h4 {
+      margin-bottom: 0.5rem;
+    }
+  }
+
+  .message {
+    padding: 1rem 2rem;
+
+    .message-header {
+      margin-bottom: 0.5rem;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+
+  .input-message {
+    padding: 0.75rem;
+
+    .enter-message {
+      margin-right: 1rem;
+    }
+  }
+}
+
+.active-chat {
+  background-color: $brnd-clr;
+  border-color: $brnd-clr;
+  color: $bckgrnd-clr;
+}

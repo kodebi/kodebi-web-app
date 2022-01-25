@@ -1,0 +1,36 @@
+.user-submenu {
+  display: none;
+  position: absolute;
+  height: 8rem;
+  top: 3.5rem;
+  left: 50%;
+  z-index: 3;
+  transform: translateX(-50%);
+  background-color: $bckgrnd-clr;
+  border-radius: $brdr-rds-2;
+  box-shadow: $mn-shdw;
+  text-align: center;
+
+  &:before {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    position: absolute;
+    top: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-left: 5px solid $bckgrnd-trnsprnt-1;
+    border-right: 5px solid $bckgrnd-trnsprnt-1;
+    border-bottom: 5px solid $bckgrnd-clr;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  &.show {
+    display: grid;
+    place-items: center;
+  }
+}

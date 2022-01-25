@@ -1,0 +1,20 @@
+.datenschutz {
+  max-width: $mx-wdth;
+  padding: 0 0.5rem;
+  text-align: left;
+}
+
+.extlink {
+  color: rgb(38, 115, 191);
+  text-decoration: underline;
+  text-transform: none;
+
+  &:hover {
+    color: $brnd-clr;
+    text-transform: none;
+  }
+}
+
+.subtitle {
+  text-decoration: underline;
+}

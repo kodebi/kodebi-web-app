@@ -1,0 +1,47 @@
+.open-book {
+  display: flex;
+  flex-flow: column;
+  background: $bckgrnd-clr;
+  padding: 0.5rem;
+  align-items: center;
+
+  img {
+    display: block;
+    width: 12rem;
+    height: 18rem;
+    object-fit: contain;
+  }
+
+  .open-book-info {
+    display: grid;
+    grid-template-rows: repeat(2, auto);
+    gap: 0.5rem;
+    place-items: center;
+    margin-top: 1rem;
+  }
+}
+
+@media (min-width: 800px) {
+  .open-book {
+    display: grid;
+    max-width: $mx-wdth;
+    grid-template-columns: 1fr 2fr 1fr;
+    gap: 1.5rem;
+    align-items: flex-start;
+    margin: 1rem auto;
+
+    img {
+      width: 100%;
+      max-width: 375px;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .open-book-info {
+      grid-template-rows: repeat(5, auto);
+      place-items: start;
+      text-align: start;
+      margin: 0;
+    }
+  }
+}

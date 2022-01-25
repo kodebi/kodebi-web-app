@@ -1,0 +1,18 @@
+.error-page {
+  max-width: 25rem;
+  padding: 1rem;
+  margin: 0 auto;
+  height: calc(100vh - 30vh);
+  flex-direction: column;
+  justify-content: center;
+}
+
+.error-icon {
+  font-size: 6rem;
+  color: $brnd-clr;
+}
+
+.error-title {
+  padding: 1rem;
+  margin-bottom: 1rem;
+}

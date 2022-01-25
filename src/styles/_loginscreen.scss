@@ -1,0 +1,48 @@
+.hero {
+  background: no-repeat url('../static/janko-ferlic-sfL_QOnmy00-unsplash.jpeg');
+  background-size: cover;
+  height: 100vh;
+}
+
+.signin-center {
+  background-color: $bckgrnd-trnsprnt-1;
+  margin: 1rem 0rem 2rem;
+  border-radius: $brdr-rds-2;
+  box-shadow: $bx-shdw;
+  transition: $trnstn;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: auto;
+    padding: 0;
+  }
+
+  .form-center {
+    padding: 1.5rem;
+  }
+}
+
+.reset {
+  text-align: left;
+  color: $brnd-clr;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  margin-top: 0.5rem;
+
+  &:hover {
+    color: $fnt-clr;
+  }
+}
+
+@media (min-width: 800px) {
+  .signin-center {
+    max-width: 500px;
+
+    .form-center {
+      padding: 2rem;
+    }
+  }
+}

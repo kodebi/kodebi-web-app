@@ -1,0 +1,21 @@
+.user-action {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  background-color: $brnd-clr;
+  border-radius: $brdr-rds-2;
+  padding: 0.5rem 0.5rem 0 0.5rem;
+  color: $bckgrnd-clr;
+  text-align: left;
+  box-shadow: $bx-shdw;
+
+  .action-section {
+    margin: 0.75rem 0;
+  }
+}
+
+@media (min-width: 800px) {
+  .user-action {
+    padding: 1rem 1rem 0 1rem;
+  }
+}

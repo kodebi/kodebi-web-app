@@ -1,0 +1,45 @@
+.modal-wrapper {
+  background: rgba(255, 255, 255, 0.46);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+  position: fixed;
+  visibility: hidden;
+  overflow: hidden;
+  transform: scale(0);
+  transition: $nvbr-trns;
+  display: grid;
+  place-items: center;
+
+  &.open {
+    visibility: visible;
+    z-index: 10;
+    transform: scale(1);
+  }
+
+  .modal-title {
+    color: $bckgrnd-clr;
+  }
+}
+
+.msg-modal {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  background-color: $brnd-clr;
+  border-radius: 25px;
+  box-shadow: $bx-shdw;
+  animation: slide-up 0.75s;
+}
+
+@media (min-width: 800px) {
+  .msg-modal {
+    padding: 2rem;
+    width: 60vw;
+  }
+}
