@@ -6,12 +6,12 @@
   border-radius: $brdr-rds;
   box-shadow: $bx-shdw;
   transition: $trnstn;
+  object-fit: cover;
 
   img {
     display: block;
     width: 10rem;
     height: 16rem;
-    object-fit: cover;
     border-top-left-radius: $brdr-rds;
     border-bottom-left-radius: $brdr-rds;
   }
@@ -40,16 +40,14 @@
   .book {
     flex-direction: column;
 
-    &:hover {
-      transform: scale(1.03);
-      cursor: pointer;
+    img {
+      width: 12rem;
+      height: 18rem;
     }
 
-    img {
-      width: 100%;
-      object-fit: cover;
-      border-top-left-radius: $brdr-rds;
-      border-top-right-radius: $brdr-rds;
+    &:hover {
+      box-shadow: $frm-shdw;
+      cursor: pointer;
     }
 
     .book-info {

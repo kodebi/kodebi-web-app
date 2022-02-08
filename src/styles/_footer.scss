@@ -8,14 +8,15 @@
   width: 100%;
   height: auto;
   margin-top: 100px;
-  
+
   .footer-container {
     background: $sm-clr;
+    color: $bckgrnd-clr;
     padding: 1rem;
     position: relative;
     display: flex;
     justify-content: center;
-    
+
     .footer-wrapper {
       width: 100%;
       display: flex;
@@ -27,24 +28,24 @@
         justify-content: space-between;
         align-items: center;
       }
-      
+
       .footer-link-container {
         display: flex;
         flex-flow: column;
         align-items: flex-start;
         padding: 0.5rem 0;
-        
+
         .footer-links {
           @include footer-link-wrapper;
           justify-content: flex-start;
         }
-        
+
         .footer-social {
           @include footer-link-wrapper;
           justify-content: flex-start;
 
           @media (min-width: 800px) {
-            justify-content: flex-end;  
+            justify-content: flex-end;
           }
         }
       }
@@ -52,6 +53,6 @@
   }
 
   .heart {
-    color: $fnt-clr;
+    color: $bckgrnd-clr;
   }
 }
