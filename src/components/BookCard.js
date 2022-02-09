@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const Book = ({ _id, image, name, author, category }) => {
+const BookCard = ({ _id, image, name, author, category }) => {
   return (
     <Link to={`/book/${_id}`} key={_id} className='book'>
       <img src={image} alt={name} />
@@ -14,4 +14,4 @@ const Book = ({ _id, image, name, author, category }) => {
   )
 }
 
-export default Book
+export default BookCard

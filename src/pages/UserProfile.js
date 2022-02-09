@@ -7,13 +7,13 @@ import Alert from '../components/Alert'
 import { motion } from 'framer-motion'
 import Shelf from '../components/Shelf'
 import { API_BOOKSBYUSER } from '../config/config'
+import { useParams } from 'react-router-dom'
 
 const UserProfile = () => {
   const { alert, closeSubmenu, loading, setLoading } = useLayoutContext()
   const [myBooks, setMyBooks] = React.useState([])
-  const { jwt } = useAuthContext()
-  const bookOwnerId = sessionStorage.getItem('bookOwnerId')
-  const bookOwnerName = sessionStorage.getItem('bookOwnerName')
+  const { userId, jwt } = useAuthContext()
+  const { id } = useParams()
 
   // GET Bücher des Users
   const fetchMyBooks = React.useCallback(
@@ -43,8 +43,8 @@ const UserProfile = () => {
 
   // hole Bücher des Users
   React.useEffect(() => {
-    fetchMyBooks(API_BOOKSBYUSER, bookOwnerId, jwt)
-  }, [fetchMyBooks, bookOwnerId, jwt])
+    fetchMyBooks(API_BOOKSBYUSER, id ?? userId, jwt)
+  }, [fetchMyBooks, id, userId, jwt])
 
   return (
     <>
@@ -58,7 +58,7 @@ const UserProfile = () => {
           transition={{ duration: 0.25 }}
           onClick={closeSubmenu}
         >
-          <UserDashboard userName={bookOwnerName} bookCount={myBooks.length} />
+          <UserDashboard user={myBooks[0]} bookCount={myBooks.length} />
           <Shelf element={myBooks} />
           {alert.display && <Alert />}
         </motion.main>

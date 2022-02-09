@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom'
 import { useAuthContext } from '../context/AuthContext'
 import ActionButton from './ActionBtn'
 
-const UserAction = ({ openBook, removeBook, openEditWindow, messageUser }) => {
+const UserAction = ({
+  book: { username, condition, owner, status },
+  removeBook,
+  openEditWindow,
+  messageUser,
+}) => {
   const { userId } = useAuthContext()
-  const { username, condition, owner, status } = openBook
-  sessionStorage.setItem('bookOwnerId', owner)
-  sessionStorage.setItem('bookOwnerName', username)
 
   return (
     <>

@@ -10,7 +10,7 @@ import ScrollToTop from './components/ScrollToTop'
 const Marketplace = lazy(() => import('./pages/Marketplace'))
 const UserProfile = lazy(() => import('./pages/UserProfile'))
 const Messages = lazy(() => import('./pages/Messages'))
-const OpenBook = lazy(() => import('./pages/OpenBook'))
+const BookDetails = lazy(() => import('./pages/BookDetails'))
 const UploadBook = lazy(() => import('./pages/UploadBook'))
 const DataPrivacy = lazy(() => import('./pages/DataPrivacy'))
 const Imprint = lazy(() => import('./pages/Imprint'))
@@ -27,7 +27,7 @@ function AuthApp() {
           <Route path='/mybooks' element={<UserProfile />} />
           <Route path='/profile/:id' element={<UserProfile />} />
           <Route path='/uploadbook' element={<UploadBook />} />
-          <Route path='/book/:id' element={<OpenBook />} />
+          <Route path='/book/:id' element={<BookDetails />} />
           <Route path='/messages' element={<Messages />} />
           <Route path='/imprint' element={<Imprint />} />
           <Route path='/dataprivacy' element={<DataPrivacy />} />

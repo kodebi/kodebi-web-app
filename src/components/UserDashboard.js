@@ -1,7 +1,7 @@
 import React from 'react'
 import { FaBook, FaUserCircle } from 'react-icons/fa'
 
-const UserDashboard = ({ userName, bookCount }) => {
+const UserDashboard = ({ user, bookCount }) => {
   return (
     <>
       <section className='dashboard'>
@@ -10,7 +10,7 @@ const UserDashboard = ({ userName, bookCount }) => {
             <FaUserCircle />
           </span>
           <div className='user-name'>
-            <h2>{userName}</h2>
+            <h2>{user?.username}</h2>
             <p>Aktiv seit 2022</p>
           </div>
         </aside>
