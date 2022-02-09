@@ -5,6 +5,7 @@
   display: flex;
   text-align: center;
   color: $bckgrnd-clr;
+  border-radius: $brdr-rds;
   box-shadow: $bx-shdw;
   object-fit: cover;
 
@@ -17,8 +18,8 @@
 
   .book-info {
     position: absolute;
-    height: 0;
     opacity: 0;
+    transition: $trnstn;
   }
 }
 

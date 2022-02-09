@@ -89,11 +89,11 @@ button {
   h1,
   h2,
   h3,
-  h4, 
+  h4,
   p {
     text-align: left;
   }
-  
+
   a {
     font-size: 1rem;
   }
@@ -136,6 +136,7 @@ button {
 @import './styles/loading';
 @import './styles/loginscreen';
 @import './styles/links';
+@import './styles/marketplace.scss';
 @import './styles/messagemodal';
 @import './styles/messages';
 @import './styles/navbar';

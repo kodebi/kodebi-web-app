@@ -1,0 +1,12 @@
+.search-and-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: $mx-wdth;
+
+  @media (min-width: 800px) {
+    justify-content: space-around;
+    flex-flow: row;
+  }
+}

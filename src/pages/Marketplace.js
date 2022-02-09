@@ -7,6 +7,7 @@ import Loading from '../components/Loading'
 import Alert from '../components/Alert'
 import { motion } from 'framer-motion'
 import { API_BOOKS } from '../config/config'
+import FilterButton from '../components/FilterButton'
 
 const Marketplace = () => {
   const { alert, loading, setLoading, closeSubmenu } = useLayoutContext()
@@ -53,10 +54,7 @@ const Marketplace = () => {
   }, [search, allBooks, setBooks])
 
   // ziehe Kategorien der Bücher
-  const categories = [
-    'Alle Bücher',
-    ...new Set(allBooks.map((book) => book.category)),
-  ]
+  const categories = [...new Set(allBooks.map((book) => book.category))]
 
   // ziehe Status der Bücher
   const status = [...new Set(allBooks.map((book) => book.status))]
@@ -69,11 +67,12 @@ const Marketplace = () => {
     setSearch(e.target.value)
   }
 
+  const backToAll = () => {
+    setBooks(allBooks)
+  }
+
   // filtert Bücher anhand der Kategorien
   const filterByCategory = (category) => {
-    if (category === 'Alle Bücher') {
-      return setBooks(allBooks)
-    }
     let filteredBooks = allBooks.filter((book) => book.category === category)
     setBooks(filteredBooks)
   }
@@ -100,10 +99,13 @@ const Marketplace = () => {
           transition={{ duration: 0.25 }}
           onClick={closeSubmenu}
         >
-          <SearchBar search={search} handleSearch={handleSearch} />
-          <Dropdown options={categories} onChange={filterByCategory} />
-          <Dropdown options={lenguajes} onChange={filterByLanguage} />
-          <Dropdown options={status} onChange={filterByStatus} />
+          <section className='search-and-filter'>
+            <FilterButton onClick={backToAll}>alle bücher</FilterButton>
+            <SearchBar search={search} handleSearch={handleSearch} />
+            <Dropdown options={categories} onChange={filterByCategory} />
+            <Dropdown options={lenguajes} onChange={filterByLanguage} />
+            <Dropdown options={status} onChange={filterByStatus} />
+          </section>
           <Shelf element={books} />
           {alert.display && <Alert />}
         </motion.main>
