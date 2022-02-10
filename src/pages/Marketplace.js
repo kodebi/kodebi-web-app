@@ -8,6 +8,7 @@ import Alert from '../components/Alert'
 import { motion } from 'framer-motion'
 import { API_BOOKS } from '../config/config'
 import FilterButton from '../components/FilterButton'
+import Title from '../components/Title'
 
 const Marketplace = () => {
   const { alert, loading, setLoading, closeSubmenu } = useLayoutContext()
@@ -99,6 +100,7 @@ const Marketplace = () => {
           transition={{ duration: 0.25 }}
           onClick={closeSubmenu}
         >
+          <Title content='Marktplatz' />
           <section className='search-and-filter'>
             <FilterButton onClick={backToAll}>alle bücher</FilterButton>
             <SearchBar search={search} handleSearch={handleSearch} />

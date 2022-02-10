@@ -1,6 +1,6 @@
 .loading {
   overflow: hidden;
-  background: rgba(247, 247, 247, 0.46);
+  background: rgba($bckgrnd-clr-2, 0.46);
   height: 100vh;
   z-index: 3;
   display: grid;
@@ -8,7 +8,7 @@
 }
 
 .load-wrapper {
-  background: rgba(247, 247, 247, 0.46);
+  background: rgba($bckgrnd-clr-2, 0.46);
   top: 0;
   left: 0;
   width: 100vw;

@@ -10,7 +10,7 @@ const UserDashboard = ({ user, bookCount }) => {
             <FaUserCircle />
           </span>
           <div className='user-name'>
-            <h2>{user?.username}</h2>
+            <h2>{user}</h2>
             <p>Aktiv seit 2022</p>
           </div>
         </aside>

@@ -6,6 +6,7 @@ import Loading2 from '../components/Loading2'
 import { motion } from 'framer-motion'
 import Alert from '../components/Alert'
 import { MessageProvider } from '../context/MessageContext'
+import Title from '../components/Title'
 
 const Messages = () => {
   const { alert, closeSubmenu, loading } = useLayoutContext()
@@ -21,6 +22,7 @@ const Messages = () => {
           transition={{ duration: 0.5 }}
           onClick={closeSubmenu}
         >
+          <Title content='Deine Nachrichten' />
           <section className='message-container'>
             <Conversations />
             <ChatWindow />
