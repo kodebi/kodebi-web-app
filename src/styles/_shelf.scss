@@ -5,6 +5,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
 .shelf-container {
@@ -29,6 +30,7 @@
   .shelf-container {
     flex-flow: row wrap;
     gap: 1.5rem;
-    padding: 1rem;
+    padding: 1.25rem;
+    justify-content: flex-start;
   }
 }

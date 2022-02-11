@@ -5,9 +5,9 @@
   width: 100vw;
   grid-template-columns: 1fr 2fr;
   -moz-grid-template-columns: 1fr 2fr;
-  height: calc(100vh - 15vh);
-  border-top: 1px solid $clr-gry;
-  border-bottom: 1px solid $clr-gry;
+  height: calc(100vh - 22vh);
+  border-top: 1px solid $bckgrnd-clr-2;
+  border-bottom: 1px solid $bckgrnd-clr-2;
 }
 
 .conversations {
@@ -21,7 +21,7 @@
   display: grid;
   grid-template-columns: 25% 75%;
   border: none;
-  border-bottom: 1px solid $clr-gry;
+  border-bottom: 1px solid $bckgrnd-clr-2;
   color: $fnt-clr;
   background-color: $bckgrnd-clr;
   padding: 0.25rem;
@@ -59,7 +59,7 @@
   width: 100%;
   justify-content: flex-end;
   overflow: hidden;
-  border-left: 1px solid $clr-gry;
+  border-left: 1px solid $bckgrnd-clr-2;
 
   .chat {
     overflow: auto;
@@ -87,10 +87,10 @@
 .input-message {
   display: flex;
   padding: 0.5rem;
-  border-top: 1px solid $clr-gry;
+  border-top: 1px solid $bckgrnd-clr-2;
 
   .enter-message {
-    border-color: $clr-gry;
+    border-color: $bckgrnd-clr-2;
     margin-right: 0.5rem;
     width: 100%;
     flex-grow: 1;

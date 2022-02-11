@@ -1,22 +1,51 @@
-import React from 'react';
-import { useAuthContext } from '../context/AuthContext';
+import React from 'react'
+import { FaBook, FaUserCircle } from 'react-icons/fa'
 
-const UserDashboard = () => {
-    const { userName } = useAuthContext();
-    return (
-        <>
-            <section className='dashboard'>
-                <h2 className='title'>Das sind deine Bücher, {userName}!</h2>
-                <p>
-                    Hier siehst du alle Bücher, die du hochgeladen hast. Du
-                    kannst ganz einfach bestehende Bücher entfernen und
-                    bearbeiten, um immer den besten Überblick zu haben. Bald
-                    findest du hier auch eine Merkliste, in der alle deine
-                    Favoriten gespeichert sind.
-                </p>
-            </section>
-        </>
-    );
-};
+const UserDashboard = ({ user, bookCount }) => {
+  return (
+    <>
+      <section className='dashboard'>
+        <aside className='user-info'>
+          <span className='user-pic'>
+            <FaUserCircle />
+          </span>
+          <div className='user-name'>
+            <h2>{user}</h2>
+            <p>Aktiv seit 2022</p>
+          </div>
+        </aside>
+        <aside className='user-statistics'>
+          <article className='stat'>
+            <h4>Im Regal</h4>
+            <span className='stat-iconumber'>
+              <span className='book-icon'>
+                <FaBook />
+              </span>
+              <h4 className='stat-number'>{bookCount}</h4>
+            </span>
+          </article>
+          <article className='stat'>
+            <h4>Im Umlauf</h4>
+            <span className='stat-iconumber'>
+              <span className='book-icon'>
+                <FaBook />
+              </span>
+              <h4 className='stat-number'>2</h4>
+            </span>
+          </article>
+          <article className='stat'>
+            <h4>Insgesamt verliehen</h4>
+            <span className='stat-iconumber'>
+              <span className='book-icon'>
+                <FaBook />
+              </span>
+              <h4 className='stat-number'>6</h4>
+            </span>
+          </article>
+        </aside>
+      </section>
+    </>
+  )
+}
 
-export default UserDashboard;
+export default UserDashboard

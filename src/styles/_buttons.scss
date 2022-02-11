@@ -22,7 +22,7 @@
   text-transform: capitalize;
 
   &:hover {
-    @include hover-btn($fnt-clr);
+    @include hover-btn($bckgrnd-clr-2);
     color: $bckgrnd-clr;
   }
 }
@@ -48,7 +48,7 @@
   margin-top: 1rem;
 
   &:hover {
-    @include hover-btn($fnt-clr);
+    @include hover-btn($bckgrnd-clr-2);
     color: $bckgrnd-clr;
   }
 }
