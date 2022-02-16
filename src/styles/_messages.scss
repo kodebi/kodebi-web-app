@@ -14,7 +14,6 @@
   display: flex;
   flex-direction: column;
   overflow: auto;
-  width: 100%;
 }
 
 .conversation {
@@ -56,13 +55,15 @@
 .chat-window {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  justify-content: flex-end;
+  justify-content: space-between;
   overflow: hidden;
   border-left: 1px solid $bckgrnd-clr-2;
+  overscroll-behavior: none;
 
   .chat {
     overflow: auto;
+    position: relative;
+    overscroll-behavior: contain;
   }
 }
 
@@ -113,7 +114,7 @@
   }
 
   .message {
-    padding: 1rem 2rem;
+    padding: 0.75rem 1rem;
 
     .message-header {
       margin-bottom: 0.5rem;
