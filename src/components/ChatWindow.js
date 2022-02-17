@@ -10,24 +10,11 @@ const ChatWindow = () => {
   const { selectedConversation } = useLayoutContext()
   const { sendMessage, newMessage, handleKeyPress, handleMessage } =
     useMessagesContext()
-  const [topicBox, setTopicBox] = React.useState(false)
-  const chatWrapperRef = React.useRef(null)
-
-  React.useLayoutEffect(() => {
-    const stickyTopic = () => {
-      if (window.scrollY > 0) {
-        setTopicBox(false)
-      }
-    }
-
-    window.addEventListener('scroll', stickyTopic)
-    return () => window.removeEventListener('scroll', stickyTopic)
-  })
 
   return (
     <>
-      <aside ref={chatWrapperRef} className='chat-window'>
-        <OpenChat topicBox={topicBox} setTopicBox={setTopicBox} />
+      <aside className='chat-window'>
+        <OpenChat />
         {selectedConversation && (
           <Form className='input-message' onSubmit={sendMessage}>
             <textarea

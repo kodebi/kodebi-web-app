@@ -9,6 +9,7 @@ import Shelf from '../components/Shelf'
 import { API_BOOKSBYUSER } from '../config/config'
 import { useParams } from 'react-router-dom'
 import Title from '../components/Title'
+import List from '../components/List'
 
 const UserProfile = () => {
   const { alert, closeSubmenu, loading, setLoading } = useLayoutContext()
@@ -47,7 +48,8 @@ const UserProfile = () => {
     fetchMyBooks(API_BOOKSBYUSER, id ?? userId, jwt)
   }, [fetchMyBooks, id, userId, jwt])
 
-  const whoIs = id ? myBooks[0]?.username.concat('s') : 'Dein'
+  const whose = id ? myBooks[0]?.username.concat('s') : 'Dein'
+  const renderList = !id ? <List /> : null
 
   return (
     <>
@@ -61,11 +63,12 @@ const UserProfile = () => {
           transition={{ duration: 0.25 }}
           onClick={closeSubmenu}
         >
-          <Title content={`${whoIs} Bücherregal`} />
+          <Title content={`${whose} Bücherregal`} />
           <UserDashboard
             user={myBooks[0]?.username}
             bookCount={myBooks.length}
           />
+          {renderList}
           <Shelf element={myBooks} />
           {alert.display && <Alert />}
         </motion.main>

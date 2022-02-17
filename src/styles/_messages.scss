@@ -11,8 +11,7 @@
 }
 
 .conversations {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   overflow: auto;
 }
 
@@ -53,8 +52,7 @@
 }
 
 .chat-window {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
   justify-content: space-between;
   overflow: hidden;
   border-left: 1px solid $bckgrnd-clr-2;
@@ -63,7 +61,6 @@
   .chat {
     overflow: auto;
     position: relative;
-    overscroll-behavior: contain;
   }
 }
 

@@ -1,3 +1,13 @@
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+@mixin grid-center {
+  display: grid;
+  place-items: center;
+}
+
 .action-btn-container {
   margin-top: 1rem;
 }
@@ -33,11 +43,6 @@
 .basic-flex {
   display: flex;
   align-items: center;
-}
-
-.basic-grid {
-  display: grid;
-  place-items: center;
 }
 
 .separation-line {

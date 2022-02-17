@@ -1,38 +1,19 @@
-import React from 'react'
+import * as React from 'react'
 import { useLayoutContext } from '../context/LayoutContext'
 import { useMessagesContext } from '../context/MessageContext'
 import Message from './Message'
 import MessageTopic from './MessageTopic'
 
-const OpenChat = ({ topicBox, setTopicBox }) => {
+const OpenChat = () => {
   const { selectedConversation } = useLayoutContext()
   const { chat, scrollToBottom } = useMessagesContext()
   const { recipients, messages } = chat
-  const chatRef = React.useRef(null)
+  const [confirm, setConfirm] = React.useState(true)
 
-  // aktiviere sticky navbar beim scrollen
-  React.useLayoutEffect(() => {
-    const stickyTopic = () => {
-      if (chatRef.current.scrollTop > 80) {
-        setTopicBox(true)
-      } else {
-        setTopicBox(false)
-      }
-    }
-
-    chatRef.current?.addEventListener('scroll', stickyTopic)
-    return () => {
-      chatRef.current?.removeEventListener('scroll', stickyTopic)
-    }
-  })
-
-  if (!selectedConversation) {
-    return null
-  }
-  return (
+  return selectedConversation ? (
     <>
-      <section ref={chatRef} className='chat'>
-        <MessageTopic topicBox={topicBox} />
+      <section className='chat'>
+        {confirm && <MessageTopic setConfirm={setConfirm} />}
         {messages &&
           messages.map((message) => {
             return (
@@ -42,7 +23,7 @@ const OpenChat = ({ topicBox, setTopicBox }) => {
         <div ref={scrollToBottom}></div>
       </section>
     </>
-  )
+  ) : null
 }
 
 export default OpenChat

@@ -9,17 +9,10 @@
   align-items: center;
 
   .topic-wrapper {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
 
     .topic-body {
       margin-bottom: 0;
     }
   }
-}
-
-.sticky-topic {
-  position: fixed;
-  box-shadow: $bx-shdw;
-  background-color: $bckgrnd-clr;
 }
