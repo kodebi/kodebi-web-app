@@ -6,21 +6,20 @@ const List = () => {
       <table className='list'>
         <thead>
           <tr>
-            <th>Buch?</th>
-            <th>An?</th>
-            <th>Wann?</th>
+            <th className='list-header'>Bild</th>
+            <th className='list-header'>Titel</th>
+            <th className='list-header'>AutorIn</th>
+            <th className='list-header'>Zustand</th>
+            <th className='list-header'>Verliehen an</th>
           </tr>
         </thead>
         <tbody>
           <tr>
+            <td>Kein Bild vorhanden</td>
             <td>Miss Merkel</td>
+            <td>David Sergert</td>
+            <td>Gut</td>
             <td>Lenosaurus</td>
-            <td>23.12.2020</td>
-          </tr>
-          <tr>
-            <td>The Lean Startup</td>
-            <td>Muhlemann</td>
-            <td>12.02.2022</td>
           </tr>
         </tbody>
       </table>

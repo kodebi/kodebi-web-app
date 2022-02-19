@@ -1,7 +1,14 @@
 .list {
+  @include card;
   max-width: $mx-wdth;
   width: 100%;
   padding: 1rem;
   margin: 2rem;
   text-align: left;
+  font-size: 1rem;
+
+  .list-header {
+    border-bottom: 1px solid $bckgrnd-clr-2;
+    font-size: 1.25rem;
+  }
 }

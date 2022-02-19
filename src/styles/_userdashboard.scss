@@ -3,9 +3,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 1px solid $bckgrnd-clr-2;
-  border-radius: $brdr-rds-3;
-  box-shadow: $bx-shdw;
+  @include card;
 
   .user-info {
     display: flex;

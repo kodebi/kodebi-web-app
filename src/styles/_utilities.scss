@@ -8,6 +8,12 @@
   place-items: center;
 }
 
+@mixin card {
+  border: 1px solid $bckgrnd-clr-2;
+  border-radius: $brdr-rds-3;
+  box-shadow: $bx-shdw;
+}
+
 .action-btn-container {
   margin-top: 1rem;
 }

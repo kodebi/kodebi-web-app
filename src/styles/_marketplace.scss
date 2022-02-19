@@ -1,10 +1,7 @@
 .search-and-filter {
-  display: flex;
-  flex-direction: column;
+  @include flex-column;
+  @include card;
   align-items: center;
-  border: 1px solid $bckgrnd-clr-2;
-  border-radius: $brdr-rds-3;
-  box-shadow: $bx-shdw;
   padding: 0.75rem;
 
   @media (min-width: 800px) {
