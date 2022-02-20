@@ -2,11 +2,12 @@
   display: inline-flex;
   z-index: 2;
   border: none;
-  background-color: $bckgrnd-clr;
+  background-color: transparent;
   transition: $trnstn;
   margin-left: 0.5rem;
   color: $brnd-clr;
   transform: perspective(1px) translateZ(0);
+  border-radius: $brdr-rds-3;
 
   &:hover {
     animation: buzz-up 3s 75ms;

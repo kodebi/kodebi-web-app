@@ -24,6 +24,8 @@ body {
 main {
   display: grid;
   place-items: center;
+  gap: 1rem;
+  margin: 0 0.5rem;
 
   &:before {
     margin-top: 15vh;

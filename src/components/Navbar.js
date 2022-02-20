@@ -19,7 +19,7 @@ const Navbar = () => {
   // aktiviere sticky navbar beim scrollen
   useEffect(() => {
     const stickyNav = () => {
-      if (window.scrollY >= 120) {
+      if (window.scrollY >= 50) {
         setNavbar(true)
       } else {
         setNavbar(false)
@@ -71,7 +71,9 @@ const Navbar = () => {
         className={navbar ? 'nav-center sticky-nav animate-nav' : 'nav-center'}
         onClick={hideSubmenu}
       >
-        <header className='nav-content'>
+        <header
+          className={navbar ? 'nav-content sticky-nav-content' : 'nav-content'}
+        >
           <div className='nav-header basic-flex'>
             <Link to='/' className='basic-flex' onClick={hideLinks}>
               <img src={logo} alt='logo' width='110' height='70' />

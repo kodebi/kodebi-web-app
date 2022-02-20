@@ -2,7 +2,6 @@
 @mixin show-shelf {
   @include card;
   max-width: $mx-wdth;
-  margin: 1rem auto;
   display: flex;
   justify-content: center;
   align-items: center;
