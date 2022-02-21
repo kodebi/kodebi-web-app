@@ -10,6 +10,7 @@
 
 .shelf-container {
   @include show-shelf;
+  padding: 0.75rem;
   gap: 1rem;
   flex-flow: column nowrap;
 }

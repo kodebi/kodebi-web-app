@@ -75,7 +75,7 @@ const Navbar = () => {
           className={navbar ? 'nav-content sticky-nav-content' : 'nav-content'}
         >
           <div className='nav-header basic-flex'>
-            <Link to='/' className='basic-flex' onClick={hideLinks}>
+            <Link to='/' onClick={hideLinks}>
               <img src={logo} alt='logo' width='110' height='70' />
             </Link>
             <button className='nav-toggle' onClick={toggleNavbar}>

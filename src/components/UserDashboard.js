@@ -1,5 +1,5 @@
 import React from 'react'
-import { FaBook, FaUserCircle } from 'react-icons/fa'
+import { FaBookOpen, FaUserCircle } from 'react-icons/fa'
 
 const UserDashboard = ({ user, bookCount }) => {
   return (
@@ -10,7 +10,7 @@ const UserDashboard = ({ user, bookCount }) => {
             <FaUserCircle />
           </span>
           <div className='user-name'>
-            <h2>{user}</h2>
+            <h3>{user}</h3>
             <p>Aktiv seit 2022</p>
           </div>
         </aside>
@@ -19,7 +19,7 @@ const UserDashboard = ({ user, bookCount }) => {
             <h4>Im Regal</h4>
             <span className='stat-iconumber'>
               <span className='book-icon'>
-                <FaBook />
+                <FaBookOpen />
               </span>
               <h4 className='stat-number'>{bookCount}</h4>
             </span>
@@ -28,7 +28,7 @@ const UserDashboard = ({ user, bookCount }) => {
             <h4>Im Umlauf</h4>
             <span className='stat-iconumber'>
               <span className='book-icon'>
-                <FaBook />
+                <FaBookOpen />
               </span>
               <h4 className='stat-number'>2</h4>
             </span>
@@ -37,7 +37,7 @@ const UserDashboard = ({ user, bookCount }) => {
             <h4>Insgesamt verliehen</h4>
             <span className='stat-iconumber'>
               <span className='book-icon'>
-                <FaBook />
+                <FaBookOpen />
               </span>
               <h4 className='stat-number'>6</h4>
             </span>
