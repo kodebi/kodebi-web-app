@@ -1,5 +1,5 @@
-import React from 'react'
-import { useLayoutContext } from '../context/LayoutContext'
+import * as React from 'react'
+import { LayoutContext } from '../context/LayoutContext'
 import Conversations from '../components/Conversations'
 import ChatWindow from '../components/ChatWindow'
 import Loading2 from '../components/Loading2'
@@ -9,7 +9,7 @@ import { MessageProvider } from '../context/MessageContext'
 import Title from '../components/Title'
 
 const Messages = () => {
-  const { alert, closeSubmenu, loading } = useLayoutContext()
+  const { alert, closeSubmenu, loading } = React.useContext(LayoutContext)
 
   return (
     <>

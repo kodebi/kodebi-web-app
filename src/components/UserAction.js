@@ -1,6 +1,6 @@
-import React from 'react'
+import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { useAuthContext } from '../context/AuthContext'
+import { AuthContext } from '../context/AuthContext'
 import ActionButton from './ActionBtn'
 
 const UserAction = ({
@@ -9,7 +9,7 @@ const UserAction = ({
   openEditWindow,
   messageUser,
 }) => {
-  const { userId } = useAuthContext()
+  const { userId } = React.useContext(AuthContext)
 
   return (
     <>

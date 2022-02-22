@@ -16,7 +16,10 @@ const DataPrivacy = lazy(() => import('./pages/DataPrivacy'))
 const Imprint = lazy(() => import('./pages/Imprint'))
 const Error = lazy(() => import('./pages/Error'))
 
+let authAppRender = 0
+
 function AuthApp() {
+  console.log(`appRender = ${authAppRender++}`)
   return (
     <Suspense fallback={<Loading />}>
       <Navbar />

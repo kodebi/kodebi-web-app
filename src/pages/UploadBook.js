@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { FaCheckCircle, FaPoo, FaFlushed } from 'react-icons/fa'
-import { useLayoutContext } from '../context/LayoutContext'
-import { useAuthContext } from '../context/AuthContext'
+import { LayoutContext } from '../context/LayoutContext'
+import { AuthContext } from '../context/AuthContext'
 import { API_BOOKS } from '../config/config'
 import Alert from '../components/Alert'
 import ImageUploader from '../components/ImageUploader'
@@ -17,8 +17,8 @@ import Title from '../components/Title'
 
 const UploadBook = () => {
   const { loading, setLoading, alert, setAlert, closeSubmenu } =
-    useLayoutContext()
-  const { userId, userName, jwt } = useAuthContext()
+    useContext(LayoutContext)
+  const { userId, userName, jwt } = useContext(AuthContext)
   const [newBook, setNewBook] = useState({
     name: '',
     author: '',

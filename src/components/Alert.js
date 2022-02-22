@@ -1,21 +1,21 @@
-import React, { useLayoutEffect } from 'react';
-import { useLayoutContext } from '../context/LayoutContext';
+import * as React from 'react'
+import { LayoutContext } from '../context/LayoutContext'
 
 const Alert = () => {
-    const { alert, setAlert } = useLayoutContext();
+  const { alert, setAlert } = React.useContext(LayoutContext)
 
-    useLayoutEffect(() => {
-        setTimeout(() => {
-            setAlert({ display: false, icon: '', msg: '' });
-        }, 3000);
-    }, [alert]);
+  React.useLayoutEffect(() => {
+    setTimeout(() => {
+      setAlert({ display: false, icon: '', msg: '' })
+    }, 3000)
+  }, [alert])
 
-    return (
-        <div className='alert basic-flex'>
-            <span className='icon basic-flex'>{alert.icon}</span>
-            <p>{alert.msg}</p>
-        </div>
-    );
-};
+  return (
+    <div className='alert basic-flex'>
+      <span className='icon basic-flex'>{alert.icon}</span>
+      <p>{alert.msg}</p>
+    </div>
+  )
+}
 
-export default Alert;
+export default Alert

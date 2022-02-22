@@ -1,11 +1,11 @@
 import * as React from 'react'
 import SigninBtn from './SigninBtn'
 import confetti from 'canvas-confetti'
-import { useLayoutContext } from '../context/LayoutContext'
+import { LayoutContext } from '../context/LayoutContext'
 import { FaGrinStars } from 'react-icons/fa'
 
 const MessageTopic = ({ setConfirm }) => {
-  const { setAlert } = useLayoutContext()
+  const { setAlert } = React.useContext(LayoutContext)
   const handleConfirm = () => {
     setConfirm(false)
     confetti({

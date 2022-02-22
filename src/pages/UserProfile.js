@@ -1,6 +1,6 @@
 import * as React from 'react'
-import { useLayoutContext } from '../context/LayoutContext'
-import { useAuthContext } from '../context/AuthContext'
+import { LayoutContext } from '../context/LayoutContext'
+import { AuthContext } from '../context/AuthContext'
 import UserDashboard from '../components/UserDashboard'
 import Loading from '../components/Loading'
 import Alert from '../components/Alert'
@@ -12,9 +12,10 @@ import Title from '../components/Title'
 import List from '../components/List'
 
 const UserProfile = () => {
-  const { alert, closeSubmenu, loading, setLoading } = useLayoutContext()
+  const { alert, closeSubmenu, loading, setLoading } =
+    React.useContext(LayoutContext)
   const [myBooks, setMyBooks] = React.useState([])
-  const { userId, jwt } = useAuthContext()
+  const { userId, jwt } = React.useContext(AuthContext)
   const { id } = useParams()
 
   // GET Bücher des Users

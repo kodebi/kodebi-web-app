@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useCallback } from 'react'
-import { useLayoutContext } from '../context/LayoutContext'
+import * as React from 'react'
+import { LayoutContext } from '../context/LayoutContext'
 import Dropdown from '../components/Dropdown'
 import Shelf from '../components/Shelf'
 import SearchBar from '../components/SearchBar'
@@ -10,14 +10,18 @@ import { API_BOOKS } from '../config/config'
 import FilterButton from '../components/FilterButton'
 import Title from '../components/Title'
 
+let marketplaceRender = 0
+
 const Marketplace = () => {
-  const { alert, loading, setLoading, closeSubmenu } = useLayoutContext()
-  const [allBooks, setAllBooks] = useState([])
-  const [books, setBooks] = useState(allBooks)
-  const [search, setSearch] = useState('')
+  console.log(`mplaceRender = ${marketplaceRender++}`)
+  const { alert, loading, setLoading, closeSubmenu } =
+    React.useContext(LayoutContext)
+  const [allBooks, setAllBooks] = React.useState([])
+  const [books, setBooks] = React.useState(allBooks)
+  const [search, setSearch] = React.useState('')
 
   // GET Bücher vom Backend
-  const fetchBooks = useCallback(
+  const fetchBooks = React.useCallback(
     async (api) => {
       try {
         setLoading(true)
@@ -40,12 +44,12 @@ const Marketplace = () => {
   )
 
   // hole alle Bücher
-  useEffect(() => {
+  React.useEffect(() => {
     fetchBooks(API_BOOKS)
   }, [fetchBooks])
 
   // filter Bücher nach Suche
-  useEffect(() => {
+  React.useEffect(() => {
     let searchedBooks = allBooks.filter(
       (book) =>
         book.name.toLowerCase().includes(search.toLowerCase()) ||
@@ -64,13 +68,13 @@ const Marketplace = () => {
   const lenguajes = [...new Set(allBooks.map((book) => book.language))]
 
   // verarbeite den Input des Suchfeldes
-  const handleSearch = (e) => {
+  const handleSearch = React.useCallback((e) => {
     setSearch(e.target.value)
-  }
+  }, [])
 
-  const backToAll = () => {
+  const backToAll = React.useCallback(() => {
     setBooks(allBooks)
-  }
+  }, [allBooks])
 
   // filtert Bücher anhand der Kategorien
   const filterByCategory = (category) => {

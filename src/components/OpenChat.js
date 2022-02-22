@@ -1,12 +1,12 @@
 import * as React from 'react'
-import { useLayoutContext } from '../context/LayoutContext'
-import { useMessagesContext } from '../context/MessageContext'
+import { LayoutContext } from '../context/LayoutContext'
+import { MessageContext } from '../context/MessageContext'
 import Message from './Message'
 import MessageTopic from './MessageTopic'
 
 const OpenChat = () => {
-  const { selectedConversation } = useLayoutContext()
-  const { chat, scrollToBottom } = useMessagesContext()
+  const { selectedConversation } = React.useContext(LayoutContext)
+  const { chat, scrollToBottom } = React.useContext(MessageContext)
   const { recipients, messages } = chat
   const [confirm, setConfirm] = React.useState(true)
 

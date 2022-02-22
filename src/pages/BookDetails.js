@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import * as React from 'react'
 import Loading from '../components/Loading'
 import UserAction from '../components/UserAction'
 import Alert from '../components/Alert'
@@ -8,30 +8,29 @@ import Loading2 from '../components/Loading2'
 import { motion } from 'framer-motion'
 import EditBook from '../components/EditBook'
 import { useParams, useNavigate } from 'react-router-dom'
-import { useLayoutContext } from '../context/LayoutContext'
+import { LayoutContext } from '../context/LayoutContext'
 import { FaCheckCircle, FaPoo } from 'react-icons/fa'
 import { API_BOOKS, API_MESSAGES } from '../config/config'
-import { useAuthContext } from '../context/AuthContext'
+import { AuthContext } from '../context/AuthContext'
 
 const BookDetails = () => {
   const { alert, setAlert, closeSubmenu, loading, setLoading } =
-    useLayoutContext()
-
-  const [book, setBook] = useState({})
-  const [showEditBook, setShowEditBook] = useState(false)
-  const [showMessageModal, setShowMessageModal] = useState(false)
-  const [newConv, setNewConv] = useState({
+    React.useContext(LayoutContext)
+  const [book, setBook] = React.useState({})
+  const [showEditBook, setShowEditBook] = React.useState(false)
+  const [showMessageModal, setShowMessageModal] = React.useState(false)
+  const [newConv, setNewConv] = React.useState({
     sender: '',
     reciever: '',
     message: '',
   })
   const history = useNavigate()
   const { id } = useParams()
-  const { userId, jwt } = useAuthContext()
+  const { userId, jwt } = React.useContext(AuthContext)
   const { image, name, author, category, language, description } = book
 
   // GET Buchinfo vom Backend
-  const fetchSingleBook = useCallback(
+  const fetchSingleBook = React.useCallback(
     async (api, id, token) => {
       setLoading(true)
       try {
@@ -162,7 +161,7 @@ const BookDetails = () => {
   }
 
   // öffne Buch
-  useEffect(() => {
+  React.useEffect(() => {
     fetchSingleBook(API_BOOKS, id, jwt)
   }, [fetchSingleBook, id, jwt])
 
@@ -177,9 +176,12 @@ const BookDetails = () => {
   }
 
   // Textfeldeingabe
-  const textChange = (e) => {
-    setBook({ ...setBook, [e.target.name]: e.target.value })
-  }
+  const textChange = React.useCallback(
+    (e) => {
+      setBook({ ...book, [e.target.name]: e.target.value })
+    },
+    [book]
+  )
 
   // update Buchinfo
   const updateBook = (e) => {

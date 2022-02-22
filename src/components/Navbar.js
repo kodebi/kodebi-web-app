@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect, useLayoutEffect } from 'react'
-import { useLayoutContext } from '../context/LayoutContext'
-import { useAuthContext } from '../context/AuthContext'
+import * as React from 'react'
+import { LayoutContext } from '../context/LayoutContext'
+import { AuthContext } from '../context/AuthContext'
 import { Link } from 'react-router-dom'
 import logo from '../static/kodebi_logo_classic.svg'
 import { FaBook, FaBookOpen } from 'react-icons/fa'
@@ -9,15 +9,15 @@ import { links } from '../utils/linksDB'
 import UserBar from './UserBar'
 
 const Navbar = () => {
-  const [navbar, setNavbar] = useState(false)
-  const [location, setLocation] = useState({})
-  const container = useRef(null)
+  const [navbar, setNavbar] = React.useState(false)
+  const [location, setLocation] = React.useState({})
+  const container = React.useRef(null)
   const { closeSubmenu, setIsSubmenuOpen, setShowLinks, showLinks, hideLinks } =
-    useLayoutContext()
-  const { logout } = useAuthContext()
+    React.useContext(LayoutContext)
+  const { logout } = React.useContext(AuthContext)
 
   // aktiviere sticky navbar beim scrollen
-  useEffect(() => {
+  React.useEffect(() => {
     const stickyNav = () => {
       if (window.scrollY >= 50) {
         setNavbar(true)
@@ -32,7 +32,7 @@ const Navbar = () => {
   })
 
   // bestimme die Position des Submenus
-  useLayoutEffect(() => {
+  React.useLayoutEffect(() => {
     const submenu = container.current
     const { divCenter, divBottom } = location
     submenu.style.left = `${divCenter}px`

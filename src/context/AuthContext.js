@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from 'react'
-import { useLayoutContext } from '../context/LayoutContext'
+import { LayoutContext } from '../context/LayoutContext'
 import { FaCheckCircle, FaPoop } from 'react-icons/fa'
 import { useNavigate, useLocation } from 'react-router-dom'
 import { getUrlParams } from '../helpers/getUrlParams'
@@ -11,7 +11,7 @@ import {
   API_USERS,
 } from '../config/config'
 
-const AuthContext = createContext()
+export const AuthContext = createContext()
 
 export const AuthProvider = ({ children }) => {
   const userName = localStorage.getItem('name')
@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
     setIsTabLeft,
     setShowLinks,
     setSelectedConversation,
-  } = useLayoutContext()
+  } = useContext(LayoutContext)
   const forwardPage = useNavigate()
   const { state, search } = useLocation()
   let query = getUrlParams(search)
@@ -227,5 +227,3 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider value={authValues}>{children}</AuthContext.Provider>
   )
 }
-
-export const useAuthContext = () => useContext(AuthContext)

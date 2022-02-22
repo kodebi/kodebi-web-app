@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { useAuthContext } from '../context/AuthContext'
-import { useLayoutContext } from '../context/LayoutContext'
+import { AuthContext } from '../context/AuthContext'
+import { LayoutContext } from '../context/LayoutContext'
 import { API_MESSAGES, API_MESSAGESUSER } from '../config/config'
 import { FaFlushed } from 'react-icons/fa'
 
-const MessageContext = React.createContext()
+export const MessageContext = React.createContext()
 
 export const MessageProvider = ({ children }) => {
   const [conversations, setConversations] = React.useState([])
@@ -22,8 +22,8 @@ export const MessageProvider = ({ children }) => {
     setSelectedConversation,
     setLoading,
     setAlert,
-  } = useLayoutContext()
-  const { userId, jwt } = useAuthContext()
+  } = React.useContext(LayoutContext)
+  const { userId, jwt } = React.useContext(AuthContext)
 
   // GET Konversationen vom Backend
   const fetchUserConversations = React.useCallback(
@@ -186,5 +186,3 @@ export const MessageProvider = ({ children }) => {
     </MessageContext.Provider>
   )
 }
-
-export const useMessagesContext = () => React.useContext(MessageContext)

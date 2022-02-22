@@ -1,18 +1,18 @@
-import React, { lazy, Suspense } from 'react'
-import { useAuthContext } from './context/AuthContext'
+import * as React from 'react'
+import { AuthContext } from './context/AuthContext'
 import Loading from './components/Loading'
 
 // lazy import von zwei separaten apps
-const UnauthenticatedApp = lazy(() => import('./unauthenticated-app'))
-const AuthenticatedApp = lazy(() => import('./authenticated-app'))
+const UnauthenticatedApp = React.lazy(() => import('./unauthenticated-app'))
+const AuthenticatedApp = React.lazy(() => import('./authenticated-app'))
 
 export function App() {
-  const { user } = useAuthContext()
+  const { user } = React.useContext(AuthContext)
   return (
     <>
-      <Suspense fallback={<Loading />}>
+      <React.Suspense fallback={<Loading />}>
         {user ? <AuthenticatedApp /> : <UnauthenticatedApp />}
-      </Suspense>
+      </React.Suspense>
     </>
   )
 }
