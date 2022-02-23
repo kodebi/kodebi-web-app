@@ -3,6 +3,7 @@ import { AuthContext } from '../context/AuthContext'
 import { LayoutContext } from '../context/LayoutContext'
 import { API_MESSAGES, API_MESSAGESUSER } from '../config/config'
 import { FaFlushed } from 'react-icons/fa'
+import { performFetch } from '../helpers/performFetch'
 
 export const MessageContext = React.createContext()
 
@@ -25,32 +26,32 @@ export const MessageProvider = ({ children }) => {
   } = React.useContext(LayoutContext)
   const { userId, jwt } = React.useContext(AuthContext)
 
-  // GET Konversationen vom Backend
-  const fetchUserConversations = React.useCallback(
-    async (api_messages_user, user_id, token) => {
-      try {
-        setLoading(true)
-        const res = await fetch(`${api_messages_user}${user_id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        if (res.ok) {
-          let data = await res.json()
-          const convList = data.reverse()
-          console.log(convList)
-          setConversations(convList)
-        } else {
-          throw new Error('conversations could not be fetched')
-        }
-      } catch (error) {
-        console.log(error)
-      } finally {
-        setLoading(false)
-      }
-    },
-    [setConversations, setLoading]
-  )
+  // // GET Konversationen vom Backend
+  // const fetchUserConversations = React.useCallback(
+  //   async (api_messages_user, user_id, token) => {
+  //     try {
+  //       setLoading(true)
+  //       const res = await fetch(`${api_messages_user}${user_id}`, {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       })
+  //       if (res.ok) {
+  //         let data = await res.json()
+  //         const convList = data.reverse()
+  //         console.log(convList)
+  //         setConversations(convList)
+  //       } else {
+  //         throw new Error('conversations could not be fetched')
+  //       }
+  //     } catch (error) {
+  //       console.log(error)
+  //     } finally {
+  //       setLoading(false)
+  //     }
+  //   },
+  //   [setConversations, setLoading]
+  // )
 
   // GET alle Nachrichten einer Konversation
   const fetchMessages = React.useCallback(
@@ -128,8 +129,11 @@ export const MessageProvider = ({ children }) => {
 
   // ziehe alle Konversationen eines Users
   React.useEffect(() => {
-    fetchUserConversations(API_MESSAGESUSER, userId, jwt)
-  }, [fetchUserConversations, isMessageSent, setIsMessageSent, userId, jwt])
+    performFetch(API_MESSAGESUSER, userId, jwt)
+      .then(setConversations)
+      .then(() => setLoading(false))
+    return () => setLoading(false)
+  }, [])
 
   // update die Nachrichten
   React.useEffect(() => {

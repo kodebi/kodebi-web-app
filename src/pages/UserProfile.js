@@ -10,6 +10,7 @@ import { API_BOOKSBYUSER } from '../config/config'
 import { useParams } from 'react-router-dom'
 import Title from '../components/Title'
 import List from '../components/List'
+import { performFetch } from '../helpers/performFetch'
 
 const UserProfile = () => {
   const { alert, closeSubmenu, loading, setLoading } =
@@ -18,36 +19,39 @@ const UserProfile = () => {
   const { userId, jwt } = React.useContext(AuthContext)
   const { id } = useParams()
 
-  // GET Bücher des Users
-  const fetchMyBooks = React.useCallback(
-    async (api, id, token) => {
-      setLoading(true)
-      try {
-        const res = await fetch(`${api}${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            'content-type': 'application/json',
-          },
-        })
-        if (res.ok) {
-          const myBookList = await res.json()
-          setMyBooks(myBookList)
-        } else {
-          throw new Error(`could not get books of user ${id}`)
-        }
-      } catch (err) {
-        console.log(err)
-      } finally {
-        setLoading(false)
-      }
-    },
-    [setLoading]
-  )
+  // // GET Bücher des Users
+  // const fetchMyBooks = React.useCallback(
+  //   async (api, id, token) => {
+  //     setLoading(true)
+  //     try {
+  //       const res = await fetch(`${api}${id}`, {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //           'content-type': 'application/json',
+  //         },
+  //       })
+  //       if (res.ok) {
+  //         const myBookList = await res.json()
+  //         setMyBooks(myBookList)
+  //       } else {
+  //         throw new Error(`could not get books of user ${id}`)
+  //       }
+  //     } catch (err) {
+  //       console.log(err)
+  //     } finally {
+  //       setLoading(false)
+  //     }
+  //   },
+  //   [setLoading]
+  // )
 
   // hole Bücher des Users
   React.useEffect(() => {
-    fetchMyBooks(API_BOOKSBYUSER, id ?? userId, jwt)
-  }, [fetchMyBooks, id, userId, jwt])
+    performFetch(API_BOOKSBYUSER, id ?? userId, jwt)
+      .then(setMyBooks)
+      .then(() => setLoading(false))
+    return () => setLoading(false)
+  }, [])
 
   const whose = id ? myBooks[0]?.username.concat('s') : 'Dein'
   const renderList = !id ? <List /> : null

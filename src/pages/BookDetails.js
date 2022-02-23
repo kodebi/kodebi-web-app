@@ -12,6 +12,7 @@ import { LayoutContext } from '../context/LayoutContext'
 import { FaCheckCircle, FaPoo } from 'react-icons/fa'
 import { API_BOOKS, API_MESSAGES } from '../config/config'
 import { AuthContext } from '../context/AuthContext'
+import { performFetch } from '../helpers/performFetch'
 
 const BookDetails = () => {
   const { alert, setAlert, closeSubmenu, loading, setLoading } =
@@ -29,30 +30,30 @@ const BookDetails = () => {
   const { userId, jwt } = React.useContext(AuthContext)
   const { image, name, author, category, language, description } = book
 
-  // GET Buchinfo vom Backend
-  const fetchSingleBook = React.useCallback(
-    async (api, id, token) => {
-      setLoading(true)
-      try {
-        const res = await fetch(`${api}${id}`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        if (res.ok) {
-          const singleBook = await res.json()
-          setBook(singleBook)
-        } else {
-          throw new Error('Es fehlt jegliche Buchinfo...')
-        }
-      } catch (err) {
-        console.log(err)
-      } finally {
-        setLoading(false)
-      }
-    },
-    [setLoading, setBook]
-  )
+  // // GET Buchinfo vom Backend
+  // const fetchSingleBook = React.useCallback(
+  //   async (api, id, token) => {
+  //     setLoading(true)
+  //     try {
+  //       const res = await fetch(`${api}${id}`, {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       })
+  //       if (res.ok) {
+  //         const singleBook = await res.json()
+  //         setBook(singleBook)
+  //       } else {
+  //         throw new Error('Es fehlt jegliche Buchinfo...')
+  //       }
+  //     } catch (err) {
+  //       console.log(err)
+  //     } finally {
+  //       setLoading(false)
+  //     }
+  //   },
+  //   [setLoading, setBook]
+  // )
 
   // DELETE Buch
   const deleteSingleBook = async (api, id, token) => {
@@ -162,8 +163,12 @@ const BookDetails = () => {
 
   // öffne Buch
   React.useEffect(() => {
-    fetchSingleBook(API_BOOKS, id, jwt)
-  }, [fetchSingleBook, id, jwt])
+    setLoading(true)
+    performFetch(API_BOOKS, id, jwt)
+      .then(setBook)
+      .then(() => setLoading(false))
+    return () => setLoading(false)
+  }, [])
 
   // lösche Buch
   const removeBook = () => {

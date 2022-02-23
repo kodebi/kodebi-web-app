@@ -9,44 +9,50 @@ import { motion } from 'framer-motion'
 import { API_BOOKS } from '../config/config'
 import FilterButton from '../components/FilterButton'
 import Title from '../components/Title'
+import { performFetch } from '../helpers/performFetch'
 
 let marketplaceRender = 0
 
 const Marketplace = () => {
   console.log(`mplaceRender = ${marketplaceRender++}`)
-  const { alert, loading, setLoading, closeSubmenu } =
+  const { alert, loading, closeSubmenu, setLoading } =
     React.useContext(LayoutContext)
   const [allBooks, setAllBooks] = React.useState([])
   const [books, setBooks] = React.useState(allBooks)
   const [search, setSearch] = React.useState('')
 
-  // GET Bücher vom Backend
-  const fetchBooks = React.useCallback(
-    async (api) => {
-      try {
-        setLoading(true)
-        const res = await fetch(api)
-        if (res.ok) {
-          let data = await res.json()
-          const bookList = data.reverse()
-          setAllBooks(bookList)
-          setBooks(bookList)
-        } else {
-          throw new Error('Hoppala, da ist was schief gelaufen')
-        }
-      } catch (err) {
-        console.log(err)
-      } finally {
-        setLoading(false)
-      }
-    },
-    [setLoading]
-  )
+  // // GET Bücher vom Backend
+  // const fetchBooks = React.useCallback(
+  //   async (api) => {
+  //     try {
+  //       setLoading(true)
+  //       const res = await fetch(api)
+  //       if (res.ok) {
+  //         let data = await res.json()
+  //         const bookList = data.reverse()
+  //         setAllBooks(bookList)
+  //         setBooks(bookList)
+  //       } else {
+  //         throw new Error('Hoppala, da ist was schief gelaufen')
+  //       }
+  //     } catch (err) {
+  //       console.log(err)
+  //     } finally {
+  //       setLoading(false)
+  //     }
+  //   },
+  //   [setLoading]
+  // )
 
   // hole alle Bücher
   React.useEffect(() => {
-    fetchBooks(API_BOOKS)
-  }, [fetchBooks])
+    setLoading(true)
+    performFetch(API_BOOKS)
+      .then(setAllBooks)
+      .then(setBooks)
+      .then(() => setLoading(false))
+    return () => setLoading(false)
+  }, [])
 
   // filter Bücher nach Suche
   React.useEffect(() => {
