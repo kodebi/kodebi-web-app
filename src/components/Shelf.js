@@ -7,7 +7,7 @@ const Shelf = ({ element }) => {
   console.log(`shelfRender = ${shelfRender++}`)
   return (
     <>
-      {element.length < 1 ? (
+      {element?.length < 1 ? (
         <section className='empty-shelf'>
           <div className='error-message basic-flex'>
             <h3 className='title'>
@@ -18,7 +18,7 @@ const Shelf = ({ element }) => {
         </section>
       ) : (
         <ul className='shelf-container'>
-          {element.map((book) => {
+          {element?.map((book) => {
             return <BookCard key={book._id} {...book} />
           })}
         </ul>

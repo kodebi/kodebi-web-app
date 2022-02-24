@@ -7,7 +7,7 @@ import Footer from './components/Footer'
 import ScrollToTop from './components/ScrollToTop'
 
 // lazy imports
-const Marketplace = lazy(() => import('./pages/Marketplace'))
+const Discover = lazy(() => import('./pages/Discover'))
 const UserProfile = lazy(() => import('./pages/UserProfile'))
 const Messages = lazy(() => import('./pages/Messages'))
 const BookDetails = lazy(() => import('./pages/BookDetails'))
@@ -26,7 +26,7 @@ function AuthApp() {
       <ScrollToTop />
       <AnimatePresence initial={false} exitBeforeEnter>
         <Routes>
-          <Route path='/' element={<Marketplace />} />
+          <Route path='/' element={<Discover />} />
           <Route path='/mybooks' element={<UserProfile />} />
           <Route path='/profile/:id' element={<UserProfile />} />
           <Route path='/uploadbook' element={<UploadBook />} />
