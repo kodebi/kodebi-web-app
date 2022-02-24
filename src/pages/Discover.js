@@ -39,7 +39,7 @@ const Discover = () => {
           transition={{ duration: 0.25 }}
           onClick={closeSubmenu}
         >
-          <Title content='Marktplatz' />
+          <Title content='Entdecke jetzt neue Bücher' />
           <section className='search-and-filter'>
             <FilterButton onClick={backToAll}>alle bücher</FilterButton>
             <SearchBar search={search} handleSearch={handleSearch} />

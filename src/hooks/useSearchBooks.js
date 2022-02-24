@@ -16,7 +16,7 @@ const useSearchBooks = ({ allBooks, setBooks }) => {
         book.author.toLowerCase().includes(search.toLowerCase())
     )
     setBooks(searchedBooks)
-  }, [search, allBooks, setBooks])
+  }, [search, allBooks])
 
   return { search, handleSearch }
 }

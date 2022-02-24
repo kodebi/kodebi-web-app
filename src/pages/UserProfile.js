@@ -10,50 +10,15 @@ import { API_BOOKSBYUSER } from '../config/config'
 import { useParams } from 'react-router-dom'
 import Title from '../components/Title'
 import List from '../components/List'
-import { performFetch } from '../helpers/performFetch'
+import useUserBooks from '../hooks/useUserBooks'
 
 const UserProfile = () => {
-  const { alert, closeSubmenu, loading, setLoading } =
-    React.useContext(LayoutContext)
-  const [myBooks, setMyBooks] = React.useState([])
+  const { alert, closeSubmenu, loading } = React.useContext(LayoutContext)
   const { userId, jwt } = React.useContext(AuthContext)
   const { id } = useParams()
+  const { userBooks } = useUserBooks(API_BOOKSBYUSER, id ?? userId, jwt)
 
-  // // GET Bücher des Users
-  // const fetchMyBooks = React.useCallback(
-  //   async (api, id, token) => {
-  //     setLoading(true)
-  //     try {
-  //       const res = await fetch(`${api}${id}`, {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //           'content-type': 'application/json',
-  //         },
-  //       })
-  //       if (res.ok) {
-  //         const myBookList = await res.json()
-  //         setMyBooks(myBookList)
-  //       } else {
-  //         throw new Error(`could not get books of user ${id}`)
-  //       }
-  //     } catch (err) {
-  //       console.log(err)
-  //     } finally {
-  //       setLoading(false)
-  //     }
-  //   },
-  //   [setLoading]
-  // )
-
-  // hole Bücher des Users
-  React.useEffect(() => {
-    performFetch(API_BOOKSBYUSER, id ?? userId, jwt)
-      .then(setMyBooks)
-      .then(() => setLoading(false))
-    return () => setLoading(false)
-  }, [])
-
-  const whose = id ? myBooks[0]?.username.concat('s') : 'Dein'
+  const whose = id ? userBooks[0]?.username.concat('s') : 'Dein'
   const renderList = !id ? <List /> : null
 
   return (
@@ -70,11 +35,11 @@ const UserProfile = () => {
         >
           <Title content={`${whose} Bücherregal`} />
           <UserDashboard
-            user={myBooks[0]?.username}
-            bookCount={myBooks.length}
+            user={userBooks[0]?.username}
+            bookCount={userBooks[0]?.length}
           />
           {renderList}
-          <Shelf element={myBooks} />
+          <Shelf element={userBooks} />
           {alert.display && <Alert />}
         </motion.main>
       )}
