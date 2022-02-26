@@ -10,8 +10,8 @@ import { genres, languages, conditions, status } from '../utils/dropdown'
 const EditBook = ({
   book,
   showEditBook,
-  updateBook,
-  textChange,
+  updateBookDetails,
+  changeBookDetails,
   closeEditWindow,
 }) => {
   return (
@@ -20,7 +20,7 @@ const EditBook = ({
         <motion.form
           drag
           className='book-update-form'
-          onSubmit={updateBook}
+          onSubmit={updateBookDetails}
           onClick={(e) => e.stopPropagation()}
         >
           <div className='info-upload'>
@@ -31,7 +31,7 @@ const EditBook = ({
               id='name'
               placeholder='Name des Buches'
               value={book.name}
-              onChange={textChange}
+              onChange={changeBookDetails}
             />
             <InputField
               type='text'
@@ -40,7 +40,7 @@ const EditBook = ({
               id='author'
               placeholder='Autor*in des Buches'
               value={book.author}
-              onChange={textChange}
+              onChange={changeBookDetails}
             />
             <Dropdown
               htmlFor='Genre:'
@@ -48,7 +48,7 @@ const EditBook = ({
               id='category'
               options={genres}
               value={book.category}
-              onChange={textChange}
+              onChange={changeBookDetails}
             />
             <Dropdown
               htmlFor='Sprache:'
@@ -56,7 +56,7 @@ const EditBook = ({
               id='language'
               options={languages}
               value={book.language}
-              onChange={textChange}
+              onChange={changeBookDetails}
             />
             <Dropdown
               htmlFor='Zustand:'
@@ -64,7 +64,7 @@ const EditBook = ({
               id='condition'
               options={conditions}
               value={book.condition}
-              onChange={textChange}
+              onChange={changeBookDetails}
             />
             <Dropdown
               htmlFor='Status:'
@@ -72,7 +72,7 @@ const EditBook = ({
               id='status'
               options={status}
               value={book.status}
-              onChange={textChange}
+              onChange={changeBookDetails}
             />
             <TextAreaInput
               htmlFor='Beschreibung:'
@@ -81,7 +81,7 @@ const EditBook = ({
               rows='2'
               placeholder='Kurze Beschreibung des Buches'
               value={book.description}
-              onChange={textChange}
+              onChange={changeBookDetails}
             />
             <div className='action-btn-container'>
               <ActionBtn type='submit'>Jetzt speichern</ActionBtn>

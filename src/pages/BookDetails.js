@@ -12,12 +12,11 @@ import { LayoutContext } from '../context/LayoutContext'
 import { FaCheckCircle, FaPoo } from 'react-icons/fa'
 import { API_BOOKS, API_MESSAGES } from '../config/config'
 import { AuthContext } from '../context/AuthContext'
-import { performFetch } from '../helpers/performFetch'
+import useSingleBookFetch from '../hooks/useSingleBookFetch'
 
 const BookDetails = () => {
   const { alert, setAlert, closeSubmenu, loading, setLoading } =
     React.useContext(LayoutContext)
-  const [book, setBook] = React.useState({})
   const [showEditBook, setShowEditBook] = React.useState(false)
   const [showMessageModal, setShowMessageModal] = React.useState(false)
   const [newConv, setNewConv] = React.useState({
@@ -28,32 +27,7 @@ const BookDetails = () => {
   const history = useNavigate()
   const { id } = useParams()
   const { userId, jwt } = React.useContext(AuthContext)
-  const { image, name, author, category, language, description } = book
-
-  // // GET Buchinfo vom Backend
-  // const fetchSingleBook = React.useCallback(
-  //   async (api, id, token) => {
-  //     setLoading(true)
-  //     try {
-  //       const res = await fetch(`${api}${id}`, {
-  //         headers: {
-  //           Authorization: `Bearer ${token}`,
-  //         },
-  //       })
-  //       if (res.ok) {
-  //         const singleBook = await res.json()
-  //         setBook(singleBook)
-  //       } else {
-  //         throw new Error('Es fehlt jegliche Buchinfo...')
-  //       }
-  //     } catch (err) {
-  //       console.log(err)
-  //     } finally {
-  //       setLoading(false)
-  //     }
-  //   },
-  //   [setLoading, setBook]
-  // )
+  const { book, setBook } = useSingleBookFetch(API_BOOKS, id, jwt)
 
   // DELETE Buch
   const deleteSingleBook = async (api, id, token) => {
@@ -161,15 +135,6 @@ const BookDetails = () => {
     }
   }
 
-  // öffne Buch
-  React.useEffect(() => {
-    setLoading(true)
-    performFetch(API_BOOKS, id, jwt)
-      .then(setBook)
-      .then(() => setLoading(false))
-    return () => setLoading(false)
-  }, [])
-
   // lösche Buch
   const removeBook = () => {
     deleteSingleBook(API_BOOKS, id, jwt)
@@ -260,24 +225,24 @@ const BookDetails = () => {
       >
         <ReturnTo />
         <article className='open-book'>
-          <img src={image} alt={name} />
+          <img src={book.image} alt={book.name} />
           <section className='open-book-info'>
             <div>
-              <h2 className='title'>{name}</h2>
-              <h4 className='title'>{author}</h4>
+              <h2 className='title'>{book.name}</h2>
+              <h4 className='title'>{book.author}</h4>
             </div>
             <hr className='separation-line' />
             <div>
               <h4>Genre</h4>
-              <p>{category}</p>
+              <p>{book.category}</p>
             </div>
             <div>
               <h4>Sprache</h4>
-              <p>{language}</p>
+              <p>{book.language}</p>
             </div>
             <div>
               <h4>Beschreibung</h4>
-              <p>{description}</p>
+              <p>{book.description}</p>
             </div>
           </section>
           <UserAction

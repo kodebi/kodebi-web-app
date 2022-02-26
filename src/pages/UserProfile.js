@@ -16,7 +16,7 @@ const UserProfile = () => {
   const { alert, closeSubmenu, loading } = React.useContext(LayoutContext)
   const { userId, jwt } = React.useContext(AuthContext)
   const { id } = useParams()
-  const { userBooks } = useUserBooks(API_BOOKSBYUSER, id ?? userId, jwt)
+  const [userBooks] = useUserBooks(API_BOOKSBYUSER, id ?? userId, jwt)
 
   const whose = id ? userBooks[0]?.username.concat('s') : 'Dein'
   const renderList = !id ? <List /> : null

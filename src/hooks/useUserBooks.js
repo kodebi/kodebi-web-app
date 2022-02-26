@@ -14,7 +14,7 @@ const useUserBooks = (url, id, token) => {
     return () => setLoading(false)
   }, [])
 
-  return { userBooks, setUserBooks }
+  return [userBooks, setUserBooks]
 }
 
 export default useUserBooks
