@@ -11,7 +11,7 @@ const EditBook = ({
   book,
   showEditBook,
   updateBookDetails,
-  changeBookDetails,
+  textChange,
   closeEditWindow,
 }) => {
   return (
@@ -31,7 +31,7 @@ const EditBook = ({
               id='name'
               placeholder='Name des Buches'
               value={book.name}
-              onChange={changeBookDetails}
+              onChange={textChange}
             />
             <InputField
               type='text'
@@ -40,7 +40,7 @@ const EditBook = ({
               id='author'
               placeholder='Autor*in des Buches'
               value={book.author}
-              onChange={changeBookDetails}
+              onChange={textChange}
             />
             <Dropdown
               htmlFor='Genre:'
@@ -48,7 +48,7 @@ const EditBook = ({
               id='category'
               options={genres}
               value={book.category}
-              onChange={changeBookDetails}
+              onChange={textChange}
             />
             <Dropdown
               htmlFor='Sprache:'
@@ -56,7 +56,7 @@ const EditBook = ({
               id='language'
               options={languages}
               value={book.language}
-              onChange={changeBookDetails}
+              onChange={textChange}
             />
             <Dropdown
               htmlFor='Zustand:'
@@ -64,7 +64,7 @@ const EditBook = ({
               id='condition'
               options={conditions}
               value={book.condition}
-              onChange={changeBookDetails}
+              onChange={textChange}
             />
             <Dropdown
               htmlFor='Status:'
@@ -72,7 +72,7 @@ const EditBook = ({
               id='status'
               options={status}
               value={book.status}
-              onChange={changeBookDetails}
+              onChange={textChange}
             />
             <TextAreaInput
               htmlFor='Beschreibung:'
@@ -81,7 +81,7 @@ const EditBook = ({
               rows='2'
               placeholder='Kurze Beschreibung des Buches'
               value={book.description}
-              onChange={changeBookDetails}
+              onChange={textChange}
             />
             <div className='action-btn-container'>
               <ActionBtn type='submit'>Jetzt speichern</ActionBtn>

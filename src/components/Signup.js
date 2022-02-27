@@ -9,7 +9,7 @@ const Signup = () => {
     userCredential: { name, email, password },
     signupNow,
     checkSigninInput,
-  } = useContext(AuthContext)
+  } = React.useContext(AuthContext)
 
   return (
     <>
