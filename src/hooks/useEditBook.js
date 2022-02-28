@@ -3,7 +3,7 @@ import { LayoutContext } from '../context/LayoutContext'
 import { performFetch } from '../helpers/performFetch'
 import { FaCheckCircle, FaPoo } from 'react-icons/fa'
 
-const useEditBook = (url, id, token, method, book) => {
+const useEditBook = (url, id, token, method, book, setBook) => {
   const { setLoading, setAlert } = React.useContext(LayoutContext)
   const [showEditBook, setShowEditBook] = React.useState(false)
 
@@ -34,12 +34,26 @@ const useEditBook = (url, id, token, method, book) => {
     setShowEditBook(true)
   }
 
+  // Textfeldeingabe
+  const changeBookDetails = React.useCallback(
+    (e) => {
+      setBook({ ...book, [e.target.name]: e.target.value })
+    },
+    [book]
+  )
+
   // schließe Fenster zum Bearbeiten
   const closeEditWindow = () => {
     setShowEditBook(false)
   }
 
-  return { showEditBook, updateBookDetails, openEditWindow, closeEditWindow }
+  return {
+    showEditBook,
+    changeBookDetails,
+    updateBookDetails,
+    openEditWindow,
+    closeEditWindow,
+  }
 }
 
 export default useEditBook

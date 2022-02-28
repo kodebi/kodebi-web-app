@@ -7,97 +7,35 @@ import MessageModal from '../components/MessageModal'
 import Loading2 from '../components/Loading2'
 import { motion } from 'framer-motion'
 import EditBook from '../components/EditBook'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { LayoutContext } from '../context/LayoutContext'
-import { FaCheckCircle, FaPoo } from 'react-icons/fa'
+import { FaCheckCircle } from 'react-icons/fa'
 import { API_BOOKS, API_MESSAGES } from '../config/config'
 import { AuthContext } from '../context/AuthContext'
 import useSingleBookFetch from '../hooks/useSingleBookFetch'
+import useEditBook from '../hooks/useEditBook'
+import useDeleteBook from '../hooks/useDeleteBook'
 
 const BookDetails = () => {
   const { alert, setAlert, closeSubmenu, loading, setLoading } =
     React.useContext(LayoutContext)
-  const [showEditBook, setShowEditBook] = React.useState(false)
   const [showMessageModal, setShowMessageModal] = React.useState(false)
   const [newConv, setNewConv] = React.useState({
     sender: '',
     reciever: '',
     message: '',
   })
-  const history = useNavigate()
   const { id } = useParams()
   const { userId, jwt } = React.useContext(AuthContext)
   const { book, setBook } = useSingleBookFetch(API_BOOKS, id, jwt)
-
-  // DELETE Buch
-  const deleteSingleBook = async (api, id, token) => {
-    try {
-      setLoading(true)
-      const res = await fetch(`${api}${id}`, {
-        method: 'DELETE',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      if (res.ok) {
-        await res.json()
-        setLoading(false)
-        history(
-          -1,
-          setAlert({
-            display: true,
-            icon: <FaCheckCircle />,
-            msg: 'Das Buch wurde erfolgreich gelöscht',
-          })
-        )
-      } else {
-        throw new Error('Das Buch konnte nicht gelöscht werden')
-      }
-    } catch (error) {
-      console.log('Löschen fehlgeschlagen', error)
-      setLoading(false)
-      setAlert({
-        display: true,
-        icon: <FaPoo />,
-        msg: 'Das Buch konnte nicht gelöscht werden...',
-      })
-    }
-  }
-
-  // PUT verändere Buchinformation
-  const updateSingleBookInfo = async (api, id, token, data) => {
-    try {
-      setLoading(true)
-      const res = await fetch(`${api}${id}`, {
-        method: 'PUT',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'content-type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      })
-      if (res.ok) {
-        await res.json()
-        setShowEditBook(false)
-        setAlert({
-          display: true,
-          icon: <FaCheckCircle />,
-          msg: 'Du hast die Buchinfo erfolgreich geändert!',
-        })
-      } else {
-        throw new Error('Hoppla, da ist wohl was schief gegangen')
-      }
-    } catch (error) {
-      console.log('Update fehlgeschlagen', error)
-      setAlert({
-        display: true,
-        icon: <FaPoo />,
-        msg: 'Die Buchinfo konnte irgendwie nicht gespeichert werden...',
-      })
-    } finally {
-      setLoading(false)
-    }
-  }
+  const {
+    showEditBook,
+    openEditWindow,
+    closeEditWindow,
+    changeBookDetails,
+    updateBookDetails,
+  } = useEditBook(API_BOOKS, id, jwt, 'PUT', book, setBook)
+  const { deleteBook } = useDeleteBook(API_BOOKS, id, jwt, 'DELETE')
 
   // POST Anfrage an den User
   const startNewConversation = async (api_messages, token, message) => {
@@ -133,35 +71,6 @@ const BookDetails = () => {
         message: '',
       })
     }
-  }
-
-  // lösche Buch
-  const removeBook = () => {
-    deleteSingleBook(API_BOOKS, id, jwt)
-  }
-
-  // öffne Fenster zum Bearbeiten
-  const openEditWindow = () => {
-    setShowEditBook(true)
-  }
-
-  // Textfeldeingabe
-  const textChange = React.useCallback(
-    (e) => {
-      setBook({ ...book, [e.target.name]: e.target.value })
-    },
-    [book]
-  )
-
-  // update Buchinfo
-  const updateBook = (e) => {
-    e.preventDefault()
-    updateSingleBookInfo(API_BOOKS, id, jwt, book)
-  }
-
-  // schließe Fenster zum Bearbeiten
-  const closeEditWindow = () => {
-    setShowEditBook(false)
   }
 
   // kontaktiere Besitzer des Buchs
@@ -210,8 +119,8 @@ const BookDetails = () => {
       {showEditBook && (
         <EditBook
           book={book}
-          textChange={textChange}
-          updateBook={updateBook}
+          changeBookDetails={changeBookDetails}
+          updateBookDetails={updateBookDetails}
           closeEditWindow={closeEditWindow}
         />
       )}
@@ -247,7 +156,7 @@ const BookDetails = () => {
           </section>
           <UserAction
             book={book}
-            removeBook={removeBook}
+            deleteBook={deleteBook}
             openEditWindow={openEditWindow}
             messageUser={messageUser}
           />

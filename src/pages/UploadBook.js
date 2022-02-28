@@ -22,10 +22,10 @@ const UploadBook = () => {
   const [newBook, setNewBook] = useState({
     name: '',
     author: '',
-    category: genres[0].title,
-    language: languages[0].title,
-    condition: conditions[0].title,
-    status: status[0].title,
+    category: genres[0],
+    language: languages[0],
+    condition: conditions[0],
+    status: status[0],
     desc: '',
   })
   const [bookImage, setBookImage] = useState()
@@ -64,10 +64,10 @@ const UploadBook = () => {
       setNewBook({
         name: '',
         author: '',
-        category: genres[0].title,
-        language: languages[0].title,
-        condition: conditions[0].title,
-        status: status[0].title,
+        category: genres[0],
+        language: languages[0],
+        condition: conditions[0],
+        status: status[0],
         desc: '',
       })
       setBookImage()
@@ -122,12 +122,12 @@ const UploadBook = () => {
     setNewBook({
       name: '',
       author: '',
-      category: genres[0].title,
-      language: languages[0].title,
-      condition: conditions[0].title,
+      category: genres[0],
+      language: languages[0],
+      condition: conditions[0],
       owner: userId,
       username: userName,
-      status: status[0].title,
+      status: status[0],
       desc: '',
     })
   }

@@ -15,18 +15,24 @@ const useFilterBooks = ({ allBooks, setBooks }) => {
   }, [allBooks])
 
   // filtert Bücher anhand der Kategorien
-  const filterByCategory = (category) => {
-    let filteredBooks = allBooks?.filter((book) => book.category === category)
+  const filterByCategory = (e) => {
+    let filteredBooks = allBooks?.filter(
+      (book) => book.category === e.target.value
+    )
     setBooks(filteredBooks)
   }
 
-  const filterByStatus = (status) => {
-    let filteredBooks = allBooks?.filter((book) => book.status === status)
+  const filterByStatus = (e) => {
+    let filteredBooks = allBooks?.filter(
+      (book) => book.status === e.target.value
+    )
     setBooks(filteredBooks)
   }
 
-  const filterByLanguage = (language) => {
-    let filteredBooks = allBooks?.filter((book) => book.language === language)
+  const filterByLanguage = (e) => {
+    let filteredBooks = allBooks?.filter(
+      (book) => book.language === e.target.value
+    )
     setBooks(filteredBooks)
   }
 

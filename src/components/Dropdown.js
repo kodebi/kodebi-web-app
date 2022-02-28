@@ -10,8 +10,8 @@ const Dropdown = (props) => {
         <select
           name={props.name}
           id={props.id}
-          onChange={(e) => props.onChange(e.target.value)}
-          defaultValue={props.value ?? props.options[0]}
+          onChange={props.onChange}
+          defaultValue={props.value}
         >
           {props.options.map((option, index) => {
             return (

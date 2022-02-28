@@ -3,6 +3,8 @@ export async function performFetch(url, id, token, method, body) {
     method: method,
     headers: {
       Authorization: `Bearer ${token}`,
+      'content-type':
+        body === typeof FormData ? 'multipart/form-data' : 'application/json',
     },
     body: body !== typeof FormData && JSON.stringify(body),
   }
@@ -11,7 +13,9 @@ export async function performFetch(url, id, token, method, body) {
       return Promise.reject('You are not authorized. Please refresh your token')
     }
     let data = await res.json()
-    if (res.ok) {
+    if (!res.ok) {
+      throw new Error('Oh oh, da ist irgendwas schief gelaufen')
+    } else if (res.ok) {
       if (data.length > 1) {
         const chronologicalData = data.reverse()
         return chronologicalData

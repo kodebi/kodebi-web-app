@@ -5,7 +5,7 @@ import ActionButton from './ActionBtn'
 
 const UserAction = ({
   book: { username, condition, owner, status },
-  removeBook,
+  deleteBook,
   openEditWindow,
   messageUser,
 }) => {
@@ -38,7 +38,7 @@ const UserAction = ({
               <ActionButton onClick={openEditWindow}>
                 Jetzt bearbeiten
               </ActionButton>
-              <ActionButton onClick={removeBook}>Jetzt löschen</ActionButton>
+              <ActionButton onClick={deleteBook}>Jetzt löschen</ActionButton>
             </>
           ) : (
             <ActionButton onClick={messageUser}>Jetzt ausleihen</ActionButton>
