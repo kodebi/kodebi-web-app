@@ -2,21 +2,19 @@ import * as React from 'react'
 import { LayoutContext } from '../context/LayoutContext'
 import { performFetch } from '../helpers/performFetch'
 
-const useBookFetch = (url, id, token) => {
+const useUserProfile = (url, id, token) => {
   const { setLoading } = React.useContext(LayoutContext)
-  const [allBooks, setAllBooks] = React.useState([])
-  const [books, setBooks] = React.useState(allBooks)
+  const [userBooks, setUserBooks] = React.useState([])
 
   React.useEffect(() => {
     setLoading(true)
     performFetch(url, id, token)
-      .then(setAllBooks)
-      .then(setBooks)
+      .then(setUserBooks)
       .then(() => setLoading(false))
     return () => setLoading(false)
   }, [])
 
-  return { allBooks, books, setBooks }
+  return { state: { userBooks }, setter: { setUserBooks } }
 }
 
-export default useBookFetch
+export default useUserProfile

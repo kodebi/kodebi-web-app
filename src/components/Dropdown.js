@@ -13,7 +13,7 @@ const Dropdown = (props) => {
           onChange={props.onChange}
           defaultValue={props.value}
         >
-          {props.options.map((option, index) => {
+          {props.options?.map((option, index) => {
             return (
               <option key={index} value={option}>
                 {option}

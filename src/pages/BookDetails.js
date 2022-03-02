@@ -9,94 +9,29 @@ import { motion } from 'framer-motion'
 import EditBook from '../components/EditBook'
 import { useParams } from 'react-router-dom'
 import { LayoutContext } from '../context/LayoutContext'
-import { FaCheckCircle } from 'react-icons/fa'
 import { API_BOOKS, API_MESSAGES } from '../config/config'
 import { AuthContext } from '../context/AuthContext'
-import useSingleBookFetch from '../hooks/useSingleBookFetch'
-import useEditBook from '../hooks/useEditBook'
-import useDeleteBook from '../hooks/useDeleteBook'
+import useBookDetails from '../hooks/useBookDetails'
+import useStartConversations from '../hooks/useStartConversations'
 
 const BookDetails = () => {
-  const { alert, setAlert, closeSubmenu, loading, setLoading } =
-    React.useContext(LayoutContext)
-  const [showMessageModal, setShowMessageModal] = React.useState(false)
-  const [newConv, setNewConv] = React.useState({
-    sender: '',
-    reciever: '',
-    message: '',
-  })
+  const { alert, closeSubmenu, loading } = React.useContext(LayoutContext)
   const { id } = useParams()
   const { userId, jwt } = React.useContext(AuthContext)
-  const { book, setBook } = useSingleBookFetch(API_BOOKS, id, jwt)
   const {
-    showEditBook,
-    openEditWindow,
-    closeEditWindow,
-    changeBookDetails,
-    updateBookDetails,
-  } = useEditBook(API_BOOKS, id, jwt, 'PUT', book, setBook)
-  const { deleteBook } = useDeleteBook(API_BOOKS, id, jwt, 'DELETE')
-
-  // POST Anfrage an den User
-  const startNewConversation = async (api_messages, token, message) => {
-    try {
-      setLoading(true)
-      const res = await fetch(`${api_messages}`, {
-        method: 'POST',
-        headers: {
-          'content-type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify(message),
-      })
-      if (res.ok) {
-        const newConv = await res.json()
-        console.log(newConv)
-        setAlert({
-          display: true,
-          icon: <FaCheckCircle />,
-          msg: 'Nachricht wurde erfolgreich verschickt',
-        })
-        setShowMessageModal(false)
-      } else {
-        throw new Error('Nachricht konnte nicht verschickt werden')
-      }
-    } catch (error) {
-      console.log(error)
-    } finally {
-      setLoading(false)
-      setNewConv({
-        sender: '',
-        reciever: '',
-        message: '',
-      })
-    }
-  }
-
-  // kontaktiere Besitzer des Buchs
-  const messageUser = () => {
-    setShowMessageModal(true)
-  }
-
-  // Input des Nachrichtenfensters
-  const msgModalInput = (e) => {
-    setNewConv({
-      sender: userId,
-      reciever: book.owner,
-      message: e.target.value,
-    })
-  }
-
-  // schicke die fertige erste Anfrage ab
-  const submitConv = (e) => {
-    e.preventDefault()
-    startNewConversation(API_MESSAGES, jwt, newConv)
-  }
-
-  // schließe Nachrichtenfenster
-  const closeMessageModal = () => {
-    setShowMessageModal(false)
-  }
+    state: { book, showEditBook },
+    functions: {
+      openEditWindow,
+      closeEditWindow,
+      changeBookDetails,
+      updateBookDetails,
+      deleteBook,
+    },
+  } = useBookDetails(API_BOOKS, id, jwt)
+  const {
+    state: { newConv, showMessageModal },
+    functions: { closeMessageModal, messageUser, msgModalInput, startConv },
+  } = useStartConversations(API_MESSAGES, null, jwt, userId, book.owner)
 
   if (loading) {
     return (
@@ -111,7 +46,7 @@ const BookDetails = () => {
         <MessageModal
           closeMessageModal={closeMessageModal}
           msgModalInput={msgModalInput}
-          submitConv={submitConv}
+          startConv={startConv}
           showMessageModal={showMessageModal}
           newConv={newConv}
         />

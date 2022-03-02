@@ -9,23 +9,21 @@ import { motion } from 'framer-motion'
 import { API_BOOKS } from '../config/config'
 import FilterButton from '../components/FilterButton'
 import Title from '../components/Title'
-import useBookFetch from '../hooks/useBookFetch'
-import useSearchBooks from '../hooks/useSearchBooks'
-import useFilterBooks from '../hooks/useFilterBooks'
+import useDiscover from '../hooks/useDiscover'
 
 const Discover = () => {
   const { alert, loading, closeSubmenu } = React.useContext(LayoutContext)
-  const { allBooks, books, setBooks } = useBookFetch(API_BOOKS)
-  const { search, handleSearch } = useSearchBooks({ allBooks, setBooks })
   const {
-    categories,
-    lenguajes,
-    status,
-    backToAll,
-    filterByCategory,
-    filterByLanguage,
-    filterByStatus,
-  } = useFilterBooks({ allBooks, setBooks })
+    state: { books, search },
+    functions: {
+      backToAll,
+      filterByCategory,
+      filterByLanguage,
+      filterByStatus,
+      handleSearch,
+    },
+    sets: { categories, lenguajes, status },
+  } = useDiscover(API_BOOKS)
 
   return (
     <>
