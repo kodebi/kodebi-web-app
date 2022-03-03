@@ -3,10 +3,9 @@ export async function performFetch(url, id, token, method, body) {
     method: method,
     headers: {
       Authorization: `Bearer ${token}`,
-      'content-type':
-        body === typeof FormData ? 'multipart/form-data' : 'application/json',
+      'content-type': 'application/json',
     },
-    body: body !== typeof FormData && JSON.stringify(body),
+    body: body ? JSON.stringify(body) : null,
   }
   return fetch(`${id ? url + id : url}`, config).then(async (res) => {
     if (res.status === 401) {

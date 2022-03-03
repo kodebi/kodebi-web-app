@@ -23,14 +23,8 @@ export const AuthProvider = ({ children }) => {
     email: '',
     password: '',
   })
-  const {
-    setAlert,
-    setLoading,
-    isTabLeft,
-    setIsTabLeft,
-    setShowLinks,
-    setSelectedConversation,
-  } = useContext(LayoutContext)
+  const { setAlert, setLoading, isTabLeft, setIsTabLeft, setShowLinks } =
+    useContext(LayoutContext)
   const forwardPage = useNavigate()
   const { state, search } = useLocation()
   let query = getUrlParams(search)
@@ -194,7 +188,6 @@ export const AuthProvider = ({ children }) => {
     signoutUser(AUTH_SIGNOUT)
     setUser(false)
     setUserCredential({ name: '', email: '', password: '' })
-    setSelectedConversation(false)
   }
 
   // schicke den Password Request mit useremail ab

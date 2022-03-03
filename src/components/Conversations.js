@@ -7,7 +7,7 @@ const Conversations = () => {
   return (
     <>
       <aside className='conversations'>
-        {conversations.map((conversation) => {
+        {conversations?.map((conversation) => {
           return <Conversation key={conversation._id} {...conversation} />
         })}
       </aside>

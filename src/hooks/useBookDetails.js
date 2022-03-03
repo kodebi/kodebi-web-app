@@ -55,12 +55,9 @@ const useBookDetails = (url, id, token) => {
   }
 
   // Textfeldeingabe
-  const changeBookDetails = React.useCallback(
-    (e) => {
-      setBook({ ...book, [e.target.name]: e.target.value })
-    },
-    [book]
-  )
+  const changeBookDetails = (e) => {
+    setBook({ ...book, [e.target.name]: e.target.value })
+  }
 
   const catchError = (error) => {
     setAlert({

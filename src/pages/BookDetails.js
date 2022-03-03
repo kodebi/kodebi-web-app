@@ -33,14 +33,9 @@ const BookDetails = () => {
     functions: { closeMessageModal, messageUser, msgModalInput, startConv },
   } = useStartConversations(API_MESSAGES, null, jwt, userId, book.owner)
 
-  if (loading) {
-    return (
-      <>
-        <Loading />
-      </>
-    )
-  }
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <>
       {showMessageModal && (
         <MessageModal

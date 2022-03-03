@@ -12,8 +12,6 @@ export const LayoutProvider = ({ children }) => {
   const [isSubmenuOpen, setIsSubmenuOpen] = React.useState(false)
   const [isTabLeft, setIsTabLeft] = React.useState(true)
   const [showLinks, setShowLinks] = React.useState(false)
-  const [selectedConversation, setSelectedConversation] = React.useState(false)
-  const [isMessageSent, setIsMessageSent] = React.useState(false)
 
   // schließe das Usermenu rechts oben
   const closeSubmenu = () => {
@@ -38,10 +36,6 @@ export const LayoutProvider = ({ children }) => {
     closeSubmenu,
     isSubmenuOpen,
     setIsSubmenuOpen,
-    selectedConversation,
-    setSelectedConversation,
-    isMessageSent,
-    setIsMessageSent,
     showLinks,
     setShowLinks,
     hideLinks,

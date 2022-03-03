@@ -4,12 +4,15 @@ import Form from './Form'
 import OpenChat from './OpenChat'
 import { FaPaperPlane } from 'react-icons/fa'
 import { MessageContext } from '../context/MessageContext'
-import { LayoutContext } from '../context/LayoutContext'
 
 const ChatWindow = () => {
-  const { selectedConversation } = React.useContext(LayoutContext)
-  const { sendMessage, newMessage, handleKeyPress, handleMessage } =
-    React.useContext(MessageContext)
+  const {
+    selectedConversation,
+    sendMessage,
+    newMessage,
+    handleKeyPress,
+    handleMessage,
+  } = React.useContext(MessageContext)
 
   return (
     <>

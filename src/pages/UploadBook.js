@@ -1,5 +1,4 @@
-import React, { useContext, useState } from 'react'
-import { FaCheckCircle, FaPoo, FaFlushed } from 'react-icons/fa'
+import React from 'react'
 import { LayoutContext } from '../context/LayoutContext'
 import { AuthContext } from '../context/AuthContext'
 import { API_BOOKS } from '../config/config'
@@ -14,123 +13,15 @@ import { motion } from 'framer-motion'
 import Dropdown from '../components/Dropdown'
 import { genres, languages, conditions, status } from '../utils/dropdown'
 import Title from '../components/Title'
+import useBookUpload from '../hooks/useBookUpload'
 
 const UploadBook = () => {
-  const { loading, setLoading, alert, setAlert, closeSubmenu } =
-    useContext(LayoutContext)
-  const { userId, userName, jwt } = useContext(AuthContext)
-  const [newBook, setNewBook] = useState({
-    name: '',
-    author: '',
-    category: genres[0],
-    language: languages[0],
-    condition: conditions[0],
-    status: status[0],
-    desc: '',
-  })
-  const [bookImage, setBookImage] = useState()
-
-  // POST Buch
-  const bookUpload = async (api, token, formdata) => {
-    try {
-      setLoading(true)
-      const res = await fetch(api, {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-        body: formdata,
-      })
-      if (res.ok) {
-        await res.json()
-        setLoading(false)
-        setAlert({
-          display: true,
-          icon: <FaCheckCircle />,
-          msg: 'Das Buch wurde erfolgreich hinzugefügt',
-        })
-      } else {
-        throw new Error('Hoppala, da ist was schief gegangen')
-      }
-    } catch (error) {
-      console.log('Hochladen fehlgeschlagen', error)
-      setLoading(false)
-      setAlert({
-        display: true,
-        icon: <FaPoo />,
-        msg: 'Das hat irgendwie nicht geklappt...',
-      })
-    } finally {
-      setNewBook({
-        name: '',
-        author: '',
-        category: genres[0],
-        language: languages[0],
-        condition: conditions[0],
-        status: status[0],
-        desc: '',
-      })
-      setBookImage()
-    }
-  }
-
-  // Textfeldeingabe
-  const textChange = (e) => {
-    setNewBook({ ...newBook, [e.target.name]: e.target.value })
-  }
-
-  // Bilddatei hinzufügen
-  const imageChange = (e) => {
-    setBookImage(e.target.files[0])
-  }
-
-  // Buch hochladen
-  const uploadAll = (e) => {
-    e.preventDefault()
-    if (
-      newBook.name &&
-      newBook.author &&
-      newBook.category &&
-      newBook.language &&
-      newBook.condition &&
-      newBook.status
-    ) {
-      const bookData = new FormData()
-      bookData.append('bookImage', bookImage)
-      bookData.append('name', newBook.name)
-      bookData.append('author', newBook.author)
-      bookData.append('category', newBook.category)
-      bookData.append('language', newBook.language)
-      bookData.append('condition', newBook.condition)
-      bookData.append('owner', userId)
-      bookData.append('username', userName)
-      bookData.append('status', newBook.status)
-      bookData.append('description', newBook.desc)
-      bookUpload(API_BOOKS, jwt, bookData)
-    } else {
-      setAlert({
-        display: true,
-        icon: <FaFlushed />,
-        msg: 'Halt, da fehlen paar Felder!',
-      })
-    }
-  }
-
-  // resette die komplette Eingabe
-  const resetInput = () => {
-    setBookImage()
-    setNewBook({
-      name: '',
-      author: '',
-      category: genres[0],
-      language: languages[0],
-      condition: conditions[0],
-      owner: userId,
-      username: userName,
-      status: status[0],
-      desc: '',
-    })
-  }
+  const { loading, alert, closeSubmenu } = React.useContext(LayoutContext)
+  const { userId, userName, jwt } = React.useContext(AuthContext)
+  const {
+    state: { newBook, bookImage },
+    functions: { textChange, imageChange, startUpload, resetInput },
+  } = useBookUpload(API_BOOKS, jwt, userId, userName)
 
   return (
     <>
@@ -143,7 +34,7 @@ const UploadBook = () => {
         onClick={closeSubmenu}
       >
         <Title content='Buch hochladen' />
-        <Form className='book-form' onSubmit={uploadAll}>
+        <Form className='book-form' onSubmit={startUpload}>
           <ImageUploader bookImage={bookImage} imageChange={imageChange} />
           <div className='info-upload'>
             <InputField

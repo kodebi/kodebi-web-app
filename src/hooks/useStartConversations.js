@@ -60,6 +60,7 @@ const useStartConversations = (url, id, token, userId, ownerId) => {
         })
       )
   }
+
   return {
     state: { newConv, showMessageModal },
     functions: {
