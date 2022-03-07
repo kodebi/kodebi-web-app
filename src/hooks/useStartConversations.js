@@ -1,11 +1,14 @@
 import React from 'react'
 import { LayoutContext } from '../context/LayoutContext'
-import { performFetch } from '../helpers/performFetch'
+import { konvey } from '../helpers/konvey'
 import { FaCheckCircle, FaPoo } from 'react-icons/fa'
+import { API_MESSAGES } from '../config/config'
+import { AuthContext } from '../context/AuthContext'
 
-const useStartConversations = (url, id, token, userId, ownerId) => {
+const useStartConversations = (ownerId) => {
   const { setAlert, setLoading } = React.useContext(LayoutContext)
   const [showMessageModal, setShowMessageModal] = React.useState(false)
+  const { userId, jwt } = React.useContext(AuthContext)
   const [newConv, setNewConv] = React.useState({
     sender: '',
     reciever: '',
@@ -35,7 +38,7 @@ const useStartConversations = (url, id, token, userId, ownerId) => {
   const startConv = (e) => {
     e.preventDefault()
     setLoading(true)
-    performFetch(url, id, token, 'POST', newConv)
+    konvey(API_MESSAGES, jwt, 'POST', newConv)
       .then(() => setLoading(false))
       .then(() => setShowMessageModal(false))
       .catch((error) =>

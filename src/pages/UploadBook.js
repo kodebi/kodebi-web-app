@@ -1,7 +1,5 @@
 import React from 'react'
 import { LayoutContext } from '../context/LayoutContext'
-import { AuthContext } from '../context/AuthContext'
-import { API_BOOKS } from '../config/config'
 import Alert from '../components/Alert'
 import ImageUploader from '../components/ImageUploader'
 import InputField from '../components/InputField'
@@ -17,11 +15,10 @@ import useBookUpload from '../hooks/useBookUpload'
 
 const UploadBook = () => {
   const { loading, alert, closeSubmenu } = React.useContext(LayoutContext)
-  const { userId, userName, jwt } = React.useContext(AuthContext)
   const {
     state: { newBook, bookImage },
     functions: { textChange, imageChange, startUpload, resetInput },
-  } = useBookUpload(API_BOOKS, jwt, userId, userName)
+  } = useBookUpload()
 
   return (
     <>

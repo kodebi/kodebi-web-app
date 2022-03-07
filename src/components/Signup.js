@@ -7,13 +7,13 @@ import { AuthContext } from '../context/AuthContext'
 const Signup = () => {
   const {
     userCredential: { name, email, password },
-    signupNow,
+    signup,
     checkSigninInput,
   } = React.useContext(AuthContext)
 
   return (
     <>
-      <Form className='form-center' onSubmit={signupNow}>
+      <Form className='form-center' onSubmit={signup}>
         <div className='title'>
           <h3>Melde dich jetzt an!</h3>
         </div>

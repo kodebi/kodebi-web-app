@@ -1,14 +1,17 @@
 import * as React from 'react'
 import { LayoutContext } from '../context/LayoutContext'
-import { performFetch } from '../helpers/performFetch'
+import { AuthContext } from '../context/AuthContext'
+import { konvey } from '../helpers/konvey'
+import { API_BOOKSBYUSER } from '../config/config'
 
-const useUserProfile = (url, id, token) => {
+const useUserProfile = (id) => {
   const { setLoading } = React.useContext(LayoutContext)
   const [userBooks, setUserBooks] = React.useState([])
+  const { userId, jwt } = React.useContext(AuthContext)
 
   React.useEffect(() => {
     setLoading(true)
-    performFetch(url, id, token)
+    konvey(API_BOOKSBYUSER, id ?? userId, jwt)
       .then(setUserBooks)
       .then(() => setLoading(false))
     return () => setLoading(false)

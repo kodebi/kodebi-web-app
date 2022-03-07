@@ -6,7 +6,6 @@ import SearchBar from '../components/SearchBar'
 import Loading from '../components/Loading'
 import Alert from '../components/Alert'
 import { motion } from 'framer-motion'
-import { API_BOOKS } from '../config/config'
 import FilterButton from '../components/FilterButton'
 import Title from '../components/Title'
 import useDiscover from '../hooks/useDiscover'
@@ -23,7 +22,7 @@ const Discover = () => {
       handleSearch,
     },
     sets: { categories, lenguajes, status },
-  } = useDiscover(API_BOOKS)
+  } = useDiscover()
 
   return (
     <>

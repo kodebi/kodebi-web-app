@@ -7,13 +7,13 @@ import { AuthContext } from '../context/AuthContext'
 const Login = ({ openPasswordResetTab }) => {
   const {
     userCredential: { email, password },
-    loginNow,
+    login,
     checkSigninInput,
   } = React.useContext(AuthContext)
 
   return (
     <>
-      <Form className='form-center' onSubmit={loginNow}>
+      <Form className='form-center' onSubmit={login}>
         <div className='title'>
           <h3>Willkommen zurück</h3>
         </div>

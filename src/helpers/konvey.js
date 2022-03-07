@@ -1,4 +1,4 @@
-export async function performFetch(url, id, token, method, body) {
+export async function konvey(url, id, token, method, body) {
   let config = {
     method: method,
     headers: {

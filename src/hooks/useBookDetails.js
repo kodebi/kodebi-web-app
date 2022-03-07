@@ -1,20 +1,25 @@
 import * as React from 'react'
 import { LayoutContext } from '../context/LayoutContext'
-import { performFetch } from '../helpers/performFetch'
+import { AuthContext } from '../context/AuthContext'
+import { konvey } from '../helpers/konvey'
 import { FaCheckCircle, FaPoo } from 'react-icons/fa'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { API_BOOKS } from '../config/config'
 
-const useBookDetails = (url, id, token) => {
+const useBookDetails = () => {
   const { setAlert, setLoading } = React.useContext(LayoutContext)
   const [book, setBook] = React.useState({})
   const [showEditBook, setShowEditBook] = React.useState(false)
+  const { jwt } = React.useContext(AuthContext)
+  const { id } = useParams()
+
   const history = useNavigate()
 
   // update book details
   const updateBookDetails = (e) => {
     e.preventDefault()
     setLoading(true)
-    performFetch(url, id, token, 'PUT', book)
+    konvey(API_BOOKS, id, jwt, 'PUT', book)
       .then(() => setLoading(false))
       .then(() => setShowEditBook(false))
       .then(() =>
@@ -29,7 +34,7 @@ const useBookDetails = (url, id, token) => {
 
   const deleteBook = () => {
     setLoading(true)
-    performFetch(url, id, token, 'DELETE')
+    konvey(API_BOOKS, id, jwt, 'DELETE')
       .then(() => setLoading(false))
       .catch(catchError)
       .then(() =>
@@ -70,7 +75,7 @@ const useBookDetails = (url, id, token) => {
   // öffne Buch
   React.useEffect(() => {
     setLoading(true)
-    performFetch(url, id, token)
+    konvey(API_BOOKS, id, jwt)
       .then(setBook)
       .then(() => setLoading(false))
     return () => setLoading(false)

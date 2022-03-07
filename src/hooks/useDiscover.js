@@ -1,8 +1,9 @@
 import * as React from 'react'
 import { LayoutContext } from '../context/LayoutContext'
-import { performFetch } from '../helpers/performFetch'
+import { konvey } from '../helpers/konvey'
+import { API_BOOKS } from '../config/config'
 
-const useDiscover = (url, id, token) => {
+const useDiscover = () => {
   const { setLoading } = React.useContext(LayoutContext)
   const [allBooks, setAllBooks] = React.useState([])
   const [books, setBooks] = React.useState(allBooks)
@@ -50,7 +51,7 @@ const useDiscover = (url, id, token) => {
 
   React.useEffect(() => {
     setLoading(true)
-    performFetch(url, id, token)
+    konvey(API_BOOKS)
       .then(setAllBooks)
       .then(setBooks)
       .then(() => setLoading(false))

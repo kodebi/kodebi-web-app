@@ -7,17 +7,12 @@ import MessageModal from '../components/MessageModal'
 import Loading2 from '../components/Loading2'
 import { motion } from 'framer-motion'
 import EditBook from '../components/EditBook'
-import { useParams } from 'react-router-dom'
 import { LayoutContext } from '../context/LayoutContext'
-import { API_BOOKS, API_MESSAGES } from '../config/config'
-import { AuthContext } from '../context/AuthContext'
 import useBookDetails from '../hooks/useBookDetails'
 import useStartConversations from '../hooks/useStartConversations'
 
 const BookDetails = () => {
   const { alert, closeSubmenu, loading } = React.useContext(LayoutContext)
-  const { id } = useParams()
-  const { userId, jwt } = React.useContext(AuthContext)
   const {
     state: { book, showEditBook },
     functions: {
@@ -27,15 +22,14 @@ const BookDetails = () => {
       updateBookDetails,
       deleteBook,
     },
-  } = useBookDetails(API_BOOKS, id, jwt)
+  } = useBookDetails()
   const {
     state: { newConv, showMessageModal },
     functions: { closeMessageModal, messageUser, msgModalInput, startConv },
-  } = useStartConversations(API_MESSAGES, null, jwt, userId, book.owner)
+  } = useStartConversations(book.owner)
 
-  return loading ? (
-    <Loading />
-  ) : (
+  if (loading) return <Loading />
+  return (
     <>
       {showMessageModal && (
         <MessageModal

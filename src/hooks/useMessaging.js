@@ -3,7 +3,7 @@ import { AuthContext } from '../context/AuthContext'
 import { LayoutContext } from '../context/LayoutContext'
 import { API_MESSAGES, API_MESSAGESUSER } from '../config/config'
 import { FaFlushed } from 'react-icons/fa'
-import { performFetch } from '../helpers/performFetch'
+import { konvey } from '../helpers/konvey'
 
 const useMessaging = () => {
   const [conversations, setConversations] = React.useState([])
@@ -31,7 +31,7 @@ const useMessaging = () => {
     (url, id, token, user_id) => {
       if (selectedConversation) {
         setLoading(true)
-        performFetch(url, id, token)
+        konvey(url, id, token)
           .then(setChat)
           .then((data) => {
             setNewMessage({
@@ -56,7 +56,7 @@ const useMessaging = () => {
 
   // ziehe alle Konversationen eines Users
   React.useEffect(() => {
-    performFetch(API_MESSAGESUSER, userId, jwt)
+    konvey(API_MESSAGESUSER, userId, jwt)
       .then(setConversations)
       .then(() => setLoading(false))
     return () => setLoading(false)
@@ -90,7 +90,7 @@ const useMessaging = () => {
       return null
     }
     e.preventDefault()
-    performFetch(API_MESSAGES, chat._id, jwt, 'POST', newMessage)
+    konvey(API_MESSAGES, chat._id, jwt, 'POST', newMessage)
       .catch((error) => console.error(error))
       .finally(() => {
         setLoading(false)

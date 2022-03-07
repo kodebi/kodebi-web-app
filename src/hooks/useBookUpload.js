@@ -1,10 +1,13 @@
 import * as React from 'react'
 import { LayoutContext } from '../context/LayoutContext'
+import { AuthContext } from '../context/AuthContext'
 import { FaCheckCircle, FaPoo, FaFlushed } from 'react-icons/fa'
 import { genres, languages, conditions, status } from '../utils/dropdown'
+import { API_BOOKS } from '../config/config'
 
-const useBookUpload = (url, token, userId, userName) => {
+const useBookUpload = () => {
   const { setLoading, setAlert } = React.useContext(LayoutContext)
+  const { userId, userName, jwt } = React.useContext(AuthContext)
   const [newBook, setNewBook] = React.useState({
     name: '',
     author: '',
@@ -14,7 +17,7 @@ const useBookUpload = (url, token, userId, userName) => {
     status: status[0],
     desc: '',
   })
-  const [bookImage, setBookImage] = React.useState()
+  const [bookImage, setBookImage] = React.useState(null)
 
   // POST Buch
   const bookUpload = async (api, tkn, formdata) => {
@@ -82,7 +85,7 @@ const useBookUpload = (url, token, userId, userName) => {
       bookData.append('username', userName)
       bookData.append('status', newBook.status)
       bookData.append('description', newBook.desc)
-      bookUpload(url, token, bookData)
+      bookUpload(API_BOOKS, jwt, bookData)
     } else {
       setAlert({
         display: true,
@@ -95,18 +98,16 @@ const useBookUpload = (url, token, userId, userName) => {
   // Textfeldeingabe
   const textChange = (e) => {
     setNewBook({ ...newBook, [e.target.name]: e.target.value })
-    console.table(newBook)
   }
 
   // Bilddatei hinzufügen
   const imageChange = (e) => {
     setBookImage(e.target.files[0])
-    console.log(bookImage)
   }
 
   // resette die komplette Eingabe
   const resetInput = () => {
-    setBookImage()
+    setBookImage(null)
     setNewBook({
       name: '',
       author: '',

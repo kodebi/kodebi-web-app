@@ -1,24 +1,21 @@
 import * as React from 'react'
 import { LayoutContext } from '../context/LayoutContext'
-import { AuthContext } from '../context/AuthContext'
 import UserDashboard from '../components/UserDashboard'
 import Loading from '../components/Loading'
 import Alert from '../components/Alert'
 import { motion } from 'framer-motion'
 import Shelf from '../components/Shelf'
-import { API_BOOKSBYUSER } from '../config/config'
-import { useParams } from 'react-router-dom'
 import Title from '../components/Title'
 import List from '../components/List'
 import useUserProfile from '../hooks/useUserProfile'
+import { useParams } from 'react-router-dom'
 
 const UserProfile = () => {
   const { alert, closeSubmenu, loading } = React.useContext(LayoutContext)
-  const { userId, jwt } = React.useContext(AuthContext)
   const { id } = useParams()
   const {
     state: { userBooks },
-  } = useUserProfile(API_BOOKSBYUSER, id ?? userId, jwt)
+  } = useUserProfile(id)
 
   const whose = id ? userBooks[0]?.username.concat('s') : 'Dein'
   const renderList = !id ? <List /> : null
