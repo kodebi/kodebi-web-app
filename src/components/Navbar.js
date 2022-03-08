@@ -1,69 +1,22 @@
 import * as React from 'react'
-import { LayoutContext } from '../context/LayoutContext'
-import { AuthContext } from '../context/AuthContext'
 import { Link } from 'react-router-dom'
 import logo from '../static/kodebi_logo_classic.svg'
 import { FaBook, FaBookOpen } from 'react-icons/fa'
 import MenuLink from './MenuLink'
 import { links } from '../utils/linksDB'
 import UserBar from './UserBar'
+import { AuthContext } from '../context/AuthContext'
+import useNavInteraction from '../hooks/useNavInteraction'
+import { LayoutContext } from '../context/LayoutContext'
 
 const Navbar = () => {
-  const [navbar, setNavbar] = React.useState(false)
-  const [location, setLocation] = React.useState({})
-  const container = React.useRef(null)
-  const { closeSubmenu, setIsSubmenuOpen, setShowLinks, showLinks, hideLinks } =
-    React.useContext(LayoutContext)
   const { logout } = React.useContext(AuthContext)
-
-  // aktiviere sticky navbar beim scrollen
-  React.useEffect(() => {
-    const stickyNav = () => {
-      if (window.scrollY >= 50) {
-        setNavbar(true)
-      } else {
-        setNavbar(false)
-      }
-    }
-    window.addEventListener('scroll', stickyNav)
-    return () => {
-      window.removeEventListener('scroll', stickyNav)
-    }
-  })
-
-  // bestimme die Position des Submenus
-  React.useLayoutEffect(() => {
-    const submenu = container.current
-    const { divCenter, divBottom } = location
-    submenu.style.left = `${divCenter}px`
-    submenu.style.bottom = `${divBottom}px`
-  }, [location])
-
-  // toggle Navbar in mobiler Ansicht
-  const toggleNavbar = () => {
-    setShowLinks(!showLinks)
-  }
-
-  // öffne das Usermenu rechts oben
-  const openSubmenu = (coordinates) => {
-    setLocation(coordinates)
-    setIsSubmenuOpen(true)
-  }
-
-  // schliesse das Usermenu unabhängig davon wo der User hinklickt (außerhalb des Usermenus)
-  const hideSubmenu = (e) => {
-    if (!e.target.classList.contains('helper')) {
-      closeSubmenu()
-    }
-  }
-
-  // bestimme die Position des Submenus
-  const showUserSubmenu = (e) => {
-    const divSize = e.currentTarget.getBoundingClientRect()
-    const divCenter = (divSize.left + divSize.right) / 2
-    const divBottom = divSize.bottom - 3
-    openSubmenu({ divCenter, divBottom })
-  }
+  const { hideLinks, showLinks } = React.useContext(LayoutContext)
+  const {
+    state: { navbar },
+    ref: { container },
+    functions: { hideSubmenu, toggleNavbar, showUserSubmenu },
+  } = useNavInteraction()
 
   return (
     <>

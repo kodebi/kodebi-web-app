@@ -1,10 +1,7 @@
 import * as React from 'react'
 import BookCard from './BookCard'
 
-let shelfRender = 0
-
 const Shelf = ({ element }) => {
-  console.log(`shelfRender = ${shelfRender++}`)
   return (
     <>
       {element?.length < 1 ? (
