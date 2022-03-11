@@ -7,15 +7,19 @@ import { links } from '../utils/linksDB'
 import UserBar from './UserBar'
 import { AuthContext } from '../context/AuthContext'
 import useNavInteraction from '../hooks/useNavInteraction'
-import { LayoutContext } from '../context/LayoutContext'
 
 const Navbar = () => {
   const { logout } = React.useContext(AuthContext)
-  const { hideLinks, showLinks } = React.useContext(LayoutContext)
   const {
     state: { navbar },
     ref: { container },
-    functions: { hideSubmenu, toggleNavbar, showUserSubmenu },
+    functions: {
+      hideLinks,
+      showLinks,
+      hideSubmenu,
+      toggleNavbar,
+      showUserSubmenu,
+    },
   } = useNavInteraction()
 
   return (

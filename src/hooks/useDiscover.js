@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { unstable_batchedUpdates } from 'react-dom'
 import { LayoutContext } from '../context/LayoutContext'
 import { konvey } from '../helpers/konvey'
 import { API_BOOKS } from '../config/config'
@@ -6,7 +7,7 @@ import { API_BOOKS } from '../config/config'
 const useDiscover = () => {
   const { setLoading } = React.useContext(LayoutContext)
   const [allBooks, setAllBooks] = React.useState([])
-  const [books, setBooks] = React.useState(allBooks)
+  const [books, setBooks] = React.useState([])
   const [search, setSearch] = React.useState('')
 
   // ziehe Kategorien der Bücher
@@ -19,13 +20,14 @@ const useDiscover = () => {
   const lenguajes = [...new Set(allBooks?.map((book) => book.language))]
 
   // verarbeite den Input des Suchfeldes
-  const handleSearch = React.useCallback((e) => {
+  const handleSearch = (e) => {
     setSearch(e.target.value)
-  }, [])
+  }
 
-  const backToAll = React.useCallback(() => {
+  const backToAll = () => {
     setBooks(allBooks)
-  }, [allBooks])
+    setSearch('')
+  }
 
   // filtert Bücher anhand der Kategorien
   const filterByCategory = (e) => {
@@ -50,12 +52,20 @@ const useDiscover = () => {
   }
 
   React.useEffect(() => {
+    let mounted = true
     setLoading(true)
-    konvey(API_BOOKS)
-      .then(setAllBooks)
-      .then(setBooks)
-      .then(() => setLoading(false))
-    return () => setLoading(false)
+    konvey(API_BOOKS).then((res) => {
+      if (!mounted) return
+      unstable_batchedUpdates(() => {
+        setAllBooks(res)
+        setBooks(res)
+        setLoading(false)
+      })
+    })
+    return () => {
+      mounted = false
+      setLoading(false)
+    }
   }, [])
 
   // filter Bücher nach Suche
@@ -70,7 +80,6 @@ const useDiscover = () => {
 
   return {
     state: { allBooks, books, search },
-    setter: { setBooks, setSearch },
     functions: {
       handleSearch,
       backToAll,
