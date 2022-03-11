@@ -1,10 +1,7 @@
-import React from 'react'
+import * as React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
-import Loading from './components/Loading'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import ScrollToTop from './components/ScrollToTop'
+import { Loading, Navbar, Footer, ScrollToTop } from './components'
 
 // React.lazy imports
 const Discover = React.lazy(() => import('./pages/Discover'))
