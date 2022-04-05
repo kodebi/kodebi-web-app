@@ -1,7 +1,7 @@
 import React from 'react'
-import { Form } from './Form'
+import { Form } from '../Form'
 import { TextAreaInput } from '../TextAreaInput'
-import { FilterBtn } from '../FilterButton'
+import { FilterBtn } from '../FilterBtn'
 import { ModalWrapper } from '../ModalWrapper'
 import { motion } from 'framer-motion'
 

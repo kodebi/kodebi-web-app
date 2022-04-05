@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { FilterBtn } from '../FilterButton'
+import { FilterBtn } from '../FilterBtn'
 import { Form } from '../Form'
 import { OpenChat } from '../OpenChat'
 import { FaPaperPlane } from 'react-icons/fa'

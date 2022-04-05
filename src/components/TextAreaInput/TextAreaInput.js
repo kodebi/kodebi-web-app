@@ -1,6 +1,6 @@
 import React from 'react'
 
-const TextAreaInput = (props) => {
+export const TextAreaInput = (props) => {
   return (
     <>
       <div className='form-control'>
@@ -12,5 +12,3 @@ const TextAreaInput = (props) => {
     </>
   )
 }
-
-export default TextAreaInput

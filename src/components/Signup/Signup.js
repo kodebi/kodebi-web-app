@@ -1,7 +1,7 @@
 import React from 'react'
 import { InputField } from '../InputField'
 import { SigninBtn } from '../SigninBtn'
-import { Form } from './Form'
+import { Form } from '../Form'
 import { AuthContext } from '../../context/AuthContext'
 
 export const Signup = () => {

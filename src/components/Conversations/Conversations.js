@@ -1,5 +1,5 @@
 import * as React from 'react'
-import Conversation from '../Conversation'
+import { Conversation } from '../Conversation'
 import { MessageContext } from '../../context/MessageContext'
 
 export const Conversations = () => {
