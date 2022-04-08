@@ -1,0 +1,39 @@
+.list {
+  @include card;
+  max-width: $mx-wdth;
+  width: 100%;
+  padding: 1rem;
+  text-align: left;
+  font-size: 0.75rem;
+  overflow: hidden;
+
+  .list-header {
+    border-bottom: 1px solid $bckgrnd-clr-2;
+    font-size: 0.825rem;
+  }
+
+  th,
+  td {
+    padding: 0.25rem;
+  }
+
+  .list-img {
+    width: 2rem;
+    object-fit: scale-down;
+  }
+}
+
+@media (min-width: 800px) {
+  .list {
+    font-size: 1rem;
+    overflow: auto;
+
+    .list-header {
+      font-size: 1.25rem;
+    }
+
+    .list-img {
+      width: 4rem;
+    }
+  }
+}

@@ -24,6 +24,8 @@ body {
 main {
   display: grid;
   place-items: center;
+  gap: 1rem;
+  margin: 0 0.5rem;
 
   &:before {
     margin-top: 15vh;
@@ -130,6 +132,7 @@ button {
 @import './styles/bookupload';
 @import './styles/buttons';
 @import './styles/dataprivacy';
+@import './styles/discover';
 @import './styles/errorpage';
 @import './styles/footer';
 @import './styles/imageupload';
@@ -137,9 +140,10 @@ button {
 @import './styles/loading';
 @import './styles/loginscreen';
 @import './styles/links';
-@import './styles/marketplace.scss';
+@import './styles/list';
 @import './styles/messagemodal';
 @import './styles/messages';
+@import './styles/messagetopic';
 @import './styles/navbar';
 @import './styles/search';
 @import './styles/shelf';

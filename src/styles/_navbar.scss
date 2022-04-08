@@ -1,7 +1,6 @@
 .nav-center {
   width: 100%;
   position: absolute;
-  background-color: $bckgrnd-clr;
   transition: $nvbr-trns;
   z-index: 1;
 
@@ -16,18 +15,23 @@
     display: block;
     flex: 1;
   }
-}
 
-.nav-header {
-  justify-content: space-between;
-  margin: 0 0.5rem;
+  .nav-content {
+    max-width: $mx-wdth;
+    margin: 0 0.5rem;
+    background-color: $bckgrnd-clr;
+
+    .nav-header {
+      justify-content: space-between;
+      margin: 0 0.5rem;
+    }
+  }
 }
 
 .nav-toggle {
   display: flex;
   align-self: center;
   font-size: 1.5rem;
-  padding: 0.5rem;
   border: 0;
   background: transparent;
   color: $brnd-clr;
@@ -64,7 +68,6 @@
     .nav-content {
       display: flex;
       justify-content: space-around;
-      max-width: $mx-wdth;
       width: 100%;
 
       .nav-toggle {
@@ -89,10 +92,14 @@
 }
 
 .sticky-nav {
-  top: 0;
+  top: 12px;
   position: fixed;
   width: 100%;
-  box-shadow: $bx-shdw;
+}
+
+.sticky-nav-content {
+  @include card;
+  box-shadow: $bx-shdw-2;
 }
 
 .animate-nav {

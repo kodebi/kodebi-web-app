@@ -1,29 +1,26 @@
-import React, { lazy, Suspense } from 'react'
+import * as React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import { AnimatePresence } from 'framer-motion'
-import Loading from './components/Loading'
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
-import ScrollToTop from './components/ScrollToTop'
+import { Loading, Navbar, Footer, ScrollToTop } from './components'
 
-// lazy imports
-const Marketplace = lazy(() => import('./pages/Marketplace'))
-const UserProfile = lazy(() => import('./pages/UserProfile'))
-const Messages = lazy(() => import('./pages/Messages'))
-const BookDetails = lazy(() => import('./pages/BookDetails'))
-const UploadBook = lazy(() => import('./pages/UploadBook'))
-const DataPrivacy = lazy(() => import('./pages/DataPrivacy'))
-const Imprint = lazy(() => import('./pages/Imprint'))
-const Error = lazy(() => import('./pages/Error'))
+// React.lazy imports
+const Discover = React.lazy(() => import('./pages/Discover'))
+const UserProfile = React.lazy(() => import('./pages/UserProfile'))
+const Messages = React.lazy(() => import('./pages/Messages'))
+const BookDetails = React.lazy(() => import('./pages/BookDetails'))
+const UploadBook = React.lazy(() => import('./pages/UploadBook'))
+const DataPrivacy = React.lazy(() => import('./pages/DataPrivacy'))
+const Imprint = React.lazy(() => import('./pages/Imprint'))
+const Error = React.lazy(() => import('./pages/Error'))
 
 function AuthApp() {
   return (
-    <Suspense fallback={<Loading />}>
+    <React.Suspense fallback={<Loading />}>
       <Navbar />
       <ScrollToTop />
       <AnimatePresence initial={false} exitBeforeEnter>
         <Routes>
-          <Route path='/' element={<Marketplace />} />
+          <Route path='/' element={<Discover />} />
           <Route path='/mybooks' element={<UserProfile />} />
           <Route path='/profile/:id' element={<UserProfile />} />
           <Route path='/uploadbook' element={<UploadBook />} />
@@ -35,7 +32,7 @@ function AuthApp() {
         </Routes>
       </AnimatePresence>
       <Footer />
-    </Suspense>
+    </React.Suspense>
   )
 }
 
