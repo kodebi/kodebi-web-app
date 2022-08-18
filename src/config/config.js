@@ -1,5 +1,6 @@
 export const AUTH_SIGNIN = '/auth/signin/';
 export const AUTH_SIGNOUT = '/auth/signout';
+export const AUTH_USERACTIVATION = '/auth/completeRegistration';
 export const API_REQUESTRESET = '/auth/requestPasswordReset/';
 export const API_RESETPASSWORD = '/auth/resetPassword';
 export const API_BOOKS = '/api/books/';

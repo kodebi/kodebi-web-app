@@ -6,6 +6,7 @@ import { getUrlParams } from '../helpers/getUrlParams';
 import {
 	AUTH_SIGNIN,
 	AUTH_SIGNOUT,
+	AUTH_USERACTIVATION,
 	API_REQUESTRESET,
 	API_RESETPASSWORD,
 	API_USERS,
@@ -59,12 +60,12 @@ const useAuth = () => {
 		e.preventDefault();
 		setLoading(true);
 		konvey(API_USERS, null, null, 'POST', userCredential)
-			.then(() => setIsTabLeft(true))
-			.then(() => {
+			.then((data) => {
+				setIsTabLeft(true);
 				setAlert({
 					display: true,
 					icon: <FaCheckCircle />,
-					msg: 'Der erste Schritt war erfolgreich! Halte Ausschau in deinen Emails nach Post von uns',
+					msg: data.message,
 				});
 			})
 			.catch(catchError)
@@ -96,48 +97,69 @@ const useAuth = () => {
 		});
 	};
 
-	// schicke den Password Request mit useremail ab
-	const requestReset = (e) => {
+	const activate = (e) => {
 		e.preventDefault();
-		setLoading(false);
-		konvey(API_REQUESTRESET, null, null, 'POST', {
-			email: userCredential.email,
+		setLoading(true);
+		konvey(AUTH_USERACTIVATION, null, null, 'POST', {
+			userId: query.get('id'),
+			token: query.get('token'),
 		})
-			.then(() =>
+			.catch(catchError)
+			.then((data) => {
 				setAlert({
 					display: true,
 					icon: <FaCheckCircle />,
-					msg: 'Der erste Schritt war erfolgreich! Halte Ausschau in deinen Emails nach Post von uns',
+					msg: data.message,
+				});
+				forwardPage('/');
+			})
+			.finally(() => {
+				setLoading(false);
+			});
+	};
+
+	// schicke den Password Request mit useremail ab
+	const requestReset = (e) => {
+		e.preventDefault();
+		setLoading(true);
+		konvey(API_REQUESTRESET, null, null, 'POST', {
+			email: userCredential.email,
+		})
+			.then((data) =>
+				setAlert({
+					display: true,
+					icon: <FaCheckCircle />,
+					msg: data.message,
 				})
 			)
 			.catch(catchError)
 			.finally(() => {
-				setUserCredential({ email: '' });
+				setUserCredential({ name: '', email: '', password: '' });
 				setLoading(false);
 			});
 	};
 
 	const reset = (e) => {
 		e.preventDefault();
-		setLoading(false);
+		setLoading(true);
 		konvey(API_RESETPASSWORD, null, null, 'POST', {
 			userId: query.get('id'),
 			token: query.get('token'),
 			password: userCredential.password,
 		})
 			.catch(catchError)
-			.then(() =>
-				forwardPage('/', setUserCredential({ email: '', password: '' }))
-			)
-			.then(() => {
+			.then((data) => {
 				setAlert({
 					display: true,
 					icon: <FaCheckCircle />,
-					msg: 'Dein neues Passwort wurde erfolgreich eingerichtet. Logge dich nun damit ein.',
+					msg: data.message,
 				});
+				forwardPage(
+					'/',
+					setUserCredential({ name: '', email: '', password: '' })
+				);
 			})
 			.finally(() => {
-				setUserCredential({ password: '' });
 				setLoading(false);
 			});
 	};
@@ -150,6 +172,7 @@ const useAuth = () => {
 			login,
 			signup,
 			logout,
+			activate,
 			reset,
 			requestReset,
 		},
