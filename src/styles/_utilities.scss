@@ -86,6 +86,10 @@ textarea {
 	}
 }
 
+.m-top {
+	margin-top: 1rem;
+}
+
 .active {
 	border-bottom: 2px solid $brnd-clr;
 }
@@ -104,5 +108,9 @@ textarea {
 
 	.user-icon {
 		padding: 0.5rem;
+	}
+
+	.m-top {
+		margin-top: 1.5rem;
 	}
 }
