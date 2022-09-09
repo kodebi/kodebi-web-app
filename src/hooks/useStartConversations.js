@@ -5,13 +5,15 @@ import { FaCheckCircle, FaPoo } from 'react-icons/fa';
 import { API_MESSAGES } from '../config/config';
 import { AuthContext } from '../context/AuthContext';
 
-const useStartConversations = (ownerId) => {
+const useStartConversations = (ownerId, ownerName) => {
 	const { setAlert, setLoading } = React.useContext(LayoutContext);
 	const [showMessageModal, setShowMessageModal] = React.useState(false);
-	const { userId, jwt } = React.useContext(AuthContext);
+	const { userId, userName, jwt } = React.useContext(AuthContext);
 	const [newConv, setNewConv] = React.useState({
-		sender: '',
-		reciever: '',
+		senderId: '',
+		senderName: '',
+		recieverId: '',
+		recieverName: '',
 		message: '',
 	});
 
@@ -23,8 +25,10 @@ const useStartConversations = (ownerId) => {
 	// Input des Nachrichtenfensters
 	const msgModalInput = (e) => {
 		setNewConv({
-			sender: userId,
-			reciever: ownerId,
+			senderId: userId,
+			senderName: userName,
+			recieverId: ownerId,
+			recieverName: ownerName,
 			message: e.target.value,
 		});
 	};
@@ -45,7 +49,7 @@ const useStartConversations = (ownerId) => {
 				setAlert({
 					display: true,
 					icon: <FaPoo />,
-					msg: error,
+					msg: error.message,
 				})
 			)
 			.then(() =>
@@ -57,8 +61,10 @@ const useStartConversations = (ownerId) => {
 			)
 			.finally(() =>
 				setNewConv({
-					sender: '',
-					reciever: '',
+					senderId: '',
+					senderName: '',
+					recieverId: '',
+					recieverName: '',
 					message: '',
 				})
 			);
