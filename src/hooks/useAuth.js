@@ -12,6 +12,7 @@ import {
 	API_USERS,
 } from '../config/config';
 import { konvey } from '../helpers/konvey';
+import useError from './useError';
 
 const useAuth = () => {
 	const userName = localStorage.getItem('name');
@@ -27,16 +28,8 @@ const useAuth = () => {
 		React.useContext(LayoutContext);
 	const forwardPage = useNavigate();
 	const { state, search } = useLocation();
+	const { catchError } = useError();
 	let query = getUrlParams(search);
-
-	// error handler
-	const catchError = (e) => {
-		setAlert({
-			display: true,
-			icon: <FaPoop />,
-			msg: e.message,
-		});
-	};
 
 	// POST registriere neuen User im Backend / logge User ein (Backend)
 	const login = (e) => {
@@ -82,7 +75,7 @@ const useAuth = () => {
 			.then(() => setShowLinks(false))
 			.then(() => localStorage.clear())
 			.then(() => setUser(false))
-			.catch((error) => console.error(error))
+			.catch(catchError)
 			.finally(() => {
 				setLoading(false);
 				setUserCredential({ name: '', email: '', password: '' });

@@ -5,6 +5,7 @@ import { konvey } from '../helpers/konvey';
 import { FaCheckCircle, FaPoo } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
 import { API_BOOK } from '../config/config';
+import useError from './useError';
 
 const useBookDetails = () => {
 	const { setAlert, setLoading } = React.useContext(LayoutContext);
@@ -12,7 +13,7 @@ const useBookDetails = () => {
 	const [showEditBook, setShowEditBook] = React.useState(false);
 	const { jwt } = React.useContext(AuthContext);
 	const { id } = useParams();
-
+	const { catchError } = useError();
 	const history = useNavigate();
 
 	// update book details
@@ -62,14 +63,6 @@ const useBookDetails = () => {
 	// Textfeldeingabe
 	const changeBookDetails = (e) => {
 		setBook({ ...book, [e.target.name]: e.target.value });
-	};
-
-	const catchError = (error) => {
-		setAlert({
-			display: true,
-			icon: <FaPoo />,
-			msg: error,
-		});
 	};
 
 	// öffne Buch

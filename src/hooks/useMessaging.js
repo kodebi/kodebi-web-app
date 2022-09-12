@@ -4,6 +4,7 @@ import { LayoutContext } from '../context/LayoutContext';
 import { API_MESSAGES, API_MESSAGESUSER } from '../config/config';
 import { FaFlushed } from 'react-icons/fa';
 import { konvey } from '../helpers/konvey';
+import useError from './useError';
 
 const useMessaging = () => {
 	const [conversations, setConversations] = React.useState([]);
@@ -20,6 +21,7 @@ const useMessaging = () => {
 	const chatEnd = React.useRef();
 	const { setLoading, setAlert } = React.useContext(LayoutContext);
 	const { userId, userName, jwt } = React.useContext(AuthContext);
+	const { catchError } = useError();
 
 	const scrollToBottom = () => {
 		if (chatEnd?.current)
@@ -35,23 +37,20 @@ const useMessaging = () => {
 				setLoading(true);
 				konvey(url, id, token)
 					.then((data) => {
-						console.log(data);
-						// setNewMessage({
-						// 	senderId: user_id,
-						// 	senderName: user_name,
-						// 	recieverId:
-						// 		user_id === data?.recipients[0]._id
-						// 			? data?.recipients[1]._id
-						// 			: data?.recipients[0]._id,
-						// 	recieverName:
-						// 		user_name === data?.recipients[0].name
-						// 			? data?.recipients[1].name
-						// 			: data?.recipients[0].name,
-						// 	message: '',
-						// });
+						setChat(data);
+						setNewMessage({
+							recieverId:
+								user_id === data?.recipients[0]
+									? data?.recipients[1]
+									: data?.recipients[0],
+							recieverName:
+								user_name === data?.messages[0].senderName
+									? data?.messages[0].recieverName
+									: data?.messages[0].senderName,
+						});
 					})
 					.then(scrollToBottom)
-					.catch((error) => console.error(error))
+					.catch(catchError)
 					.finally(() => {
 						setLoading(false);
 						setIsMessageSent(false);
@@ -78,7 +77,7 @@ const useMessaging = () => {
 			userId,
 			userName
 		);
-	}, [isMessageSent, getChatOfConv, jwt, userId]);
+	}, [isMessageSent, getChatOfConv, jwt, userId, userName]);
 
 	// rufe eine Konversation und die dazugehörigen Nachrichten auf
 	const openConversation = (e) => {
@@ -104,7 +103,7 @@ const useMessaging = () => {
 		}
 		e.preventDefault();
 		konvey(API_MESSAGES, chat._id, jwt, 'POST', newMessage)
-			.catch((error) => console.error(error))
+			.catch(catchError)
 			.finally(() => {
 				setLoading(false);
 				setNewMessage({
