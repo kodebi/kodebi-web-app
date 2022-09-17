@@ -2,7 +2,7 @@ import * as React from 'react';
 import { LayoutContext } from '../context/LayoutContext';
 import { AuthContext } from '../context/AuthContext';
 import { konvey } from '../helpers/konvey';
-import { FaCheckCircle, FaPoo } from 'react-icons/fa';
+import { FaCheckCircle } from 'react-icons/fa';
 import { useNavigate, useParams } from 'react-router-dom';
 import { API_BOOK } from '../config/config';
 import useError from './useError';

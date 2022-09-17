@@ -6,15 +6,22 @@ import { MessageTopic } from '../MessageTopic';
 export const OpenChat = () => {
 	const {
 		selectedConversation,
-		chat: { messages },
+		chat: { messages, book },
 		chatEnd,
 	} = React.useContext(MessageContext);
 	const [confirm, setConfirm] = React.useState(true);
+	const requestingUser = messages && messages[0].senderName;
 
 	return selectedConversation ? (
 		<>
 			<section className="chat">
-				{confirm && <MessageTopic setConfirm={setConfirm} />}
+				{confirm && (
+					<MessageTopic
+						requestingUser={requestingUser}
+						setConfirm={setConfirm}
+						bookName={book?.bookName}
+					/>
+				)}
 				{messages?.map((message) => {
 					return <Message key={message._id} {...message} />;
 				})}

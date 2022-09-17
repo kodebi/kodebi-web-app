@@ -4,8 +4,9 @@ import { konvey } from '../helpers/konvey';
 import { FaCheckCircle, FaPoo } from 'react-icons/fa';
 import { API_MESSAGES } from '../config/config';
 import { AuthContext } from '../context/AuthContext';
+import useError from './useError';
 
-const useStartConversations = (ownerId, ownerName) => {
+const useStartConversations = (ownerId, ownerName, bookId, bookName) => {
 	const { setAlert, setLoading } = React.useContext(LayoutContext);
 	const [showMessageModal, setShowMessageModal] = React.useState(false);
 	const { userId, userName, jwt } = React.useContext(AuthContext);
@@ -15,7 +16,10 @@ const useStartConversations = (ownerId, ownerName) => {
 		recieverId: '',
 		recieverName: '',
 		message: '',
+		bookId: '',
+		bookName: '',
 	});
+	const { catchError } = useError();
 
 	// kontaktiere Besitzer des Buchs
 	const messageUser = () => {
@@ -30,6 +34,8 @@ const useStartConversations = (ownerId, ownerName) => {
 			recieverId: ownerId,
 			recieverName: ownerName,
 			message: e.target.value,
+			bookId: bookId,
+			bookName: bookName,
 		});
 	};
 
@@ -45,13 +51,7 @@ const useStartConversations = (ownerId, ownerName) => {
 		konvey(API_MESSAGES, null, jwt, 'POST', newConv)
 			.then(() => setLoading(false))
 			.then(() => setShowMessageModal(false))
-			.catch((error) =>
-				setAlert({
-					display: true,
-					icon: <FaPoo />,
-					msg: error.message,
-				})
-			)
+			.catch(catchError)
 			.then(() =>
 				setAlert({
 					display: true,
@@ -66,6 +66,8 @@ const useStartConversations = (ownerId, ownerName) => {
 					recieverId: '',
 					recieverName: '',
 					message: '',
+					bookId: '',
+					bookName: '',
 				})
 			);
 	};
