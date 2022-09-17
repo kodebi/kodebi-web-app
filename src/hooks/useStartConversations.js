@@ -4,16 +4,22 @@ import { konvey } from '../helpers/konvey';
 import { FaCheckCircle, FaPoo } from 'react-icons/fa';
 import { API_MESSAGES } from '../config/config';
 import { AuthContext } from '../context/AuthContext';
+import useError from './useError';
 
-const useStartConversations = (ownerId) => {
+const useStartConversations = (ownerId, ownerName, bookId, bookName) => {
 	const { setAlert, setLoading } = React.useContext(LayoutContext);
 	const [showMessageModal, setShowMessageModal] = React.useState(false);
-	const { userId, jwt } = React.useContext(AuthContext);
+	const { userId, userName, jwt } = React.useContext(AuthContext);
 	const [newConv, setNewConv] = React.useState({
-		sender: '',
-		reciever: '',
+		senderId: '',
+		senderName: '',
+		recieverId: '',
+		recieverName: '',
 		message: '',
+		bookId: '',
+		bookName: '',
 	});
+	const { catchError } = useError();
 
 	// kontaktiere Besitzer des Buchs
 	const messageUser = () => {
@@ -23,9 +29,13 @@ const useStartConversations = (ownerId) => {
 	// Input des Nachrichtenfensters
 	const msgModalInput = (e) => {
 		setNewConv({
-			sender: userId,
-			reciever: ownerId,
+			senderId: userId,
+			senderName: userName,
+			recieverId: ownerId,
+			recieverName: ownerName,
 			message: e.target.value,
+			bookId: bookId,
+			bookName: bookName,
 		});
 	};
 
@@ -41,13 +51,7 @@ const useStartConversations = (ownerId) => {
 		konvey(API_MESSAGES, null, jwt, 'POST', newConv)
 			.then(() => setLoading(false))
 			.then(() => setShowMessageModal(false))
-			.catch((error) =>
-				setAlert({
-					display: true,
-					icon: <FaPoo />,
-					msg: error,
-				})
-			)
+			.catch(catchError)
 			.then(() =>
 				setAlert({
 					display: true,
@@ -57,9 +61,13 @@ const useStartConversations = (ownerId) => {
 			)
 			.finally(() =>
 				setNewConv({
-					sender: '',
-					reciever: '',
+					senderId: '',
+					senderName: '',
+					recieverId: '',
+					recieverName: '',
 					message: '',
+					bookId: '',
+					bookName: '',
 				})
 			);
 	};
