@@ -12,8 +12,10 @@ export const MessageTopic = ({
 	bookId,
 }) => {
 	const { setAlert } = React.useContext(LayoutContext);
+	const { borrowBook } = useBorrow(bookId);
 
 	const handleConfirm = () => {
+		borrowBook();
 		setConfirm(false);
 		confetti({
 			particleCount: 100,

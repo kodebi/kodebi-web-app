@@ -11,4 +11,4 @@ export const API_MESSAGES = '/api/messages/';
 export const API_MESSAGESUSER = '/api/messages/user/';
 export const API_BORROW = '/api/borrow/';
 
-export const API_ADDUSER = 'user/';
+export const API_ADDUSER = '/user/';
