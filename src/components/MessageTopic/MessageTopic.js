@@ -3,9 +3,16 @@ import { SigninBtn } from '../SigninBtn';
 import confetti from 'canvas-confetti';
 import { LayoutContext } from '../../context/LayoutContext';
 import { FaGrinStars } from 'react-icons/fa';
+import useBorrow from '../../hooks/useBorrow';
 
-export const MessageTopic = ({ requestingUser, setConfirm, bookName }) => {
+export const MessageTopic = ({
+	requestingUser,
+	setConfirm,
+	bookName,
+	bookId,
+}) => {
 	const { setAlert } = React.useContext(LayoutContext);
+
 	const handleConfirm = () => {
 		setConfirm(false);
 		confetti({
@@ -25,7 +32,7 @@ export const MessageTopic = ({ requestingUser, setConfirm, bookName }) => {
 			<article className="topic-box">
 				<header className="topic-wrapper">
 					<h4 className="title">
-						{requestingUser} möchte sich gerne {bookName} ausleihen.
+						<u>{requestingUser}</u> hat Interesse an <u>{bookName}</u>
 					</h4>
 					<p className="topic-body">Jetzt verleihen?</p>
 				</header>

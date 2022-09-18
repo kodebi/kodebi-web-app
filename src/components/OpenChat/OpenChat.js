@@ -20,6 +20,7 @@ export const OpenChat = () => {
 						requestingUser={requestingUser}
 						setConfirm={setConfirm}
 						bookName={book?.bookName}
+						bookId={book?.bookId}
 					/>
 				)}
 				{messages?.map((message) => {
