@@ -10,6 +10,7 @@ import {
 } from '../../components';
 import { motion } from 'framer-motion';
 import useUserProfile from '../../hooks/useUserProfile';
+import useGetLentBooks from '../../hooks/useGetLentBooks';
 import { useParams } from 'react-router-dom';
 
 export const UserProfile = () => {
@@ -18,9 +19,11 @@ export const UserProfile = () => {
 	const {
 		state: { userBooks },
 	} = useUserProfile(id);
+	const { lendingList } = useGetLentBooks();
 
 	const whose = id ? userBooks[0]?.ownerName.concat('s') : 'Dein';
 	const renderList = !id ? <List /> : null;
+	console.log(lendingList);
 
 	return (
 		<>

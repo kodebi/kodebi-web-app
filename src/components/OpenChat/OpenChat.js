@@ -2,6 +2,7 @@ import * as React from 'react';
 import { MessageContext } from '../../context/MessageContext';
 import { Message } from '../Message';
 import { MessageTopic } from '../MessageTopic';
+import useBorrow from '../../hooks/useBorrow';
 
 export const OpenChat = () => {
 	const {
@@ -9,8 +10,8 @@ export const OpenChat = () => {
 		chat: { messages, book },
 		chatEnd,
 	} = React.useContext(MessageContext);
-	const [confirm, setConfirm] = React.useState(true);
 	const requestingUser = messages && messages[0].senderName;
+	const { confirm, lendBook } = useBorrow(book?.bookId);
 
 	return selectedConversation ? (
 		<>
@@ -18,9 +19,8 @@ export const OpenChat = () => {
 				{confirm && (
 					<MessageTopic
 						requestingUser={requestingUser}
-						setConfirm={setConfirm}
 						bookName={book?.bookName}
-						bookId={book?.bookId}
+						lendBook={lendBook}
 					/>
 				)}
 				{messages?.map((message) => {
