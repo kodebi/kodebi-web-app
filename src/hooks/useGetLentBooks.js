@@ -8,7 +8,7 @@ import useError from './useError';
 const useGetLentBooks = () => {
 	const { setLoading } = React.useContext(LayoutContext);
 	const { jwt } = React.useContext(AuthContext);
-	const [lendingList, setLendingList] = React.useState([]);
+	const [lendingList, setLendingList] = React.useState({});
 	const { catchError } = useError();
 
 	React.useEffect(() => {

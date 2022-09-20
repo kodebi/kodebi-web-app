@@ -22,8 +22,7 @@ export const UserProfile = () => {
 	const { lendingList } = useGetLentBooks();
 
 	const whose = id ? userBooks[0]?.ownerName.concat('s') : 'Dein';
-	const renderList = !id ? <List /> : null;
-	console.log(lendingList);
+	const renderList = !id ? <List elements={lendingList?.books} /> : null;
 
 	return (
 		<>

@@ -1,7 +1,7 @@
 import * as React from 'react';
-import testImage from '../../static/miss_merkel.jpeg';
+import { FilterBtn } from '../FilterBtn';
 
-export const List = () => {
+export const List = ({ elements }) => {
 	return (
 		<>
 			<table className="list">
@@ -11,19 +11,30 @@ export const List = () => {
 						<th className="list-header">Titel</th>
 						<th className="list-header">AutorIn</th>
 						<th className="list-header">Zustand</th>
-						<th className="list-header">Verliehen</th>
+						<th className="list-header">Verliehen an</th>
+						<th className="list-header">Zurückgegeben?</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>
-							<img src={testImage} alt="Miss Merkel" className="list-img" />
-						</td>
-						<td>Miss Merkel</td>
-						<td>David Safier</td>
-						<td>Gut</td>
-						<td>Lenosaurus</td>
-					</tr>
+					{elements?.map((element, index) => {
+						const { image, name, author, condition, borrowerName } = element;
+						return (
+							<tr key={index}>
+								<td>
+									<img src={image} alt="Miss Merkel" className="list-img" />
+								</td>
+								<td>{name}</td>
+								<td>{author}</td>
+								<td>{condition}</td>
+								<td>{borrowerName}</td>
+								<td>
+									<FilterBtn style={{ marginBottom: '0' }}>
+										Bestätigen
+									</FilterBtn>
+								</td>
+							</tr>
+						);
+					})}
 				</tbody>
 			</table>
 		</>

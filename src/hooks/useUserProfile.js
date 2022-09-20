@@ -17,7 +17,7 @@ const useUserProfile = (id) => {
 			.then(setUserBooks)
 			.catch(catchError);
 		return () => setLoading(false);
-	}, [id]);
+	}, []);
 
 	return { state: { userBooks }, setter: { setUserBooks } };
 };

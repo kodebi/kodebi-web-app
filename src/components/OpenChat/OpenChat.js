@@ -7,11 +7,12 @@ import useBorrow from '../../hooks/useBorrow';
 export const OpenChat = () => {
 	const {
 		selectedConversation,
-		chat: { messages, book },
+		chat: { _id, messages, book },
 		chatEnd,
 	} = React.useContext(MessageContext);
 	const requestingUser = messages && messages[0].senderName;
-	const { confirm, lendBook } = useBorrow(book?.bookId);
+	const borrowerId = messages && messages[0].senderId;
+	const { confirm, lendBook } = useBorrow(book?.bookId, borrowerId, _id);
 
 	return selectedConversation ? (
 		<>
