@@ -1,7 +1,9 @@
 import * as React from 'react';
+import { AuthContext } from '../../context/AuthContext';
 import { FilterBtn } from '../FilterBtn';
 
-export const List = ({ elements }) => {
+export const List = ({ elements, returnBook }) => {
+	const { userName } = React.useContext(AuthContext);
 	return (
 		<>
 			<table className="list">
@@ -16,24 +18,37 @@ export const List = ({ elements }) => {
 					</tr>
 				</thead>
 				<tbody>
-					{elements?.map((element, index) => {
-						const { image, name, author, condition, borrowerName } = element;
-						return (
-							<tr key={index}>
-								<td>
-									<img src={image} alt="Miss Merkel" className="list-img" />
-								</td>
-								<td>{name}</td>
-								<td>{author}</td>
-								<td>{condition}</td>
-								<td>{borrowerName}</td>
-								<td>
-									<FilterBtn style={{ marginBottom: '0' }}>
-										Bestätigen
-									</FilterBtn>
-								</td>
-							</tr>
-						);
+					{elements?.map((element) => {
+						const {
+							_id,
+							image,
+							name,
+							author,
+							condition,
+							borrowerName,
+							ownerName,
+						} = element;
+						if (ownerName === userName) {
+							return (
+								<tr key={_id}>
+									<td>
+										<img src={image} alt="Miss Merkel" className="list-img" />
+									</td>
+									<td>{name}</td>
+									<td>{author}</td>
+									<td>{condition}</td>
+									<td>{borrowerName}</td>
+									<td>
+										<FilterBtn
+											style={{ marginBottom: '0' }}
+											onClick={() => returnBook(_id)}
+										>
+											Bestätigen
+										</FilterBtn>
+									</td>
+								</tr>
+							);
+						}
 					})}
 				</tbody>
 			</table>

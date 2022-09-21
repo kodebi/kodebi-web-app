@@ -14,9 +14,8 @@ import useError from './useError';
 
 const useBorrow = (bookId, borrowerId, bookBorrowed, chatId) => {
 	const { userId, jwt } = React.useContext(AuthContext);
-	const [confirm, setConfirm] = React.useState(
-		userId === borrowerId || bookBorrowed ? false : true
-	);
+	const [confirm, setConfirm] = React.useState(true);
+	const [lendingList, setLendingList] = React.useState({});
 	const { setLoading, setAlert } = React.useContext(LayoutContext);
 	const { catchError } = useError();
 
@@ -51,32 +50,53 @@ const useBorrow = (bookId, borrowerId, bookBorrowed, chatId) => {
 			});
 	};
 
-	const returnBook = () => {
+	const returnBook = (id) => {
 		setLoading(true);
-		konvey(API_RETURN, bookId, jwt, 'PUT').then((data) => {
-			setAlert({
-				display: true,
-				icon: <FaGrinStars />,
-				msg: data?.message,
+		konvey(API_RETURN, id, jwt, 'PUT')
+			.then((data) => {
+				setAlert({
+					display: true,
+					icon: <FaGrinStars />,
+					msg: data?.message,
+				});
 			})
-				.then(() => {
-					confetti({
-						particleCount: 100,
-						spread: 70,
-						origin: { y: 0.6 },
-					});
-				})
-				.catch(catchError)
-				.finally(() => setLoading(false));
-		});
+			.then(() => setLendingList({}))
+			.then(() => {
+				confetti({
+					particleCount: 100,
+					spread: 70,
+					origin: { y: 0.6 },
+				});
+			})
+			.catch(catchError)
+			.finally(() => setLoading(false));
 	};
 
-	return {
-		confirm,
-		setConfirm,
-		lendBook,
-		returnBook,
-	};
+	const getLendingList = React.useCallback(() => {
+		setLoading(true);
+		konvey(API_BORROW, null, jwt)
+			.then(setLendingList)
+			.catch(catchError)
+			.finally(() => setLoading(false));
+	}, [lendingList]);
+
+	const checkBorrower = React.useCallback((id, bool) => {
+		if (id === userId || bool) {
+			setConfirm(false);
+		} else {
+			setConfirm(true);
+		}
+	}, []);
+
+	React.useEffect(() => {
+		getLendingList();
+	}, []);
+
+	React.useEffect(() => {
+		checkBorrower(borrowerId, bookBorrowed);
+	}, [borrowerId, bookBorrowed]);
+
+	return { lendingList, confirm, setConfirm, lendBook, returnBook };
 };
 
 export default useBorrow;

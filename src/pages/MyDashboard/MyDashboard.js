@@ -10,8 +10,8 @@ import {
 } from '../../components';
 import { motion } from 'framer-motion';
 import useUserProfile from '../../hooks/useUserProfile';
-import useGetLentBooks from '../../hooks/useGetLentBooks';
 import { AuthContext } from '../../context/AuthContext';
+import useBorrow from '../../hooks/useBorrow';
 
 export const MyDashboard = () => {
 	const { alert, closeSubmenu, loading } = React.useContext(LayoutContext);
@@ -19,9 +19,14 @@ export const MyDashboard = () => {
 	const {
 		state: { userBooks },
 	} = useUserProfile();
-	const { lendingList } = useGetLentBooks();
+	const { returnBook, lendingList } = useBorrow();
 
-	const renderList = <List elements={lendingList?.books} />;
+	const booksInCirculation =
+		lendingList?.books?.length < 1 ? 0 : lendingList?.books?.length;
+
+	const renderList = (
+		<List elements={lendingList?.books} returnBook={returnBook} />
+	);
 
 	return (
 		<>
@@ -36,7 +41,11 @@ export const MyDashboard = () => {
 					onClick={closeSubmenu}
 				>
 					<Title content="Dein Bücherregal" />
-					<UserDashboard user={userName} bookCount={userBooks?.length} />
+					<UserDashboard
+						user={userName}
+						bookCount={userBooks?.length}
+						booksInCirculation={booksInCirculation}
+					/>
 					{renderList}
 					<Shelf element={userBooks} />
 					{alert.display && <Alert />}
