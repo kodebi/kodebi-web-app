@@ -6,15 +6,19 @@ import useBorrow from '../../hooks/useBorrow';
 
 export const OpenChat = () => {
 	const {
-		selectedConversation,
-		chat: { _id, messages, book },
+		chat: { recipients, _id, messages, book },
 		chatEnd,
 	} = React.useContext(MessageContext);
 	const requestingUser = messages && messages[0].senderName;
-	const borrowerId = messages && messages[0].senderId;
-	const { confirm, lendBook } = useBorrow(book?.bookId, borrowerId, _id);
+	const borrowerId = recipients && recipients[0];
+	const { confirm, lendBook } = useBorrow(
+		book?.bookId,
+		borrowerId,
+		book?.borrowed,
+		_id
+	);
 
-	return selectedConversation ? (
+	return (
 		<>
 			<section className="chat">
 				{confirm && (
@@ -30,5 +34,5 @@ export const OpenChat = () => {
 				<div ref={chatEnd}></div>
 			</section>
 		</>
-	) : null;
+	);
 };

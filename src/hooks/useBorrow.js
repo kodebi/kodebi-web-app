@@ -12,24 +12,24 @@ import { FaGrinStars } from 'react-icons/fa';
 import confetti from 'canvas-confetti';
 import useError from './useError';
 
-const useBorrow = (bookId, borrowerId, chatId) => {
+const useBorrow = (bookId, borrowerId, bookBorrowed, chatId) => {
 	const { userId, jwt } = React.useContext(AuthContext);
 	const [confirm, setConfirm] = React.useState(
-		borrowerId === userId ? false : true
+		userId === borrowerId || bookBorrowed ? false : true
 	);
 	const { setLoading, setAlert } = React.useContext(LayoutContext);
 	const { catchError } = useError();
 
 	const lendBook = () => {
 		setLoading(true);
-		const lendBook = konvey(
+		const triggerBorrow = konvey(
 			`${API_BORROW}${bookId}${API_ADDUSER}`,
 			borrowerId,
 			jwt,
 			'PUT'
 		);
 		const updateConv = konvey(API_MESSAGES, chatId, jwt, 'PATCH');
-		Promise.all([lendBook, updateConv])
+		Promise.all([triggerBorrow, updateConv])
 			.then(() =>
 				setAlert({
 					display: true,
