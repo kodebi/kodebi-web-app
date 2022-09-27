@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaBookOpen, FaUserCircle } from 'react-icons/fa';
 
-export const UserDashboard = ({ user, bookCount, booksInCirculation }) => {
+export const UserDashboard = ({ user, bookCount, totalLentBooks }) => {
 	return (
 		<>
 			<section className="dashboard">
@@ -24,15 +24,17 @@ export const UserDashboard = ({ user, bookCount, booksInCirculation }) => {
 							<h4 className="stat-number">{bookCount}</h4>
 						</span>
 					</article>
-					<article className="stat">
-						<h4>Im Umlauf</h4>
-						<span className="stat-iconumber">
-							<span className="book-icon">
-								<FaBookOpen />
+					{totalLentBooks && (
+						<article className="stat">
+							<h4>Bereits verliehen</h4>
+							<span className="stat-iconumber">
+								<span className="book-icon">
+									<FaBookOpen />
+								</span>
+								<h4 className="stat-number">{totalLentBooks}</h4>
 							</span>
-							<h4 className="stat-number">{booksInCirculation}</h4>
-						</span>
-					</article>
+						</article>
+					)}
 				</aside>
 			</section>
 		</>

@@ -21,7 +21,7 @@ export const MyDashboard = () => {
 	} = useUserProfile();
 	const { returnBook, lendingList } = useBorrow();
 
-	const booksInCirculation =
+	const totalLentBooks =
 		lendingList?.books?.length < 1 ? 0 : lendingList?.books?.length;
 
 	const renderList = (
@@ -44,7 +44,7 @@ export const MyDashboard = () => {
 					<UserDashboard
 						user={userName}
 						bookCount={userBooks?.length}
-						booksInCirculation={booksInCirculation}
+						totalLentBooks={totalLentBooks}
 					/>
 					{renderList}
 					<Shelf element={userBooks} />

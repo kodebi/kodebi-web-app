@@ -57,6 +57,11 @@
 	margin-bottom: 0.5rem;
 }
 
+.txt-center {
+	text-align: center;
+	margin: 0.5rem 0;
+}
+
 .collapse {
 	border: none;
 	color: $brnd-clr;
@@ -112,5 +117,9 @@ textarea {
 
 	.m-top {
 		margin-top: 1.5rem;
+	}
+
+	.txt-center {
+		margin: 1rem 0;
 	}
 }

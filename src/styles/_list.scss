@@ -1,14 +1,13 @@
 .list-container {
 	@include card;
-	max-width: $mx-wdth;
 	padding: 1rem;
 	width: 100%;
 	text-align: left;
 	font-size: 0.75rem;
+	overflow-x: scroll;
 
 	.list {
-		width: 100%;
-		overflow-x: scroll;
+		width: 782px;
 
 		.list-header {
 			border-bottom: 1px solid $bckgrnd-clr-2;
@@ -30,9 +29,11 @@
 @media (min-width: 800px) {
 	.list-container {
 		font-size: 1rem;
+		max-width: $mx-wdth;
+		overflow: auto;
 
 		.list {
-			overflow: auto;
+			width: 100%;
 
 			.list-header {
 				font-size: 1.25rem;
