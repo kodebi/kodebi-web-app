@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { LayoutContext } from '../context/LayoutContext';
-import { FaCheckCircle, FaPoop } from 'react-icons/fa';
+import { FaCheckCircle } from 'react-icons/fa';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { getUrlParams } from '../helpers/getUrlParams';
 import {

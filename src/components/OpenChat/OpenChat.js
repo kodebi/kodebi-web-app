@@ -2,24 +2,30 @@ import * as React from 'react';
 import { MessageContext } from '../../context/MessageContext';
 import { Message } from '../Message';
 import { MessageTopic } from '../MessageTopic';
+import useBorrow from '../../hooks/useBorrow';
 
 export const OpenChat = () => {
 	const {
-		selectedConversation,
-		chat: { messages, book },
+		chat: { recipients, _id, messages, book },
 		chatEnd,
 	} = React.useContext(MessageContext);
-	const [confirm, setConfirm] = React.useState(true);
 	const requestingUser = messages && messages[0].senderName;
+	const borrowerId = recipients && recipients[0];
+	const { confirm, lendBook } = useBorrow(
+		book?.bookId,
+		borrowerId,
+		book?.borrowed,
+		_id
+	);
 
-	return selectedConversation ? (
+	return (
 		<>
 			<section className="chat">
 				{confirm && (
 					<MessageTopic
 						requestingUser={requestingUser}
-						setConfirm={setConfirm}
 						bookName={book?.bookName}
+						lendBook={lendBook}
 					/>
 				)}
 				{messages?.map((message) => {
@@ -28,5 +34,5 @@ export const OpenChat = () => {
 				<div ref={chatEnd}></div>
 			</section>
 		</>
-	) : null;
+	);
 };

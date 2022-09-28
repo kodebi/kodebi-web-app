@@ -10,17 +10,23 @@ import {
 } from '../../components';
 import { motion } from 'framer-motion';
 import useUserProfile from '../../hooks/useUserProfile';
-import { useParams } from 'react-router-dom';
+import { AuthContext } from '../../context/AuthContext';
+import useBorrow from '../../hooks/useBorrow';
 
-export const UserProfile = () => {
+export const MyDashboard = () => {
 	const { alert, closeSubmenu, loading } = React.useContext(LayoutContext);
-	const { id } = useParams();
+	const { userName } = React.useContext(AuthContext);
 	const {
 		state: { userBooks },
-	} = useUserProfile(id);
+	} = useUserProfile();
+	const { returnBook, lendingList } = useBorrow();
 
-	const whose = userBooks[0]?.ownerName.concat('s');
-	const whoUser = userBooks[0]?.ownerName;
+	const totalLentBooks =
+		lendingList?.books?.length < 1 ? 0 : lendingList?.books?.length;
+
+	const renderList = (
+		<List elements={lendingList?.books} returnBook={returnBook} />
+	);
 
 	return (
 		<>
@@ -34,8 +40,13 @@ export const UserProfile = () => {
 					transition={{ duration: 0.25 }}
 					onClick={closeSubmenu}
 				>
-					<Title content={`${whose} Bücherregal`} />
-					<UserDashboard user={whoUser} bookCount={userBooks?.length} />
+					<Title content="Dein Bücherregal" />
+					<UserDashboard
+						user={userName}
+						bookCount={userBooks?.length}
+						totalLentBooks={totalLentBooks}
+					/>
+					{renderList}
 					<Shelf element={userBooks} />
 					{alert.display && <Alert />}
 				</motion.main>

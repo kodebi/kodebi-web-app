@@ -1,7 +1,7 @@
 import React from 'react';
 import { LayoutContext } from '../context/LayoutContext';
 import { konvey } from '../helpers/konvey';
-import { FaCheckCircle, FaPoo } from 'react-icons/fa';
+import { FaCheckCircle } from 'react-icons/fa';
 import { API_MESSAGES } from '../config/config';
 import { AuthContext } from '../context/AuthContext';
 import useError from './useError';
