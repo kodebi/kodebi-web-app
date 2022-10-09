@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { FilterBtn } from '../FilterBtn';
 import { Form } from '../Form';
 import { OpenChat } from '../OpenChat';
-import { FaPaperPlane } from 'react-icons/fa';
+import { Button } from '@kodebi/libkodebi-ui';
 import { MessageContext } from '../../context/MessageContext';
 
 export const ChatWindow = () => {
@@ -27,9 +26,12 @@ export const ChatWindow = () => {
 							onChange={handleMessage}
 							onKeyPress={handleKeyPress}
 						/>
-						<FilterBtn type="submit" style={{ margin: '0' }}>
-							<FaPaperPlane style={{ display: 'grid', placeItems: 'center' }} />
-						</FilterBtn>
+						<Button
+							variant="filter"
+							type="submit"
+							margin="0"
+							label="Abschicken"
+						/>
 					</Form>
 				)}
 			</aside>

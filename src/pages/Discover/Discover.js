@@ -1,16 +1,9 @@
 import * as React from 'react';
 import { LayoutContext } from '../../context/LayoutContext';
-import {
-	Dropdown,
-	Shelf,
-	SearchBar,
-	Loading,
-	Alert,
-	FilterBtn,
-	Title,
-} from '../../components';
+import { Dropdown, Shelf, Loading, Alert, Title } from '../../components';
 import { motion } from 'framer-motion';
 import useDiscover from '../../hooks/useDiscover';
+import { Button, Input } from '@kodebi/libkodebi-ui';
 
 export const Discover = () => {
 	const { alert, loading, closeSubmenu } = React.useContext(LayoutContext);
@@ -40,8 +33,15 @@ export const Discover = () => {
 				>
 					<Title content="Entdecke jetzt neue Bücher" />
 					<section className="search-and-filter">
-						<FilterBtn onClick={backToAll}>alle bücher</FilterBtn>
-						<SearchBar search={search} handleSearch={handleSearch} />
+						<Button variant="filter" onClick={backToAll} label="Alle Bücher" />
+						<Input
+							variant="search"
+							name="search"
+							id="id"
+							value={search}
+							onChange={handleSearch}
+							placeholder="Nach Titel oder Autor*in suchen..."
+						/>
 						<Dropdown options={categories} onChange={filterByCategory} />
 						<Dropdown options={lenguajes} onChange={filterByLanguage} />
 						<Dropdown options={status} onChange={filterByStatus} />

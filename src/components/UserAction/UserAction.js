@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
+import { Box, Button } from '@kodebi/libkodebi-ui';
 import { AuthContext } from '../../context/AuthContext';
-import { ActionBtn } from '../ActionBtn';
 
 export const UserAction = ({
 	book: { ownerName, condition, ownerId, status },
@@ -14,34 +14,52 @@ export const UserAction = ({
 	return (
 		<>
 			<aside className="user-action">
-				<section className="action-section">
+				<Box variant="flex-col-start" padding="0.75rem 0">
 					<p>Dieses Buch gehört:</p>
 					<Link to={`/profile/${ownerId}`} className="username-link">
 						{ownerName}
 					</Link>
-				</section>
+				</Box>
 				<hr className="separation-line" />
-				<section className="action-section">
+				<Box variant="flex-col-start" padding="0.75rem 0">
 					<p>Zustand des Buches ist:</p>
 					<h4>{condition}</h4>
-				</section>
+				</Box>
 				<hr className="separation-line" />
-				<section className="action-section">
+				<Box variant="flex-col-start" padding="0.75rem 0">
 					<p>Dieses Buch ist:</p>
 					<h4>{status}</h4>
-				</section>
+				</Box>
 				<hr className="separation-line" />
-				<section className="action-section">
+				<Box variant="flex-col-start" padding="0.75rem 0">
 					<p>Was möchtest du tun?</p>
 					{ownerId === userId ? (
 						<>
-							<ActionBtn onClick={openEditWindow}>Jetzt bearbeiten</ActionBtn>
-							<ActionBtn onClick={deleteBook}>Jetzt löschen</ActionBtn>
+							<Button
+								variant="action"
+								onClick={openEditWindow}
+								margin="0.5rem 0"
+								width="100%"
+								label="Jetzt bearbeiten"
+							/>
+							<Button
+								variant="action"
+								margin="0.5rem 0"
+								width="100%"
+								onClick={deleteBook}
+								label="Jetzt löschen"
+							/>
 						</>
 					) : (
-						<ActionBtn onClick={messageUser}>Jetzt ausleihen</ActionBtn>
+						<Button
+							variant="action"
+							margin="0.5rem 0"
+							width="100%"
+							onClick={messageUser}
+							label="Jetzt ausleihen"
+						/>
 					)}
-				</section>
+				</Box>
 			</aside>
 		</>
 	);

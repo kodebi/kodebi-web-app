@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import { FilterBtn } from '../FilterBtn';
+import { Button } from '@kodebi/libkodebi-ui';
 
 export const List = ({ elements, returnBook }) => {
 	const { userName } = React.useContext(AuthContext);
@@ -45,12 +45,11 @@ export const List = ({ elements, returnBook }) => {
 											<td>{condition}</td>
 											<td>{borrowerName}</td>
 											<td>
-												<FilterBtn
-													style={{ marginBottom: '0' }}
+												<Button
+													variant="filter"
 													onClick={() => returnBook(_id)}
-												>
-													Bestätigen
-												</FilterBtn>
+													label="Bestätigen"
+												/>
 											</td>
 										</tr>
 									);

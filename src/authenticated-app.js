@@ -1,7 +1,9 @@
 import * as React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
-import { Loading, Navbar, Footer, ScrollToTop } from './components';
+import { Loading, Navbar, ScrollToTop } from './components';
+import { Footer } from '@kodebi/libkodebi-ui';
+import { footerLinks, footerIcons } from '../src/utils/linksDB';
 
 // React.lazy imports
 const Discover = React.lazy(() => import('./pages/Discover'));
@@ -32,7 +34,7 @@ function AuthApp() {
 					<Route path="*" element={<Error />} />
 				</Routes>
 			</AnimatePresence>
-			<Footer />
+			<Footer links={footerLinks} icons={footerIcons} />
 		</React.Suspense>
 	);
 }
