@@ -1,18 +1,13 @@
 import * as React from 'react';
-import { FilterBtn } from '../FilterBtn';
 import { Form } from '../Form';
 import { OpenChat } from '../OpenChat';
-import { FaPaperPlane } from 'react-icons/fa';
+import { Button, IconWrapper, Input } from '@kodebi/libkodebi-ui';
 import { MessageContext } from '../../context/MessageContext';
+import { FaPaperPlane } from 'react-icons/fa';
 
 export const ChatWindow = () => {
-	const {
-		selectedConversation,
-		sendMessage,
-		newMessage,
-		handleKeyPress,
-		handleMessage,
-	} = React.useContext(MessageContext);
+	const { selectedConversation, sendMessage, newMessage, handleMessage } =
+		React.useContext(MessageContext);
 
 	return (
 		<>
@@ -20,16 +15,19 @@ export const ChatWindow = () => {
 				{selectedConversation && <OpenChat />}
 				{selectedConversation && (
 					<Form className="input-message" onSubmit={sendMessage}>
-						<textarea
-							className="enter-message"
+						<Input
+							textarea
+							id="chat_message"
 							name="message"
+							cols="150"
 							value={newMessage.message}
 							onChange={handleMessage}
-							onKeyPress={handleKeyPress}
 						/>
-						<FilterBtn type="submit" style={{ margin: '0' }}>
-							<FaPaperPlane style={{ display: 'grid', placeItems: 'center' }} />
-						</FilterBtn>
+						<Button variant="filter" type="submit" margin="0">
+							<IconWrapper fontSize="1.25rem">
+								<FaPaperPlane />
+							</IconWrapper>
+						</Button>
 					</Form>
 				)}
 			</aside>

@@ -1,8 +1,7 @@
-import React from 'react';
-import { InputField } from '../InputField';
-import { SigninBtn } from '../SigninBtn';
+import * as React from 'react';
 import { Form } from '../Form';
 import { AuthContext } from '../../context/AuthContext';
+import { Box, Input, Button } from '@kodebi/libkodebi-ui';
 
 export const Signup = () => {
 	const {
@@ -14,39 +13,42 @@ export const Signup = () => {
 	return (
 		<>
 			<Form className="form-center" onSubmit={signup}>
-				<div className="title">
-					<h3>Melde dich jetzt an!</h3>
-				</div>
-				<section className="form">
-					<InputField
+				<Box variant="flex-col" margin="0" padding="0">
+					<div className="title">
+						<h3>Melde dich jetzt an!</h3>
+					</div>
+					<Input
+						label
 						type="text"
-						htmlFor="Dein Wunsch-Username:"
+						labelTag="Dein Wunsch-Username"
 						name="name"
 						id="name"
 						value={name}
+						position="above"
 						onChange={checkSigninInput}
-						required
 					/>
-					<InputField
+					<Input
+						label
 						type="text"
-						htmlFor="Deine bevorzugte Email:"
+						labelTag="Deine bevorzugte Email"
 						name="email"
 						id="email"
 						value={email}
+						position="above"
 						onChange={checkSigninInput}
-						required
 					/>
-					<InputField
+					<Input
+						label
 						type="password"
-						htmlFor="Dein bärenstarkes Passwort:"
-						name="password"
+						labelTag="Dein bärenstarkes Passwort"
 						id="password"
+						name="password"
 						value={password}
+						position="above"
 						onChange={checkSigninInput}
-						required
 					/>
-					<SigninBtn type="submit">Registrieren</SigninBtn>
-				</section>
+					<Button variant="signin" type="submit" label="Registrieren" />
+				</Box>
 			</Form>
 		</>
 	);

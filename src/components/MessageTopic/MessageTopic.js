@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { SigninBtn } from '../SigninBtn';
+import { Button } from '@kodebi/libkodebi-ui';
 
 export const MessageTopic = ({ requestingUser, bookName, lendBook }) => {
 	return (
@@ -11,9 +11,7 @@ export const MessageTopic = ({ requestingUser, bookName, lendBook }) => {
 					</h4>
 					<p className="topic-body">Jetzt verleihen?</p>
 				</header>
-				<SigninBtn onClick={lendBook} style={{ marginTop: 0 }}>
-					Bestätigen
-				</SigninBtn>
+				<Button variant="signin" onClick={lendBook} label="Bestätigen" />
 			</article>
 		</>
 	);

@@ -49,11 +49,11 @@ const useMessaging = () => {
 									: data?.messages[0].senderName,
 						});
 					})
-					.then(scrollToBottom)
 					.catch(catchError)
 					.finally(() => {
 						setLoading(false);
 						setIsMessageSent(false);
+						scrollToBottom();
 					});
 			}
 		},
@@ -66,7 +66,7 @@ const useMessaging = () => {
 			.then(setConversations)
 			.then(() => setLoading(false));
 		return () => setLoading(false);
-	}, []);
+	}, [isMessageSent]);
 
 	// update die Nachrichten
 	React.useEffect(() => {

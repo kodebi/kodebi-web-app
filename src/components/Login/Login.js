@@ -1,8 +1,7 @@
 import * as React from 'react';
-import { InputField } from '../InputField';
-import { SigninBtn } from '../SigninBtn';
 import { Form } from '../Form';
 import { AuthContext } from '../../context/AuthContext';
+import { Box, Input, Button } from '@kodebi/libkodebi-ui';
 
 export const Login = ({ openPasswordResetTab }) => {
 	const {
@@ -14,29 +13,33 @@ export const Login = ({ openPasswordResetTab }) => {
 	return (
 		<>
 			<Form className="form-center" onSubmit={login}>
-				<div className="title">
-					<h3>Willkommen zurück</h3>
-				</div>
-				<section className="form">
-					<InputField
+				<Box variant="flex-col" margin="0" padding="0">
+					<div className="title">
+						<h3>Willkommen zurück</h3>
+					</div>
+					<Input
+						label
 						type="text"
-						htmlFor="Deine Email:"
+						labelTag="Deine Email"
 						name="email"
 						id="email"
 						value={email}
+						position="above"
 						onChange={checkSigninInput}
 						required
 					/>
-					<InputField
+					<Input
+						label
 						type="password"
-						htmlFor="Dein Passwort:"
+						labelTag="Dein Passwort"
 						name="password"
 						id="password"
 						value={password}
+						position="above"
 						onChange={checkSigninInput}
 						required
 					/>
-					<SigninBtn type="submit">Einloggen</SigninBtn>
+					<Button variant="signin" type="submit" label="Einloggen" />
 					<button
 						type="button"
 						className="reset"
@@ -44,7 +47,7 @@ export const Login = ({ openPasswordResetTab }) => {
 					>
 						Passwort vergessen?
 					</button>
-				</section>
+				</Box>
 			</Form>
 		</>
 	);

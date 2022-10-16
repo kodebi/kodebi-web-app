@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { LayoutContext } from '../../context/LayoutContext';
 import { AuthContext } from '../../context/AuthContext';
-import { Alert, Loading2, SigninBtn } from '../../components';
+import { Alert, Loading2 } from '../../components';
 import { Form } from '../../components/Form';
+import { Box, Button } from '@kodebi/libkodebi-ui';
 
 export const Activate = () => {
 	const { alert, loading } = React.useContext(LayoutContext);
@@ -16,11 +17,13 @@ export const Activate = () => {
 					<Form className="form-center" onSubmit={activate}>
 						<div className="title">
 							<h3>Kontoaktivierung</h3>
-							<p>Du hast es fast geschafft! Schalte nun deinen Account frei.</p>
+							<p style={{ color: '#000' }}>
+								Du hast es fast geschafft! Schalte nun deinen Account frei.
+							</p>
 						</div>
-						<section className="form">
-							<SigninBtn type="submit">Aktivieren</SigninBtn>
-						</section>
+						<Box variant="flex-col" padding="0">
+							<Button type="submit" margin="1rem 0" label="Aktivieren" />
+						</Box>
 					</Form>
 				</section>
 			</main>
