@@ -1,9 +1,8 @@
 import React from 'react';
 import { ModalWrapper } from '../ModalWrapper';
 import { motion } from 'framer-motion';
-import { Dropdown } from '../Dropdown';
 import { genres, languages, conditions, status } from '../../utils/dropdown';
-import { Box, Button, InputWrapper } from '@kodebi/libkodebi-ui';
+import { Box, Button, Input, Dropdown } from '@kodebi/libkodebi-ui';
 
 export const EditBook = ({
 	book,
@@ -22,36 +21,42 @@ export const EditBook = ({
 					onClick={(e) => e.stopPropagation()}
 				>
 					<Box variant="flex-col" padding="0">
-						<InputWrapper
+						<Input
+							label
 							type="text"
-							htmlFor="Name:"
-							name="name"
+							labelTag="Name"
 							id="name"
+							name="name"
 							placeholder="Name des Buches"
 							position="above"
 							value={book.name}
 							onChange={changeBookDetails}
 						/>
-						<InputWrapper
+						<Input
+							label
 							type="text"
-							htmlFor="Autor*in:"
-							name="author"
+							labelTag="Autor*in"
 							id="author"
+							name="author"
 							placeholder="Autor*in des Buches"
 							position="above"
 							value={book.author}
 							onChange={changeBookDetails}
 						/>
 						<Dropdown
-							htmlFor="Genre:"
-							name="category"
+							label
+							position="above"
+							labelTag="Genre"
 							id="category"
+							name="category"
 							options={genres}
 							value={book.category}
 							onChange={changeBookDetails}
 						/>
 						<Dropdown
-							htmlFor="Sprache:"
+							label
+							position="above"
+							labelTag="Sprache"
 							name="language"
 							id="language"
 							options={languages}
@@ -59,25 +64,30 @@ export const EditBook = ({
 							onChange={changeBookDetails}
 						/>
 						<Dropdown
-							htmlFor="Zustand:"
-							name="condition"
+							label
+							position="above"
+							labelTag="Zustand"
 							id="condition"
+							name="condition"
 							options={conditions}
 							value={book.condition}
 							onChange={changeBookDetails}
 						/>
 						<Dropdown
-							htmlFor="Status:"
-							name="status"
+							label
+							position="above"
+							labelTag="Status"
 							id="status"
+							name="status"
 							options={status}
 							value={book.status}
 							onChange={changeBookDetails}
 						/>
-						<InputWrapper
-							htmlFor="Beschreibung:"
-							name="description"
+						<Input
+							label
+							labelTag="Beschreibung"
 							id="description"
+							name="description"
 							textarea
 							rows="2"
 							position="above"
@@ -88,15 +98,15 @@ export const EditBook = ({
 						<Box variant="flex-col" padding="0" margin="0.5rem 0">
 							<Button
 								variant="action"
+								margin="0.25rem 0.75rem"
 								type="submit"
 								label="Jetzt speichern"
-								margin="0.25rem 0"
 							/>
 							<Button
 								variant="action"
+								margin="0.25rem 0.75rem"
 								onClick={closeEditWindow}
 								label="Abbrechen"
-								margin="0.25rem 0"
 							/>
 						</Box>
 					</Box>

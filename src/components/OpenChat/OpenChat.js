@@ -31,7 +31,7 @@ export const OpenChat = () => {
 				{messages?.map((message) => {
 					return <Message key={message._id} {...message} />;
 				})}
-				<div ref={chatEnd}></div>
+				<div ref={chatEnd} />
 			</section>
 		</>
 	);

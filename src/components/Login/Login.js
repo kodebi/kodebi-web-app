@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Form } from '../Form';
 import { AuthContext } from '../../context/AuthContext';
-import { Box, InputWrapper, Button } from '@kodebi/libkodebi-ui';
+import { Box, Input, Button } from '@kodebi/libkodebi-ui';
 
 export const Login = ({ openPasswordResetTab }) => {
 	const {
@@ -17,23 +17,27 @@ export const Login = ({ openPasswordResetTab }) => {
 					<div className="title">
 						<h3>Willkommen zurück</h3>
 					</div>
-					<InputWrapper
+					<Input
+						label
 						type="text"
-						htmlFor="Deine Email:"
+						labelTag="Deine Email"
 						name="email"
 						id="email"
 						value={email}
 						position="above"
 						onChange={checkSigninInput}
+						required
 					/>
-					<InputWrapper
+					<Input
+						label
 						type="password"
-						htmlFor="Dein Passwort:"
+						labelTag="Dein Passwort"
 						name="password"
 						id="password"
 						value={password}
 						position="above"
 						onChange={checkSigninInput}
+						required
 					/>
 					<Button variant="signin" type="submit" label="Einloggen" />
 					<button

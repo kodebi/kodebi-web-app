@@ -2,7 +2,7 @@ import React from 'react';
 import { Form } from '../Form';
 import { ModalWrapper } from '../ModalWrapper';
 import { motion } from 'framer-motion';
-import { Button, InputWrapper } from '@kodebi/libkodebi-ui';
+import { Button, Input } from '@kodebi/libkodebi-ui';
 
 export const MessageModal = ({
 	showMessageModal,
@@ -23,10 +23,11 @@ export const MessageModal = ({
 					onClick={(e) => e.stopPropagation()}
 				>
 					<Form onSubmit={startConv}>
-						<InputWrapper
-							htmlFor="Deine Nachricht:"
+						<Input
+							label
 							id="message"
 							name="message"
+							labelTag="Deine Nachricht"
 							rows="3"
 							position="above"
 							labelColor="#fff"

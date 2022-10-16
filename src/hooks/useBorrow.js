@@ -16,6 +16,7 @@ const useBorrow = (bookId, borrowerId, bookBorrowed, chatId) => {
 	const { userId, jwt } = React.useContext(AuthContext);
 	const [confirm, setConfirm] = React.useState(true);
 	const [lendingList, setLendingList] = React.useState({});
+	const [bookReturned, setBookReturned] = React.useState(false);
 	const { setLoading, setAlert } = React.useContext(LayoutContext);
 	const { catchError } = useError();
 
@@ -67,6 +68,7 @@ const useBorrow = (bookId, borrowerId, bookBorrowed, chatId) => {
 					spread: 70,
 					origin: { y: 0.6 },
 				});
+				setBookReturned(true);
 			})
 			.catch(catchError)
 			.finally(() => setLoading(false));
@@ -81,16 +83,13 @@ const useBorrow = (bookId, borrowerId, bookBorrowed, chatId) => {
 	}, [lendingList]);
 
 	const checkBorrower = React.useCallback((id, bool) => {
-		if (id === userId || bool) {
-			setConfirm(false);
-		} else {
-			setConfirm(true);
-		}
+		id === userId || bool ? setConfirm(false) : setConfirm(true);
 	}, []);
 
 	React.useEffect(() => {
 		getLendingList();
-	}, []);
+		return () => setBookReturned(false);
+	}, [bookReturned]);
 
 	React.useEffect(() => {
 		checkBorrower(borrowerId, bookBorrowed);

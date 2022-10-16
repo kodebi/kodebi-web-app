@@ -1,17 +1,10 @@
 import * as React from 'react';
 import { LayoutContext } from '../../context/LayoutContext';
-import {
-	Alert,
-	ImageUploader,
-	Form,
-	Loading2,
-	Dropdown,
-	Title,
-} from '../../components';
+import { Alert, ImageUploader, Form, Loading2, Title } from '../../components';
 import { motion } from 'framer-motion';
 import { genres, languages, conditions, status } from '../../utils/dropdown';
 import useBookUpload from '../../hooks/useBookUpload';
-import { Box, Button, InputWrapper } from '@kodebi/libkodebi-ui';
+import { Box, Button, Input, Dropdown } from '@kodebi/libkodebi-ui';
 
 export const UploadBook = () => {
 	const { loading, alert, closeSubmenu } = React.useContext(LayoutContext);
@@ -34,62 +27,73 @@ export const UploadBook = () => {
 				<Form className="book-form" onSubmit={startUpload}>
 					<ImageUploader bookImage={bookImage} imageChange={imageChange} />
 					<Box variant="flex-col" padding="0">
-						<InputWrapper
+						<Input
+							label
 							type="text"
-							htmlFor="Name:"
-							name="name"
+							labelTag="Name"
 							id="name"
+							name="name"
 							placeholder="Name des Buches"
 							position="above"
 							value={newBook.name}
 							onChange={textChange}
 						/>
-						<InputWrapper
+						<Input
+							label
 							type="text"
-							htmlFor="Autor*in:"
-							name="author"
+							labelTag="Autor*in"
 							id="author"
+							name="author"
 							placeholder="Autor*in des Buches"
 							position="above"
 							value={newBook.author}
 							onChange={textChange}
 						/>
 						<Dropdown
-							htmlFor="Genre:"
-							name="category"
+							label
+							position="above"
+							labelTag="Genre"
 							id="category"
+							name="category"
 							options={genres}
 							value={newBook.category}
 							onChange={textChange}
 						/>
 						<Dropdown
-							htmlFor="Sprache:"
-							name="language"
+							label
+							position="above"
+							labelTag="Sprache"
 							id="language"
+							name="language"
 							options={languages}
 							value={newBook.language}
 							onChange={textChange}
 						/>
 						<Dropdown
-							htmlFor="Zustand:"
-							name="condition"
+							label
+							position="above"
+							labelTag="Zustand"
 							id="condition"
+							name="condition"
 							options={conditions}
 							value={newBook.condition}
 							onChange={textChange}
 						/>
 						<Dropdown
-							htmlFor="Status:"
-							name="status"
+							label
+							position="above"
+							labelTag="Status"
 							id="status"
+							name="status"
 							options={status}
 							value={newBook.status}
 							onChange={textChange}
 						/>
-						<InputWrapper
-							htmlFor="Beschreibung:"
-							name="desc"
+						<Input
+							label
+							labelTag="Beschreibung"
 							id="desc"
+							name="desc"
 							textarea
 							rows="4"
 							placeholder="Kurze Beschreibung des Buches"
@@ -101,13 +105,13 @@ export const UploadBook = () => {
 							<Button
 								variant="action"
 								type="submit"
-								margin="0.25rem 0"
+								margin="0.25rem 0.75rem"
 								label="Hochladen"
 							/>
 							<Button
 								variant="action"
 								type="reset"
-								margin="0.25rem 0"
+								margin="0.25rem 0.75rem"
 								onClick={resetInput}
 								label="Löschen"
 							/>

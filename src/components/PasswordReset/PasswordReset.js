@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Form } from '../Form';
 import { AuthContext } from '../../context/AuthContext';
-import { Box, Button, InputWrapper } from '@kodebi/libkodebi-ui';
+import { Box, Button, Input } from '@kodebi/libkodebi-ui';
 
 export const PasswordReset = () => {
 	const { userCredential, checkSigninInput, reset } =
@@ -17,9 +17,10 @@ export const PasswordReset = () => {
 							Du hast es fast geschafft! Lege hier dein neues Passwort fest.
 						</p>
 					</div>
-					<InputWrapper
+					<Input
+						label
 						type="password"
-						htmlFor="Dein neues Passwort:"
+						labelTag="Dein neues Passwort"
 						name="password"
 						id="password"
 						position="above"

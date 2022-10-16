@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { LayoutContext } from '../../context/LayoutContext';
-import { Dropdown, Shelf, Loading, Alert, Title } from '../../components';
+import { Shelf, Loading, Alert, Title } from '../../components';
 import { motion } from 'framer-motion';
 import useDiscover from '../../hooks/useDiscover';
-import { Button, Input } from '@kodebi/libkodebi-ui';
+import { Box, Button, Input, Dropdown, Card } from '@kodebi/libkodebi-ui';
 
 export const Discover = () => {
 	const { alert, loading, closeSubmenu } = React.useContext(LayoutContext);
@@ -32,20 +32,42 @@ export const Discover = () => {
 					onClick={closeSubmenu}
 				>
 					<Title content="Entdecke jetzt neue Bücher" />
-					<section className="search-and-filter">
-						<Button variant="filter" onClick={backToAll} label="Alle Bücher" />
-						<Input
-							variant="search"
-							name="search"
-							id="id"
-							value={search}
-							onChange={handleSearch}
-							placeholder="Nach Titel oder Autor*in suchen..."
-						/>
-						<Dropdown options={categories} onChange={filterByCategory} />
-						<Dropdown options={lenguajes} onChange={filterByLanguage} />
-						<Dropdown options={status} onChange={filterByStatus} />
-					</section>
+					<Card withBorders shadow="light" margin="0" maxWidth="1180px">
+						<Box variant="shelf">
+							<Button
+								variant="filter"
+								onClick={backToAll}
+								label="Alle Bücher"
+							/>
+							<Input
+								variant="search"
+								name="search"
+								id="search"
+								width="40vw"
+								value={search}
+								onChange={handleSearch}
+								placeholder="Nach Titel oder Autor*in suchen..."
+							/>
+							<Dropdown
+								name="condition"
+								id="condition"
+								options={categories}
+								onChange={filterByCategory}
+							/>
+							<Dropdown
+								name="languages"
+								id="languages"
+								options={lenguajes}
+								onChange={filterByLanguage}
+							/>
+							<Dropdown
+								name="status"
+								id="status"
+								options={status}
+								onChange={filterByStatus}
+							/>
+						</Box>
+					</Card>
 					<Shelf element={books} />
 					{alert.display && <Alert />}
 				</motion.main>

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Form } from '../Form';
 import { AuthContext } from '../../context/AuthContext';
-import { Box, Button, InputWrapper } from '@kodebi/libkodebi-ui';
+import { Box, Button, Input } from '@kodebi/libkodebi-ui';
 
 export const SetEmailForReset = ({ openPasswordResetTab }) => {
 	const { userCredential, checkSigninInput, requestReset } =
@@ -17,9 +17,10 @@ export const SetEmailForReset = ({ openPasswordResetTab }) => {
 							Gib hier deine Email ein und wir schicken dir einen Reset-Link
 						</p>
 					</div>
-					<InputWrapper
+					<Input
+						label
 						type="text"
-						htmlFor="Deine Email:"
+						labelTag="Deine Email"
 						name="email"
 						id="email"
 						position="above"
