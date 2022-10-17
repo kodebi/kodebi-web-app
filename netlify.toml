@@ -25,7 +25,7 @@
 # Accessing Kodebi API.
 [[redirects]]
   from = "/server/*"
-  to = "https://server-yo71.onrender.com/"
+  to = "https://server-yo71.onrender.com/:splat"
   status = 200
 
 # The following redirect is intended for use with most SPAs
