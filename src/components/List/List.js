@@ -1,12 +1,17 @@
 import * as React from 'react';
 import { AuthContext } from '../../context/AuthContext';
-import { Box, Button } from '@kodebi/libkodebi-ui';
+import { Box, Button, Card, Text } from '@kodebi/libkodebi-ui';
 
 export const List = ({ elements, returnBook }) => {
 	const { userName } = React.useContext(AuthContext);
 	return (
 		<>
-			<Box className="list-container">
+			<Card width="100%" maxWidth="1180px" className="list-container">
+				<Box variant="center">
+					<Text color="#d96c75" padding="0.25rem" fontSize="1.25rem">
+						Deine Verleihliste
+					</Text>
+				</Box>
 				<table className="list">
 					<thead>
 						<tr>
@@ -52,7 +57,7 @@ export const List = ({ elements, returnBook }) => {
 						})}
 					</tbody>
 				</table>
-			</Box>
+			</Card>
 		</>
 	);
 };

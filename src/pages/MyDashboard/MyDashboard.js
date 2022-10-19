@@ -40,14 +40,14 @@ export const MyDashboard = () => {
 					transition={{ duration: 0.25 }}
 					onClick={closeSubmenu}
 				>
-					<Title content="Dein Bücherregal" />
+					<Title content="Deine Zentrale" />
 					<UserDashboard
 						user={userName}
 						bookCount={userBooks?.length}
 						totalLentBooks={totalLentBooks}
 					/>
 					{renderList}
-					<Shelf element={userBooks} />
+					<Shelf element={userBooks} user={userName} />
 					{alert.display && <Alert />}
 				</motion.main>
 			)}

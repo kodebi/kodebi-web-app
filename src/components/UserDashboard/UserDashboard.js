@@ -5,8 +5,14 @@ import { FaBookOpen, FaUserCircle } from 'react-icons/fa';
 export const UserDashboard = ({ user, bookCount, totalLentBooks }) => {
 	return (
 		<>
-			<Card withBorders shadow="light" maxWidth="1180px">
-				<Box variant="shelf" className="dashboard">
+			<Card
+				withBorders
+				shadow="light"
+				margin="0"
+				width="100%"
+				maxWidth="1180px"
+			>
+				<Box className="dashboard">
 					<aside className="user-info">
 						<span className="user-pic">
 							<FaUserCircle />
@@ -26,7 +32,7 @@ export const UserDashboard = ({ user, bookCount, totalLentBooks }) => {
 								<h4 className="stat-number">{bookCount}</h4>
 							</span>
 						</article>
-						{totalLentBooks && (
+						{totalLentBooks ? (
 							<article className="stat">
 								<h4>Geliehen/verliehen</h4>
 								<span className="stat-iconumber">
@@ -36,7 +42,7 @@ export const UserDashboard = ({ user, bookCount, totalLentBooks }) => {
 									<h4 className="stat-number">{totalLentBooks}</h4>
 								</span>
 							</article>
-						)}
+						) : null}
 					</aside>
 				</Box>
 			</Card>

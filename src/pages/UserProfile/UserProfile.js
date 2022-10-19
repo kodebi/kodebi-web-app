@@ -34,9 +34,9 @@ export const UserProfile = () => {
 					transition={{ duration: 0.25 }}
 					onClick={closeSubmenu}
 				>
-					<Title content={`${whose} Bücherregal`} />
+					<Title content={`${whose} Profil`} />
 					<UserDashboard user={whoUser} bookCount={userBooks?.length} />
-					<Shelf element={userBooks} />
+					<Shelf element={userBooks} user={whoUser} />
 					{alert.display && <Alert />}
 				</motion.main>
 			)}

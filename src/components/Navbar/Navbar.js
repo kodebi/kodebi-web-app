@@ -8,6 +8,7 @@ import { UserBar } from '../UserBar';
 import { AuthContext } from '../../context/AuthContext';
 import { LayoutContext } from '../../context/LayoutContext';
 import useNavInteraction from '../../hooks/useNavInteraction';
+import { Box } from '@kodebi/libkodebi-ui';
 
 export const Navbar = () => {
 	const { logout } = React.useContext(AuthContext);
@@ -41,11 +42,13 @@ export const Navbar = () => {
 								return <MenuLink key={link.id} {...link} />;
 							})}
 						</ul>
-						<UserBar
-							showUserSubmenu={showUserSubmenu}
-							container={container}
-							logout={logout}
-						/>
+						<Box>
+							<UserBar
+								showUserSubmenu={showUserSubmenu}
+								container={container}
+								logout={logout}
+							/>
+						</Box>
 					</div>
 				</header>
 			</nav>

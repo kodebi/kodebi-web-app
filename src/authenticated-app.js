@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, Link } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { Loading, Navbar, ScrollToTop } from './components';
 import { Footer } from '@kodebi/libkodebi-ui';
@@ -34,7 +34,7 @@ function AuthApp() {
 					<Route path="*" element={<Error />} />
 				</Routes>
 			</AnimatePresence>
-			<Footer links={footerLinks} icons={footerIcons} />
+			<Footer element={Link} links={footerLinks} icons={footerIcons} />
 		</React.Suspense>
 	);
 }

@@ -1,5 +1,7 @@
 .list-container {
 	@include card;
+	display: flex;
+	flex-direction: column;
 	padding: 1rem;
 	width: 100%;
 	text-align: left;

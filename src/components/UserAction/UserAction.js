@@ -13,7 +13,13 @@ export const UserAction = ({
 
 	return (
 		<>
-			<Card withBorders shadow="light" backgroundColor="#d96c75">
+			<Card
+				withBorders
+				shadow="light"
+				width="100%"
+				maxWidth="1180px"
+				backgroundColor="#d96c75"
+			>
 				<Box variant="flex-col" margin="0" padding="0" className="user-action">
 					<Box variant="flex-col-start" padding="0.75rem 0">
 						<p>Dieses Buch gehört:</p>

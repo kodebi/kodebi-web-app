@@ -3,7 +3,7 @@ import { LayoutContext } from '../../context/LayoutContext';
 import { Shelf, Loading, Alert, Title } from '../../components';
 import { motion } from 'framer-motion';
 import useDiscover from '../../hooks/useDiscover';
-import { Box, Button, Input, Dropdown, Card } from '@kodebi/libkodebi-ui';
+import { Box, Button, Input, Dropdown, Card, Text } from '@kodebi/libkodebi-ui';
 
 export const Discover = () => {
 	const { alert, loading, closeSubmenu } = React.useContext(LayoutContext);
@@ -32,8 +32,19 @@ export const Discover = () => {
 					onClick={closeSubmenu}
 				>
 					<Title content="Entdecke jetzt neue Bücher" />
-					<Card withBorders shadow="light" margin="0" maxWidth="1180px">
-						<Box variant="shelf">
+					<Card
+						withBorders
+						shadow="light"
+						margin="0"
+						width="100%"
+						maxWidth="1180px"
+					>
+						<Box variant="center">
+							<Text color="#d96c75" padding="0.25rem" fontSize="1.25rem">
+								Büchersuche, Filter, etc.
+							</Text>
+						</Box>
+						<Box variant="flexible-flex" padding="0.25rem">
 							<Button
 								variant="filter"
 								onClick={backToAll}
