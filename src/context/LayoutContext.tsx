@@ -15,12 +15,12 @@ export const LayoutProvider: React.FC = ({ children }: LayoutProviderProps) => {
 	const [showLinks, setShowLinks] = React.useState<boolean>(false);
 
 	// schließe das Usermenu rechts oben
-	const closeSubmenu = (): void => {
+	const closeSubmenu = () => {
 		setIsSubmenuOpen(false);
 	};
 
 	// klappe das Navigationsmenu ein nach Klicken eines Links
-	const hideLinks = (): void => {
+	const hideLinks = () => {
 		if (showLinks) {
 			setShowLinks(false);
 		}

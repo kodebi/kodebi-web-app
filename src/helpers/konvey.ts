@@ -1,4 +1,10 @@
-export async function konvey(url, id, token, method, body) {
+export async function konvey(
+	url: string,
+	id?: string | null,
+	token?: string | null,
+	method?: string,
+	body?: any
+) {
 	let config = {
 		method: method,
 		headers: {

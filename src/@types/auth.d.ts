@@ -1,12 +1,15 @@
+type TUserCredential = {
+	name: string;
+	email: string;
+	password: string;
+};
+
 export interface AuthState {
 	user: boolean;
-	userCredential: {
-		name: string;
-		email: string;
-		password: string;
-	};
-	userId: string | null;
-	jwt: string | null;
+	userCredential: TUserCredential;
+	userId?: string | null;
+	jwt?: string | null;
+	userName?: string | null;
 	checkSigninInput: (e: any) => void;
 	login: (e: any) => void;
 	signup: (e: any) => void;

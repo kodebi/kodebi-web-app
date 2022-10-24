@@ -22,13 +22,18 @@ const useBorrow = (bookId, borrowerId, bookBorrowed, chatId) => {
 
 	const lendBook = () => {
 		setLoading(true);
-		const triggerBorrow = konvey(
-			`${API_BORROW}${bookId}${API_ADDUSER}`,
-			borrowerId,
-			jwt,
-			'PUT'
-		);
-		const updateConv = konvey(API_MESSAGES, chatId, jwt, 'PATCH');
+		const triggerBorrow = konvey({
+			url: `${API_BORROW}${bookId}${API_ADDUSER}`,
+			id: borrowerId,
+			token: jwt,
+			method: 'PUT',
+		});
+		const updateConv = konvey({
+			url: API_MESSAGES,
+			id: chatId,
+			token: jwt,
+			method: 'PATCH',
+		});
 		Promise.all([triggerBorrow, updateConv])
 			.then(() =>
 				setAlert({
@@ -53,7 +58,7 @@ const useBorrow = (bookId, borrowerId, bookBorrowed, chatId) => {
 
 	const returnBook = (id) => {
 		setLoading(true);
-		konvey(API_RETURN, id, jwt, 'PUT')
+		konvey({ url: API_RETURN, id, token: jwt, method: 'PUT' })
 			.then((data) => {
 				setAlert({
 					display: true,
@@ -76,7 +81,7 @@ const useBorrow = (bookId, borrowerId, bookBorrowed, chatId) => {
 
 	const getLendingList = React.useCallback(() => {
 		setLoading(true);
-		konvey(API_BORROW, null, jwt)
+		konvey({ url: API_BORROW, id: null, token: jwt })
 			.then(setLendingList)
 			.catch(catchError)
 			.finally(() => setLoading(false));

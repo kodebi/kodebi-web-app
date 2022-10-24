@@ -1,13 +1,12 @@
 import * as React from 'react';
 import useMessaging from '../hooks/useMessaging';
+import { MessageProviderProps, MessageState } from '../@types/messages';
 
-interface MessageProviderProps extends React.Context<React.ElementType> {
-	children?: React.ReactNode;
-}
+export const MessageContext = React.createContext<MessageState | null>(null);
 
-export const MessageContext = React.createContext({});
-
-export const MessageProvider = ({ children }: MessageProviderProps) => {
+export const MessageProvider: React.FC = ({
+	children,
+}: MessageProviderProps) => {
 	const { state, ref, functions } = useMessaging();
 
 	return (

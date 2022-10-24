@@ -1,11 +1,13 @@
+type TAlert = {
+	display: boolean;
+	icon: JSX.Element | string;
+	msg: string;
+};
+
 export interface LayoutState {
 	loading: boolean;
 	setLoading: React.Dispatch<React.SetStateAction<boolean>>;
-	alert: {
-		display: boolean;
-		icon: JSX.Element | string;
-		msg: string;
-	};
+	alert: TAlert;
 	setAlert: React.Dispatch<React.SetStateAction<LayoutState['alert']>>;
 	isTabLeft: boolean;
 	setIsTabLeft: React.Dispatch<React.SetStateAction<boolean>>;

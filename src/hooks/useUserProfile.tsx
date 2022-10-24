@@ -13,7 +13,7 @@ const useUserProfile = (id) => {
 
 	const loadUserProfile = React.useCallback(() => {
 		setLoading(true);
-		konvey(API_BOOKSBYUSER, id ?? userId, jwt)
+		konvey({ url: API_BOOKSBYUSER, id: id ?? userId, token: jwt })
 			.then(setUserBooks)
 			.catch(catchError)
 			.finally(() => setLoading(false));
