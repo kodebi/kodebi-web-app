@@ -12,27 +12,32 @@ import {
 	API_USERS,
 } from '../config/config';
 import { konvey } from '../helpers/konvey';
+import { AuthState } from '../@types/auth';
+import { LayoutState } from '../@types/layout';
 import useError from './useError';
 
 const useAuth = () => {
 	const userName = localStorage.getItem('name');
 	const userId = localStorage.getItem('id');
 	const jwt = localStorage.getItem('token');
-	const [user, setUser] = React.useState(jwt ? true : false);
-	const [userCredential, setUserCredential] = React.useState({
+	const [user, setUser] = React.useState<boolean>(jwt ? true : false);
+	const [userCredential, setUserCredential] = React.useState<
+		AuthState['userCredential']
+	>({
 		name: '',
 		email: '',
 		password: '',
 	});
-	const { setAlert, setLoading, setIsTabLeft, setShowLinks } =
-		React.useContext(LayoutContext);
+	const { setAlert, setLoading, setIsTabLeft, setShowLinks } = React.useContext(
+		LayoutContext
+	) as LayoutState;
 	const forwardPage = useNavigate();
 	const { state, search } = useLocation();
 	const { catchError } = useError();
 	let query = getUrlParams(search);
 
 	// POST registriere neuen User im Backend / logge User ein (Backend)
-	const login = (e) => {
+	const login = (e: { preventDefault: () => void }): void => {
 		e.preventDefault();
 		setLoading(true);
 		konvey(AUTH_SIGNIN, null, null, 'POST', userCredential)
@@ -40,16 +45,17 @@ const useAuth = () => {
 				localStorage.setItem('id', data?.user._id);
 				localStorage.setItem('name', data?.user.name);
 				localStorage.setItem('token', data?.token);
-				forwardPage(state ? state.from : '/', setUser(true));
+				setUser(true);
+				forwardPage(state ? state.from : '/');
 			})
 			.catch(catchError)
 			.finally(() => {
 				setLoading(false);
-				setUserCredential({ email: '', password: '' });
+				setUserCredential({ name: '', email: '', password: '' });
 			});
 	};
 
-	const signup = (e) => {
+	const signup = (e: { preventDefault: () => void }): void => {
 		e.preventDefault();
 		setLoading(true);
 		konvey(API_USERS, null, null, 'POST', userCredential)
@@ -69,7 +75,7 @@ const useAuth = () => {
 	};
 
 	// logge den User aus (UI)
-	const logout = () => {
+	const logout = (): void => {
 		setLoading(true);
 		konvey(AUTH_SIGNOUT)
 			.then(() => setShowLinks(false))
@@ -83,19 +89,21 @@ const useAuth = () => {
 	};
 
 	// verarbeite die Eingabe des Users
-	const checkSigninInput = (e) => {
+	const checkSigninInput = (e: {
+		target: { name: string; value: string };
+	}): void => {
 		setUserCredential({
 			...userCredential,
 			[e.target.name]: e.target.value,
 		});
 	};
 
-	const activate = (e) => {
+	const activate = (e: Event): void => {
 		e.preventDefault();
 		setLoading(true);
 		konvey(AUTH_USERACTIVATION, null, null, 'POST', {
-			userId: query.get('id'),
-			token: query.get('token'),
+			userId: query?.get('id'),
+			token: query?.get('token'),
 		})
 			.catch(catchError)
 			.then((data) => {
@@ -112,7 +120,7 @@ const useAuth = () => {
 	};
 
 	// schicke den Password Request mit useremail ab
-	const requestReset = (e) => {
+	const requestReset = (e: { preventDefault: () => void }): void => {
 		e.preventDefault();
 		setLoading(true);
 		konvey(API_REQUESTRESET, null, null, 'POST', {
@@ -132,12 +140,12 @@ const useAuth = () => {
 			});
 	};
 
-	const reset = (e) => {
+	const reset = (e: { preventDefault: () => void }): void => {
 		e.preventDefault();
 		setLoading(true);
 		konvey(API_RESETPASSWORD, null, null, 'POST', {
-			userId: query.get('id'),
-			token: query.get('token'),
+			userId: query?.get('id'),
+			token: query?.get('token'),
 			password: userCredential.password,
 		})
 			.catch(catchError)
@@ -147,10 +155,8 @@ const useAuth = () => {
 					icon: <FaCheckCircle />,
 					msg: data.message,
 				});
-				forwardPage(
-					'/',
-					setUserCredential({ name: '', email: '', password: '' })
-				);
+				setUserCredential({ name: '', email: '', password: '' });
+				forwardPage('/');
 			})
 			.finally(() => {
 				setLoading(false);

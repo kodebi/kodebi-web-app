@@ -14,7 +14,7 @@ module.exports = (env, argv) => {
 
 	// standard config for webpack
 	const config = {
-		entry: path.resolve(__dirname, 'src/index.js'),
+		entry: path.resolve(__dirname, 'src/index.tsx'),
 		output: {
 			path: path.resolve(__dirname, 'dist'),
 			filename: 'js/[name].[contenthash].js',
@@ -33,9 +33,12 @@ module.exports = (env, argv) => {
 		module: {
 			rules: [
 				{
-					test: /\.(js|jsx)$/,
+					test: /\.(ts|tsx)$/,
 					exclude: /node_modules/,
-					use: 'babel-loader',
+					resolve: {
+						extensions: ['.ts', '.tsx', '.js', '.jsx'],
+					},
+					use: 'ts-loader',
 				},
 				{
 					test: /\.(?:ico|gif|png|jpe?g)$/i,
