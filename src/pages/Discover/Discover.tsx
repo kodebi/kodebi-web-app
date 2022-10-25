@@ -4,9 +4,12 @@ import { Shelf, Loading, Alert, Title } from '../../components';
 import { motion } from 'framer-motion';
 import useDiscover from '../../hooks/useDiscover';
 import { Box, Button, Input, Dropdown, Card, Text } from '@kodebi/libkodebi-ui';
+import { LayoutState } from '../../@types/layout';
 
-export const Discover = () => {
-	const { alert, loading, closeSubmenu } = React.useContext(LayoutContext);
+export function Discover(): JSX.Element {
+	const { alert, loading, closeSubmenu } = React.useContext(
+		LayoutContext
+	) as LayoutState;
 	const {
 		state: { books, search },
 		functions: {
@@ -85,4 +88,4 @@ export const Discover = () => {
 			)}
 		</>
 	);
-};
+}

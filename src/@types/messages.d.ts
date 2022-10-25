@@ -1,4 +1,4 @@
-type TMessage = {
+interface IMessage {
 	_id?: string;
 	senderId?: string;
 	senderName?: string;
@@ -7,11 +7,11 @@ type TMessage = {
 	message?: string;
 	createdAt?: string;
 	updatedAt?: string;
-};
+}
 
-type TConversation = {
+interface IConversation {
 	_id: string;
-	messages: TMessage[];
+	messages: IMessage[];
 	recipients: string[];
 	book: {
 		bookId: string;
@@ -21,12 +21,12 @@ type TConversation = {
 	createdAt: string;
 	updatedAt: string;
 	readAt: string;
-};
+}
 
 export interface MessageState {
-	conversations: TConversation[];
-	chat: TConversation | null;
-	newMessage: TMessage;
+	conversations: IConversation[];
+	chat: IConversation | null;
+	newMessage: IMessage;
 	selectedConversation: boolean;
 	isMessageSent: boolean;
 	chatEnd: React.MutableRefObject<null | HTMLDivElement>;
@@ -34,8 +34,4 @@ export interface MessageState {
 	handleMessage: (e: any) => void;
 	scrollToBottom: () => void;
 	sendMessage: (e: any) => null | void;
-}
-
-export interface MessageProviderProps {
-	children?: React.ReactNode;
 }

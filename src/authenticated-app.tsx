@@ -3,7 +3,7 @@ import { Route, Routes, Link } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
 import { Loading, Navbar, ScrollToTop } from './components';
 import { Footer } from '@kodebi/libkodebi-ui';
-import { footerLinks, footerIcons } from '../src/utils/linksDB';
+import { footerLinks, footerIcons } from './utils/linksDB';
 
 // React.lazy imports
 const Discover = React.lazy(() => import('./pages/Discover'));

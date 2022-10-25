@@ -1,9 +1,15 @@
 import * as React from 'react';
-import { LayoutState, LayoutProviderProps } from '../@types/layout';
+import { LayoutState } from '../@types/layout';
+
+interface LayoutProviderProps {
+	children?: React.ReactNode;
+}
 
 export const LayoutContext = React.createContext<LayoutState | null>(null);
 
-export const LayoutProvider: React.FC = ({ children }: LayoutProviderProps) => {
+export const LayoutProvider: React.FC<LayoutProviderProps> = ({
+	children,
+}): JSX.Element => {
 	const [loading, setLoading] = React.useState<boolean>(false);
 	const [alert, setAlert] = React.useState<LayoutState['alert']>({
 		display: false,

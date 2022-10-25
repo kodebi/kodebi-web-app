@@ -2,13 +2,16 @@ import * as React from 'react';
 import { Form } from '../Form';
 import { AuthContext } from '../../context/AuthContext';
 import { Box, Input, Button } from '@kodebi/libkodebi-ui';
+import { AuthState, LoginProps } from '../../@types/auth';
 
-export const Login = ({ openPasswordResetTab }) => {
+export const Login: React.FC<LoginProps> = ({
+	openPasswordResetTab,
+}): JSX.Element => {
 	const {
 		userCredential: { email, password },
 		login,
 		checkSigninInput,
-	} = React.useContext(AuthContext);
+	} = React.useContext(AuthContext) as AuthState;
 
 	return (
 		<>

@@ -4,23 +4,33 @@ import { AuthContext } from '../context/AuthContext';
 import { FaCheckCircle, FaPoo, FaFlushed } from 'react-icons/fa';
 import { genres, languages, conditions, status } from '../utils/dropdown';
 import { API_BOOK } from '../config/config';
+import { LayoutState } from '../@types/layout';
+import { AuthState } from '../@types/auth';
+import { BookState } from '../@types/books';
 
-const useBookUpload = () => {
-	const { setLoading, setAlert } = React.useContext(LayoutContext);
-	const { userId, userName, jwt } = React.useContext(AuthContext);
-	const [newBook, setNewBook] = React.useState({
+function useBookUpload() {
+	const { setLoading, setAlert } = React.useContext(
+		LayoutContext
+	) as LayoutState;
+	const { userId, userName, jwt } = React.useContext(AuthContext) as AuthState;
+	const [newBook, setNewBook] = React.useState<BookState['book']>({
 		name: '',
 		author: '',
 		category: genres[0],
 		language: languages[0],
 		condition: conditions[0],
 		status: status[0],
-		desc: '',
+		description: '',
 	});
-	const [bookImage, setBookImage] = React.useState(null);
+	const [bookImage, setBookImage] =
+		React.useState<BookState['bookImage']>(null);
 
 	// POST Buch
-	const bookUpload = async (api, tkn, formdata) => {
+	const bookUpload = async (
+		api: string,
+		tkn: AuthState['jwt'],
+		formdata: FormData
+	): Promise<void> => {
 		try {
 			setLoading(true);
 			const res = await fetch(api, {
@@ -57,52 +67,57 @@ const useBookUpload = () => {
 				language: languages[0],
 				condition: conditions[0],
 				status: status[0],
-				desc: '',
+				description: '',
 			});
-			setBookImage();
+			setBookImage(null);
 		}
 	};
 
 	// Buch hochladen
-	const startUpload = (e) => {
-		e.preventDefault();
-		if (
-			newBook.name &&
-			newBook.author &&
-			newBook.category &&
-			newBook.language &&
-			newBook.condition &&
-			newBook.status
-		) {
-			const bookData = new FormData();
-			bookData.append('bookImage', bookImage);
-			bookData.append('name', newBook.name);
-			bookData.append('author', newBook.author);
-			bookData.append('category', newBook.category);
-			bookData.append('language', newBook.language);
-			bookData.append('condition', newBook.condition);
-			bookData.append('ownerId', userId);
-			bookData.append('ownerName', userName);
-			bookData.append('status', newBook.status);
-			bookData.append('description', newBook.desc);
-			bookUpload(API_BOOK, jwt, bookData);
-		} else {
-			setAlert({
-				display: true,
-				icon: <FaFlushed />,
-				msg: 'Halt, da fehlen paar Felder!',
-			});
-		}
+	const startUpload = () => {
+		return (e: any) => {
+			e.preventDefault();
+			if (
+				bookImage &&
+				newBook.name &&
+				newBook.author &&
+				newBook.category &&
+				newBook.language &&
+				newBook.condition &&
+				newBook.status &&
+				newBook.description
+			) {
+				const bookData = new FormData();
+				bookData.append('bookImage', bookImage);
+				bookData.append('name', newBook.name);
+				bookData.append('author', newBook.author);
+				bookData.append('category', newBook.category);
+				bookData.append('language', newBook.language);
+				bookData.append('condition', newBook.condition);
+				bookData.append('ownerId', userId);
+				bookData.append('ownerName', userName);
+				bookData.append('status', newBook.status);
+				bookData.append('description', newBook.description);
+				bookUpload(API_BOOK, jwt, bookData);
+			} else {
+				setAlert({
+					display: true,
+					icon: <FaFlushed />,
+					msg: 'Halt, da fehlen paar Felder!',
+				});
+			}
+		};
 	};
 
 	// Textfeldeingabe
-	const textChange = (e) => {
-		setNewBook({ ...newBook, [e.target.name]: e.target.value });
+	const textChange = () => {
+		return (e: any) =>
+			setNewBook({ ...newBook, [e.target.name]: e.target.value });
 	};
 
 	// Bilddatei hinzufügen
-	const imageChange = (e) => {
-		setBookImage(e.target.files[0]);
+	const imageChange = () => {
+		return (e: any) => setBookImage(e.target.files[0]);
 	};
 
 	// resette die komplette Eingabe
@@ -117,7 +132,7 @@ const useBookUpload = () => {
 			ownerId: userId,
 			ownerName: userName,
 			status: status[0],
-			desc: '',
+			description: '',
 		});
 	};
 
@@ -125,6 +140,6 @@ const useBookUpload = () => {
 		state: { newBook, bookImage },
 		functions: { textChange, imageChange, resetInput, startUpload },
 	};
-};
+}
 
 export default useBookUpload;

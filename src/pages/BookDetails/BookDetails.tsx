@@ -12,9 +12,12 @@ import { motion } from 'framer-motion';
 import { LayoutContext } from '../../context/LayoutContext';
 import useBookDetails from '../../hooks/useBookDetails';
 import useStartConversations from '../../hooks/useStartConversations';
+import { LayoutState } from '../../@types/layout';
 
-export const BookDetails = () => {
-	const { alert, closeSubmenu, loading } = React.useContext(LayoutContext);
+export const BookDetails: React.FC = (): JSX.Element => {
+	const { alert, closeSubmenu, loading } = React.useContext(
+		LayoutContext
+	) as LayoutState;
 	const {
 		state: { book, showEditBook },
 		functions: {
@@ -28,12 +31,17 @@ export const BookDetails = () => {
 	const {
 		state: { newConv, showMessageModal },
 		functions: { closeMessageModal, messageUser, msgModalInput, startConv },
-	} = useStartConversations(book.ownerId, book.ownerName, book._id, book.name);
+	} = useStartConversations(
+		book?.ownerId,
+		book?.ownerName,
+		book?._id,
+		book?.name
+	);
 
 	if (loading) return <Loading />;
 	return (
 		<>
-			{showMessageModal && (
+			{showMessageModal ? (
 				<MessageModal
 					closeMessageModal={closeMessageModal}
 					msgModalInput={msgModalInput}
@@ -41,16 +49,16 @@ export const BookDetails = () => {
 					showMessageModal={showMessageModal}
 					newConv={newConv}
 				/>
-			)}
-			{showEditBook && (
+			) : null}
+			{showEditBook ? (
 				<EditBook
 					book={book}
 					changeBookDetails={changeBookDetails}
 					updateBookDetails={updateBookDetails}
 					closeEditWindow={closeEditWindow}
 				/>
-			)}
-			{loading && <Loading2 />}
+			) : null}
+			{loading ? <Loading2 /> : null}
 			<motion.main
 				initial={{ opacity: 0 }}
 				animate={{ opacity: 1 }}
@@ -60,24 +68,24 @@ export const BookDetails = () => {
 			>
 				<ReturnTo />
 				<article className="open-book">
-					<img src={book.image} alt={book.name} />
+					<img src={book?.image} alt={book?.name} />
 					<section className="open-book-info">
 						<div>
-							<h2 className="title">{book.name}</h2>
-							<h4 className="title">{book.author}</h4>
+							<h2 className="title">{book?.name}</h2>
+							<h4 className="title">{book?.author}</h4>
 						</div>
 						<hr className="separation-line" />
 						<div>
 							<h4>Genre</h4>
-							<p>{book.category}</p>
+							<p>{book?.category}</p>
 						</div>
 						<div>
 							<h4>Sprache</h4>
-							<p>{book.language}</p>
+							<p>{book?.language}</p>
 						</div>
 						<div>
 							<h4>Beschreibung</h4>
-							<p>{book.description}</p>
+							<p>{book?.description}</p>
 						</div>
 					</section>
 					<UserAction
@@ -87,7 +95,7 @@ export const BookDetails = () => {
 						messageUser={messageUser}
 					/>
 				</article>
-				{alert.display && <Alert />}
+				{alert.display ? <Alert /> : null}
 			</motion.main>
 		</>
 	);

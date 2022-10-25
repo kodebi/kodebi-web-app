@@ -1,8 +1,15 @@
 import * as React from 'react';
 import { BookCard } from '../BookCard';
 import { Box, Card, Text } from '@kodebi/libkodebi-ui';
+import { IBook } from '../../@types/books';
+import { AuthState } from '../../@types/auth';
 
-export const Shelf = ({ element, user }) => {
+interface ShelfProps {
+	element: IBook[];
+	user?: AuthState['userName'];
+}
+
+export const Shelf: React.FC<ShelfProps> = ({ element, user }): JSX.Element => {
 	return (
 		<>
 			{element?.length < 1 ? (
@@ -24,7 +31,7 @@ export const Shelf = ({ element, user }) => {
 				>
 					<Box variant="center">
 						<Text color="#d96c75" padding="0.25rem" fontSize="1.25rem">
-							Bücherregal {user && `von ${user}`}
+							Bücherregal {user ? `von ${user}` : null}
 						</Text>
 					</Box>
 					<Box variant="shelf" padding="0.5rem">

@@ -1,27 +1,32 @@
 import * as React from 'react';
-import { unstable_batchedUpdates } from 'react-dom';
 import { LayoutContext } from '../context/LayoutContext';
 import { konvey } from '../helpers/konvey';
 import { API_BOOKS } from '../config/config';
+import { LayoutState } from '../@types/layout';
+import { BookState, IBook } from '../@types/books';
 
 const useDiscover = () => {
-	const { setLoading } = React.useContext(LayoutContext);
-	const [allBooks, setAllBooks] = React.useState([]);
-	const [books, setBooks] = React.useState([]);
-	const [search, setSearch] = React.useState('');
+	const { setLoading } = React.useContext(LayoutContext) as LayoutState;
+	const [allBooks, setAllBooks] = React.useState<BookState['allBooks']>([]);
+	const [books, setBooks] = React.useState<BookState['books']>([]);
+	const [search, setSearch] = React.useState<string>('');
 
 	// ziehe Kategorien der Bücher
-	const categories = [...new Set(allBooks?.map((book) => book.category))];
+	const categories = [
+		...new Set(allBooks?.map((book: IBook): any => book.category)),
+	];
 
 	// ziehe Status der Bücher
-	const status = [...new Set(allBooks?.map((book) => book.status))];
+	const status = [...new Set(allBooks?.map((book: IBook): any => book.status))];
 
 	// ziehe Sprache der Bücher
-	const lenguajes = [...new Set(allBooks?.map((book) => book.language))];
+	const lenguajes = [
+		...new Set(allBooks?.map((book: IBook): any => book.language)),
+	];
 
 	// verarbeite den Input des Suchfeldes
-	const handleSearch = (e) => {
-		setSearch(e.target.value);
+	const handleSearch = () => {
+		return (e: any) => setSearch(e.target.value);
 	};
 
 	const backToAll = () => {
@@ -30,37 +35,41 @@ const useDiscover = () => {
 	};
 
 	// filtert Bücher anhand der Kategorien
-	const filterByCategory = (e) => {
-		let filteredBooks = allBooks?.filter(
-			(book) => book.category === e.target.value
-		);
-		setBooks(filteredBooks);
+	const filterByCategory = () => {
+		return (e: any) => {
+			let filteredBooks = allBooks?.filter(
+				(book: IBook) => book.category === e.target.value
+			);
+			setBooks(filteredBooks);
+		};
 	};
 
-	const filterByStatus = (e) => {
-		let filteredBooks = allBooks?.filter(
-			(book) => book.status === e.target.value
-		);
-		setBooks(filteredBooks);
+	const filterByStatus = () => {
+		return (e: any) => {
+			let filteredBooks = allBooks?.filter(
+				(book: IBook) => book.status === e.target.value
+			);
+			setBooks(filteredBooks);
+		};
 	};
 
-	const filterByLanguage = (e) => {
-		let filteredBooks = allBooks?.filter(
-			(book) => book.language === e.target.value
-		);
-		setBooks(filteredBooks);
+	const filterByLanguage = () => {
+		return (e: any) => {
+			let filteredBooks = allBooks?.filter(
+				(book) => book.language === e.target.value
+			);
+			setBooks(filteredBooks);
+		};
 	};
 
 	React.useEffect(() => {
-		let mounted = true;
+		let mounted: boolean = true;
 		setLoading(true);
-		konvey({ url: API_BOOKS }).then((res) => {
+		konvey(API_BOOKS).then((res) => {
 			if (!mounted) return;
-			unstable_batchedUpdates(() => {
-				setAllBooks(res);
-				setBooks(res);
-				setLoading(false);
-			});
+			setAllBooks(res);
+			setBooks(res);
+			setLoading(false);
 		});
 		return () => {
 			mounted = false;
@@ -71,9 +80,9 @@ const useDiscover = () => {
 	// filter Bücher nach Suche
 	React.useEffect(() => {
 		let searchedBooks = allBooks?.filter(
-			(book) =>
-				book.name.toLowerCase().includes(search.toLowerCase()) ||
-				book.author.toLowerCase().includes(search.toLowerCase())
+			(book: IBook) =>
+				book.name?.toLowerCase().includes(search.toLowerCase()) ||
+				book.author?.toLowerCase().includes(search.toLowerCase())
 		);
 		setBooks(searchedBooks);
 	}, [search, allBooks]);

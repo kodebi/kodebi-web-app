@@ -16,7 +16,7 @@ import { AuthState } from '../@types/auth';
 import { LayoutState } from '../@types/layout';
 import useError from './useError';
 
-const useAuth = () => {
+function useAuth() {
 	const userName = localStorage.getItem('name');
 	const userId = localStorage.getItem('id');
 	const jwt = localStorage.getItem('token');
@@ -89,13 +89,12 @@ const useAuth = () => {
 	};
 
 	// verarbeite die Eingabe des Users
-	const checkSigninInput = (e: {
-		target: { name: string; value: string };
-	}): void => {
-		setUserCredential({
-			...userCredential,
-			[e.target.name]: e.target.value,
-		});
+	const checkSigninInput = () => {
+		return (e: any) =>
+			setUserCredential({
+				...userCredential,
+				[e.target.name]: e.target.value,
+			});
 	};
 
 	const activate = (e: Event): void => {
@@ -176,6 +175,6 @@ const useAuth = () => {
 			requestReset,
 		},
 	};
-};
+}
 
 export default useAuth;

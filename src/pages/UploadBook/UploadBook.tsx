@@ -5,9 +5,12 @@ import { motion } from 'framer-motion';
 import { genres, languages, conditions, status } from '../../utils/dropdown';
 import useBookUpload from '../../hooks/useBookUpload';
 import { Box, Button, Input, Dropdown } from '@kodebi/libkodebi-ui';
+import { LayoutState } from '../../@types/layout';
 
-export const UploadBook = () => {
-	const { loading, alert, closeSubmenu } = React.useContext(LayoutContext);
+export function UploadBook(): JSX.Element {
+	const { loading, alert, closeSubmenu } = React.useContext(
+		LayoutContext
+	) as LayoutState;
 	const {
 		state: { newBook, bookImage },
 		functions: { textChange, imageChange, startUpload, resetInput },
@@ -95,7 +98,7 @@ export const UploadBook = () => {
 							id="desc"
 							name="desc"
 							textarea
-							rows="4"
+							rows={4}
 							placeholder="Kurze Beschreibung des Buches"
 							position="above"
 							value={newBook.desc}
@@ -122,4 +125,4 @@ export const UploadBook = () => {
 			</motion.main>
 		</>
 	);
-};
+}

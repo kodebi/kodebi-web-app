@@ -2,14 +2,23 @@ import * as React from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Button, Card } from '@kodebi/libkodebi-ui';
 import { AuthContext } from '../../context/AuthContext';
+import { IBook } from '../../@types/books';
+import { AuthState } from '../../@types/auth';
 
-export const UserAction = ({
-	book: { ownerName, condition, ownerId, status },
+interface UserActionProps {
+	book?: IBook;
+	deleteBook: () => void;
+	openEditWindow: () => void;
+	messageUser: () => void;
+}
+
+export const UserAction: React.FC<UserActionProps> = ({
+	book,
 	deleteBook,
 	openEditWindow,
 	messageUser,
 }) => {
-	const { userId } = React.useContext(AuthContext);
+	const { userId } = React.useContext(AuthContext) as AuthState;
 
 	return (
 		<>
@@ -23,26 +32,26 @@ export const UserAction = ({
 				<Box variant="flex-col" margin="0" padding="0" className="user-action">
 					<Box variant="flex-col-start" padding="0.75rem 0">
 						<p>Dieses Buch gehört:</p>
-						<Link to={`/profile/${ownerId}`} className="username-link">
-							{ownerName}
+						<Link to={`/profile/${book?.ownerId}`} className="username-link">
+							{book?.ownerName}
 						</Link>
 					</Box>
 					<hr className="separation-line" />
 					<Box variant="flex-col-start" padding="0.75rem 0">
 						<p>Zustand des Buches ist:</p>
-						<h4>{condition}</h4>
+						<h4>{book?.condition}</h4>
 					</Box>
 					<hr className="separation-line" />
 					<Box variant="flex-col-start" padding="0.75rem 0">
 						<p>Dieses Buch ist:</p>
-						<h4>{status}</h4>
+						<h4>{book?.status}</h4>
 					</Box>
 					{status === 'Bereit zum Verleihen' && (
 						<>
 							<hr className="separation-line" />
 							<Box variant="flex-col-start" padding="0.75rem 0">
 								<p>Was möchtest du tun?</p>
-								{ownerId === userId ? (
+								{book?.ownerId === userId ? (
 									<>
 										<Button
 											variant="action"

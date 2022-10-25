@@ -1,3 +1,4 @@
+import * as React from 'react';
 import { FaGithub, FaInstagram } from 'react-icons/fa';
 
 const links = [
