@@ -12,10 +12,14 @@ import { motion } from 'framer-motion';
 import useUserProfile from '../../hooks/useUserProfile';
 import { AuthContext } from '../../context/AuthContext';
 import useBorrow from '../../hooks/useBorrow';
+import { LayoutState } from '../../@types/layout';
+import { AuthState } from '../../@types/auth';
 
-export const MyDashboard = () => {
-	const { alert, closeSubmenu, loading } = React.useContext(LayoutContext);
-	const { userName } = React.useContext(AuthContext);
+export const MyDashboard: React.FC = (): JSX.Element => {
+	const { alert, closeSubmenu, loading } = React.useContext(
+		LayoutContext
+	) as LayoutState;
+	const { userName } = React.useContext(AuthContext) as AuthState;
 	const {
 		state: { userBooks },
 	} = useUserProfile();

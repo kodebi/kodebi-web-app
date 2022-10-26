@@ -3,13 +3,13 @@ import { ModalWrapper } from '../ModalWrapper';
 import { motion } from 'framer-motion';
 import { genres, languages, conditions, status } from '../../utils/dropdown';
 import { Box, Button, Input, Dropdown } from '@kodebi/libkodebi-ui';
-import { IBook } from '../../@types/books';
+import { BookState, IBook } from '../../@types/books';
 
 interface EditBookProps {
-	book?: IBook;
+	book: IBook;
 	showEditBook?: boolean;
-	updateBookDetails: () => void;
-	changeBookDetails: () => void;
+	updateBookDetails: BookState['updateBookDetails'];
+	changeBookDetails: BookState['changeBookDetails'];
 	closeEditWindow: () => void;
 }
 
@@ -38,7 +38,7 @@ export const EditBook: React.FC<EditBookProps> = ({
 							name="name"
 							placeholder="Name des Buches"
 							position="above"
-							value={book?.name}
+							value={book.name}
 							onChange={changeBookDetails}
 						/>
 						<Input
@@ -49,7 +49,7 @@ export const EditBook: React.FC<EditBookProps> = ({
 							name="author"
 							placeholder="Autor*in des Buches"
 							position="above"
-							value={book?.author}
+							value={book.author}
 							onChange={changeBookDetails}
 						/>
 						<Dropdown
@@ -59,7 +59,7 @@ export const EditBook: React.FC<EditBookProps> = ({
 							id="category"
 							name="category"
 							options={genres}
-							value={book?.category}
+							value={book.category}
 							onChange={changeBookDetails}
 						/>
 						<Dropdown
@@ -69,7 +69,7 @@ export const EditBook: React.FC<EditBookProps> = ({
 							name="language"
 							id="language"
 							options={languages}
-							value={book?.language}
+							value={book.language}
 							onChange={changeBookDetails}
 						/>
 						<Dropdown
@@ -79,7 +79,7 @@ export const EditBook: React.FC<EditBookProps> = ({
 							id="condition"
 							name="condition"
 							options={conditions}
-							value={book?.condition}
+							value={book.condition}
 							onChange={changeBookDetails}
 						/>
 						<Dropdown
@@ -89,7 +89,7 @@ export const EditBook: React.FC<EditBookProps> = ({
 							id="status"
 							name="status"
 							options={status}
-							value={book?.status}
+							value={book.status}
 							onChange={changeBookDetails}
 						/>
 						<Input
@@ -101,7 +101,7 @@ export const EditBook: React.FC<EditBookProps> = ({
 							rows={2}
 							position="above"
 							placeholder="Kurze Beschreibung des Buches"
-							value={book?.description}
+							value={book.description}
 							onChange={changeBookDetails}
 						/>
 						<Box variant="flex-col" padding="0" margin="0.5rem 0">

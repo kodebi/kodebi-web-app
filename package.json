@@ -36,6 +36,7 @@
 		"@testing-library/jest-dom": "^5.16.4",
 		"@testing-library/react": "^12.1.4",
 		"@testing-library/user-event": "^14.0.4",
+		"@types/canvas-confetti": "^1.4.3",
 		"@types/jest": "^27.4.1",
 		"@types/react": "^18.0.21",
 		"@types/react-dom": "^18.0.6",

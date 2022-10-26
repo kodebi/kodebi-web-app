@@ -1,17 +1,17 @@
 import { AuthState } from './auth';
 
 export interface IBook {
-	_id?: string;
-	name?: string;
-	author?: string;
-	category?: string;
-	language?: string;
-	condition?: string;
-	ownerId?: string;
-	ownerName?: string;
-	status?: string;
-	description?: string;
-	image?: string;
+	_id: string;
+	name: string;
+	author: string;
+	category: string;
+	language: string;
+	condition: string;
+	ownerId: string;
+	ownerName: string;
+	status: string;
+	description: string;
+	image: string;
 }
 
 export interface BookState {
@@ -20,6 +20,7 @@ export interface BookState {
 	book: IBook;
 	bookImage: any | null;
 	search: string;
+	userBooks: IBook[];
 	setAllBooks: React.Dispatch<React.SetStateAction<IBook[]>>;
 	setBooks: React.Dispatch<React.SetStateAction<IBook[]>>;
 	setBook: React.Dispatch<React.SetStateAction<IBook>>;
@@ -32,4 +33,7 @@ export interface BookState {
 	categoryOptions: any[];
 	statusOptions: any[];
 	languageOptions: any[];
+	deleteBook: () => void;
+	updateBookDetails: () => (e: any) => void;
+	changeBookDetails: () => (e: any) => void;
 }

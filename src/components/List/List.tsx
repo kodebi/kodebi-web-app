@@ -1,9 +1,19 @@
 import * as React from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import { Box, Button, Card, Text } from '@kodebi/libkodebi-ui';
+import { AuthState } from '../../@types/auth';
+import { IBook } from '../../@types/books';
 
-export const List = ({ elements, returnBook }) => {
-	const { userName } = React.useContext(AuthContext);
+interface ListProps {
+	elements?: IBook[];
+	returnBook: (id: string) => void;
+}
+
+export const List: React.FC<ListProps> = ({
+	elements,
+	returnBook,
+}): JSX.Element => {
+	const { userName } = React.useContext(AuthContext) as AuthState;
 	return (
 		<>
 			<Card width="100%" maxWidth="1180px" className="list-container">

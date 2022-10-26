@@ -2,11 +2,12 @@ import * as React from 'react';
 import { Form } from '../Form';
 import { AuthContext } from '../../context/AuthContext';
 import { Box, Button, Input } from '@kodebi/libkodebi-ui';
+import { AuthState } from '../../@types/auth';
 
-export const PasswordReset = () => {
-	const { userCredential, checkSigninInput, reset } =
-		React.useContext(AuthContext);
-
+export const PasswordReset: React.FC = (): JSX.Element => {
+	const { userCredential, checkSigninInput, reset } = React.useContext(
+		AuthContext
+	) as AuthState;
 	return (
 		<>
 			<Form className="form-center" onSubmit={reset}>

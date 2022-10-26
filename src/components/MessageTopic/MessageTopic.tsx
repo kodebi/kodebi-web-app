@@ -1,7 +1,17 @@
 import * as React from 'react';
 import { Button } from '@kodebi/libkodebi-ui';
 
-export const MessageTopic = ({ requestingUser, bookName, lendBook }) => {
+interface MessageTopicProps {
+	requestingUser: string | undefined;
+	bookName: string;
+	lendBook: () => void;
+}
+
+export const MessageTopic: React.FC<MessageTopicProps> = ({
+	requestingUser,
+	bookName,
+	lendBook,
+}): JSX.Element => {
 	return (
 		<>
 			<article className="topic-box">

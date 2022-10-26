@@ -2,7 +2,17 @@ import { Box, Card } from '@kodebi/libkodebi-ui';
 import React from 'react';
 import { FaBookOpen, FaUserCircle } from 'react-icons/fa';
 
-export const UserDashboard = ({ user, bookCount, totalLentBooks }) => {
+interface DashboardProps {
+	user: string;
+	bookCount: number;
+	totalLentBooks?: number;
+}
+
+export const UserDashboard: React.FC<DashboardProps> = ({
+	user,
+	bookCount,
+	totalLentBooks,
+}) => {
 	return (
 		<>
 			<Card

@@ -3,14 +3,23 @@ import { Form } from '../Form';
 import { ModalWrapper } from '../ModalWrapper';
 import { motion } from 'framer-motion';
 import { Button, Input } from '@kodebi/libkodebi-ui';
+import { MessageState } from '../../@types/messages';
 
-export const MessageModal = ({
+interface MessageModalProps {
+	showMessageModal: MessageState['showMessageModal'];
+	newConv: MessageState['newConv'];
+	msgModalInput: MessageState['msgModalInput'];
+	startConv: MessageState['startConv'];
+	closeMessageModal: MessageState['closeMessageModal'];
+}
+
+export const MessageModal: React.FC<MessageModalProps> = ({
 	showMessageModal,
 	newConv,
 	msgModalInput,
 	startConv,
 	closeMessageModal,
-}) => {
+}): JSX.Element => {
 	return (
 		<>
 			<ModalWrapper
@@ -28,7 +37,7 @@ export const MessageModal = ({
 							id="message"
 							name="message"
 							labelTag="Deine Nachricht"
-							rows="3"
+							rows={3}
 							position="above"
 							labelColor="#fff"
 							textarea

@@ -3,15 +3,20 @@ import { FaUserCircle } from 'react-icons/fa';
 import { dateFormatter } from '../../helpers/dateFormatter';
 import { MessageContext } from '../../context/MessageContext';
 import { AuthContext } from '../../context/AuthContext';
+import { IConversation, MessageState } from '../../@types/messages';
+import { AuthState } from '../../@types/auth';
 
-export const Conversation = ({ _id, messages, updatedAt }) => {
+export const Conversation: React.FC<IConversation> = ({
+	_id,
+	messages,
+	updatedAt,
+}): JSX.Element => {
 	const formattedDate = React.useMemo(
-		() => dateFormatter(updatedAt),
+		() => dateFormatter({ date: updatedAt }),
 		[updatedAt]
 	);
-	const { userName } = React.useContext(AuthContext);
-	const { openConversation } = React.useContext(MessageContext);
-
+	const { userName } = React.useContext(AuthContext) as AuthState;
+	const { openConversation } = React.useContext(MessageContext) as MessageState;
 	return (
 		<>
 			<button

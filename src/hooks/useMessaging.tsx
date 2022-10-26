@@ -96,43 +96,46 @@ const useMessaging = () => {
 	}, [isMessageSent, getChatOfConv, jwt, userId, userName]);
 
 	// rufe eine Konversation und die dazugehörigen Nachrichten auf
-	const openConversation = (e: { currentTarget: { id: string } }) => {
-		setSelectedConversation(true);
-		localStorage.setItem('convId', e.currentTarget.id);
-		getChatOfConv(API_MESSAGES, e.currentTarget.id, jwt, userId, userName);
+	const openConversation = () => {
+		return (e: any) => {
+			setSelectedConversation(true);
+			localStorage.setItem('convId', e.currentTarget.id);
+			getChatOfConv(API_MESSAGES, e.currentTarget.id, jwt, userId, userName);
+		};
 	};
 
 	// Nachrichteneingabe
-	const handleMessage = (e: {
-		target: { name: string; value: string };
-	}): void => {
-		setNewMessage({ ...newMessage, [e.target.name]: e.target.value });
+	const handleMessage = () => {
+		return (e: any) =>
+			setNewMessage({ ...newMessage, [e.target.name]: e.target.value });
 	};
 
 	// schicke die Nachricht ab
-	const sendMessage = (e: { preventDefault: () => void }) => {
+	const sendMessage = () => {
 		if (!selectedConversation) {
 			setAlert({
 				display: true,
 				icon: <FaFlushed />,
 				msg: 'Du hast keine Konversation ausgewählt!',
 			});
-			return null;
+			return;
 		}
-		e.preventDefault();
-		konvey(API_MESSAGES, chat?._id, jwt, 'POST', newMessage)
-			.catch(catchError)
-			.finally(() => {
-				setLoading(false);
-				setNewMessage({
-					senderId: '',
-					senderName: '',
-					recieverId: '',
-					recieverName: '',
-					message: '',
+		return (e: any) => {
+			e.preventDefault();
+			konvey(API_MESSAGES, chat?._id, jwt, 'POST', newMessage)
+				.catch(catchError)
+				.finally(() => {
+					setLoading(false);
+					setNewMessage({
+						senderId: '',
+						senderName: '',
+						recieverId: '',
+						recieverName: '',
+						message: '',
+					});
+					setIsMessageSent(true);
 				});
-				setIsMessageSent(true);
-			});
+		};
 	};
 
 	return {

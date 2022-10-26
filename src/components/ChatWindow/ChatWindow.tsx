@@ -4,10 +4,11 @@ import { OpenChat } from '../OpenChat';
 import { Button, IconWrapper, Input } from '@kodebi/libkodebi-ui';
 import { MessageContext } from '../../context/MessageContext';
 import { FaPaperPlane } from 'react-icons/fa';
+import { MessageState } from '../../@types/messages';
 
-export const ChatWindow = () => {
+export const ChatWindow: React.FC = () => {
 	const { selectedConversation, sendMessage, newMessage, handleMessage } =
-		React.useContext(MessageContext);
+		React.useContext(MessageContext) as MessageState;
 
 	return (
 		<>
@@ -19,7 +20,7 @@ export const ChatWindow = () => {
 							textarea
 							id="chat_message"
 							name="message"
-							cols="150"
+							cols={150}
 							value={newMessage.message}
 							onChange={handleMessage}
 						/>

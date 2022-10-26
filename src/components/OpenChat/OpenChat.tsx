@@ -3,12 +3,13 @@ import { MessageContext } from '../../context/MessageContext';
 import { Message } from '../Message';
 import { MessageTopic } from '../MessageTopic';
 import useBorrow from '../../hooks/useBorrow';
+import { MessageState } from '../../@types/messages';
 
-export const OpenChat = () => {
+export const OpenChat: React.FC = (): JSX.Element => {
 	const {
 		chat: { recipients, _id, messages, book },
 		chatEnd,
-	} = React.useContext(MessageContext);
+	} = React.useContext(MessageContext) as MessageState;
 	const requestingUser = messages && messages[0].senderName;
 	const borrowerId = recipients && recipients[0];
 	const { confirm, lendBook } = useBorrow(

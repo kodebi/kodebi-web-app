@@ -1,14 +1,27 @@
-import React from 'react'
+import * as React from 'react';
+import { MessageState } from '../../@types/messages';
 
-export const ModalWrapper = (props) => {
-  return (
-    <>
-      <section
-        className={`${props ? 'modal-wrapper open' : 'modal-wrapper'}`}
-        onClick={props.onClick}
-      >
-        {props.children}
-      </section>
-    </>
-  )
+interface ModalWrapperProps {
+	showMessageModal: MessageState['showMessageModal'];
+	onClick?: () => void;
+	children?: React.ReactNode;
 }
+
+export const ModalWrapper: React.FC<ModalWrapperProps> = ({
+	showMessageModal,
+	onClick,
+	children,
+}): JSX.Element => {
+	return (
+		<>
+			<section
+				className={`${
+					showMessageModal ? 'modal-wrapper open' : 'modal-wrapper'
+				}`}
+				onClick={onClick}
+			>
+				{children}
+			</section>
+		</>
+	);
+};

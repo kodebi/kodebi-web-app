@@ -8,14 +8,26 @@ import { API_BOOK } from '../config/config';
 import useError from './useError';
 import { LayoutState } from '../@types/layout';
 import { AuthState } from '../@types/auth';
-import { BookState, IBook } from '../@types/books';
+import { BookState } from '../@types/books';
 
 const useBookDetails = () => {
 	const { setAlert, setLoading } = React.useContext(
 		LayoutContext
 	) as LayoutState;
 	const { jwt } = React.useContext(AuthContext) as AuthState;
-	const [book, setBook] = React.useState<BookState['book']>();
+	const [book, setBook] = React.useState<BookState['book']>({
+		_id: '',
+		name: '',
+		author: '',
+		category: '',
+		language: '',
+		condition: '',
+		ownerId: '',
+		ownerName: '',
+		status: '',
+		description: '',
+		image: '',
+	});
 	const [showEditBook, setShowEditBook] = React.useState<boolean>(false);
 	const { id } = useParams<string>();
 	const { catchError } = useError();
@@ -56,12 +68,12 @@ const useBookDetails = () => {
 	};
 
 	// öffne Fenster zum Bearbeiten
-	const openEditWindow = () => {
+	const openEditWindow = (): void => {
 		setShowEditBook(true);
 	};
 
 	// schließe Fenster zum Bearbeiten
-	const closeEditWindow = () => {
+	const closeEditWindow = (): void => {
 		setShowEditBook(false);
 	};
 

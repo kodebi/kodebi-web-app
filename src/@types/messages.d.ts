@@ -23,15 +23,30 @@ interface IConversation {
 	readAt: string;
 }
 
+interface IStartConv {
+	senderId: string;
+	senderName: string;
+	recieverId: string;
+	recieverName: string;
+	message: string;
+	bookId: string;
+	bookName: string;
+}
+
 export interface MessageState {
 	conversations: IConversation[];
-	chat: IConversation | null;
+	chat: IConversation;
 	newMessage: IMessage;
+	newConv: IStartConv;
 	selectedConversation: boolean;
 	isMessageSent: boolean;
 	chatEnd: React.MutableRefObject<null | HTMLDivElement>;
-	openConversation: (e: any) => void;
-	handleMessage: (e: any) => void;
+	showMessageModal: boolean;
+	openConversation: () => (e: any) => void;
+	handleMessage: () => (e: any) => void;
 	scrollToBottom: () => void;
-	sendMessage: (e: any) => null | void;
+	sendMessage: () => (e: any) => void;
+	msgModalInput: () => (e: any) => void;
+	startConv: () => (e: any) => void;
+	closeMessageModal: () => void;
 }

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../../static/kodebi_logo_classic.svg';
 import { FaBook, FaBookOpen } from 'react-icons/fa';
 import { MenuLink } from '../MenuLink';
 import { links } from '../../utils/linksDB';
@@ -9,15 +8,20 @@ import { AuthContext } from '../../context/AuthContext';
 import { LayoutContext } from '../../context/LayoutContext';
 import useNavInteraction from '../../hooks/useNavInteraction';
 import { Box } from '@kodebi/libkodebi-ui';
+import { AuthState } from '../../@types/auth';
+import { LayoutState } from '../../@types/layout';
+import logo from '../../static/kodebi_logo_classic.svg';
 
-export const Navbar = () => {
-	const { logout } = React.useContext(AuthContext);
+export const Navbar: React.FC = (): JSX.Element => {
+	const { logout } = React.useContext(AuthContext) as AuthState;
 	const {
 		state: { navbar },
 		ref: { container },
 		functions: { hideSubmenu, toggleNavbar, showUserSubmenu },
 	} = useNavInteraction();
-	const { showLinks, hideLinks } = React.useContext(LayoutContext);
+	const { showLinks, hideLinks } = React.useContext(
+		LayoutContext
+	) as LayoutState;
 
 	return (
 		<>

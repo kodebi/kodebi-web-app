@@ -17,4 +17,6 @@ export interface LayoutState {
 	showLinks: boolean;
 	setShowLinks: React.Dispatch<React.SetStateAction<boolean>>;
 	hideLinks: () => void;
+	showUserSubmenu: () => void;
+	container: React.RefObject<HTMLUListElement>;
 }

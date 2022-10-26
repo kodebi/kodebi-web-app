@@ -17,7 +17,7 @@ export const UserAction: React.FC<UserActionProps> = ({
 	deleteBook,
 	openEditWindow,
 	messageUser,
-}) => {
+}): JSX.Element => {
 	const { userId } = React.useContext(AuthContext) as AuthState;
 
 	return (

@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
 
-export const Loading = () => {
-  return (
-    <>
-      <div className='loading'>
-        <div className='loader'></div>
-      </div>
-    </>
-  )
-}
+export const Loading: React.FC = (): JSX.Element => {
+	return (
+		<>
+			<div className="loading">
+				<div className="loader"></div>
+			</div>
+		</>
+	);
+};

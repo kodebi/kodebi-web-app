@@ -11,9 +11,12 @@ import {
 import { motion } from 'framer-motion';
 import useUserProfile from '../../hooks/useUserProfile';
 import { useParams } from 'react-router-dom';
+import { LayoutState } from '../../@types/layout';
 
-export const UserProfile = () => {
-	const { alert, closeSubmenu, loading } = React.useContext(LayoutContext);
+export const UserProfile: React.FC = (): JSX.Element => {
+	const { alert, closeSubmenu, loading } = React.useContext(
+		LayoutContext
+	) as LayoutState;
 	const { id } = useParams();
 	const {
 		state: { userBooks },
