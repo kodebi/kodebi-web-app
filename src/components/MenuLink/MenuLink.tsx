@@ -4,7 +4,7 @@ import { LayoutState } from '../../@types/layout';
 import { LayoutContext } from '../../context/LayoutContext';
 
 interface MenuLinkProps {
-	id: string;
+	id: number;
 	url: string;
 	text: string;
 }

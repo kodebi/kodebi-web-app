@@ -1,13 +1,16 @@
 import * as React from 'react';
+import { LayoutState } from '../../@types/layout';
 import { MessageState } from '../../@types/messages';
 
 interface ModalWrapperProps {
-	showMessageModal: MessageState['showMessageModal'];
+	showEditBook?: LayoutState['showEditBook'];
+	showMessageModal?: MessageState['showMessageModal'];
 	onClick?: () => void;
 	children?: React.ReactNode;
 }
 
 export const ModalWrapper: React.FC<ModalWrapperProps> = ({
+	showEditBook,
 	showMessageModal,
 	onClick,
 	children,
@@ -16,7 +19,9 @@ export const ModalWrapper: React.FC<ModalWrapperProps> = ({
 		<>
 			<section
 				className={`${
-					showMessageModal ? 'modal-wrapper open' : 'modal-wrapper'
+					showMessageModal || showEditBook
+						? 'modal-wrapper open'
+						: 'modal-wrapper'
 				}`}
 				onClick={onClick}
 			>

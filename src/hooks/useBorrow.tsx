@@ -60,7 +60,7 @@ const useBorrow = (
 			});
 	};
 
-	const returnBook = (id: string) => {
+	const returnBook = (id?: string) => {
 		setLoading(true);
 		konvey(API_RETURN, id, jwt, 'PUT')
 			.then((data) => {

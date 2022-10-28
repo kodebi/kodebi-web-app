@@ -37,45 +37,49 @@ function useAuth() {
 	let query = getUrlParams(search);
 
 	// POST registriere neuen User im Backend / logge User ein (Backend)
-	const login = (e: { preventDefault: () => void }): void => {
-		e.preventDefault();
-		setLoading(true);
-		konvey(AUTH_SIGNIN, null, null, 'POST', userCredential)
-			.then((data) => {
-				localStorage.setItem('id', data?.user._id);
-				localStorage.setItem('name', data?.user.name);
-				localStorage.setItem('token', data?.token);
-				setUser(true);
-				forwardPage(state ? state.from : '/');
-			})
-			.catch(catchError)
-			.finally(() => {
-				setLoading(false);
-				setUserCredential({ name: '', email: '', password: '' });
-			});
+	const login = () => {
+		return (e: any) => {
+			e.preventDefault();
+			setLoading(true);
+			konvey(AUTH_SIGNIN, null, null, 'POST', userCredential)
+				.then((data): void => {
+					localStorage.setItem('id', data.user._id);
+					localStorage.setItem('name', data.user.name);
+					localStorage.setItem('token', data.token);
+					setUser(true);
+					forwardPage(state ? state.from : '/');
+				})
+				.catch(catchError)
+				.finally(() => {
+					setLoading(false);
+					setUserCredential({ name: '', email: '', password: '' });
+				});
+		};
 	};
 
-	const signup = (e: { preventDefault: () => void }): void => {
-		e.preventDefault();
-		setLoading(true);
-		konvey(API_USERS, null, null, 'POST', userCredential)
-			.then((data) => {
-				setIsTabLeft(true);
-				setAlert({
-					display: true,
-					icon: <FaCheckCircle />,
-					msg: data.message,
+	const signup = () => {
+		return (e: any) => {
+			e.preventDefault();
+			setLoading(true);
+			konvey(API_USERS, null, null, 'POST', userCredential)
+				.then((data) => {
+					setIsTabLeft(true);
+					setAlert({
+						display: true,
+						icon: <FaCheckCircle />,
+						msg: data.message,
+					});
+				})
+				.catch(catchError)
+				.finally(() => {
+					setLoading(false);
+					setUserCredential({ name: '', email: '', password: '' });
 				});
-			})
-			.catch(catchError)
-			.finally(() => {
-				setLoading(false);
-				setUserCredential({ name: '', email: '', password: '' });
-			});
+		};
 	};
 
 	// logge den User aus (UI)
-	const logout = (): void => {
+	const logout = () => {
 		setLoading(true);
 		konvey(AUTH_SIGNOUT)
 			.then(() => setShowLinks(false))
@@ -97,69 +101,75 @@ function useAuth() {
 			});
 	};
 
-	const activate = (e: Event): void => {
-		e.preventDefault();
-		setLoading(true);
-		konvey(AUTH_USERACTIVATION, null, null, 'POST', {
-			userId: query?.get('id'),
-			token: query?.get('token'),
-		})
-			.catch(catchError)
-			.then((data) => {
-				setAlert({
-					display: true,
-					icon: <FaCheckCircle />,
-					msg: data.message,
-				});
-				forwardPage('/');
+	const activate = () => {
+		return (e: any) => {
+			e.preventDefault();
+			setLoading(true);
+			konvey(AUTH_USERACTIVATION, null, null, 'POST', {
+				userId: query?.get('id'),
+				token: query?.get('token'),
 			})
-			.finally(() => {
-				setLoading(false);
-			});
+				.catch(catchError)
+				.then((data) => {
+					setAlert({
+						display: true,
+						icon: <FaCheckCircle />,
+						msg: data.message,
+					});
+					forwardPage('/');
+				})
+				.finally(() => {
+					setLoading(false);
+				});
+		};
 	};
 
 	// schicke den Password Request mit useremail ab
-	const requestReset = (e: { preventDefault: () => void }): void => {
-		e.preventDefault();
-		setLoading(true);
-		konvey(API_REQUESTRESET, null, null, 'POST', {
-			email: userCredential.email,
-		})
-			.then((data) =>
-				setAlert({
-					display: true,
-					icon: <FaCheckCircle />,
-					msg: data.message,
-				})
-			)
-			.catch(catchError)
-			.finally(() => {
-				setUserCredential({ name: '', email: '', password: '' });
-				setLoading(false);
-			});
+	const requestReset = () => {
+		return (e: any) => {
+			e.preventDefault();
+			setLoading(true);
+			konvey(API_REQUESTRESET, null, null, 'POST', {
+				email: userCredential.email,
+			})
+				.then((data) =>
+					setAlert({
+						display: true,
+						icon: <FaCheckCircle />,
+						msg: data.message,
+					})
+				)
+				.catch(catchError)
+				.finally(() => {
+					setUserCredential({ name: '', email: '', password: '' });
+					setLoading(false);
+				});
+		};
 	};
 
-	const reset = (e: { preventDefault: () => void }): void => {
-		e.preventDefault();
-		setLoading(true);
-		konvey(API_RESETPASSWORD, null, null, 'POST', {
-			userId: query?.get('id'),
-			token: query?.get('token'),
-			password: userCredential.password,
-		})
-			.catch(catchError)
-			.then((data) => {
-				setAlert({
-					display: true,
-					icon: <FaCheckCircle />,
-					msg: data.message,
-				});
-				setUserCredential({ name: '', email: '', password: '' });
-				forwardPage('/');
+	const reset = () => {
+		return (e: any) => {
+			e.preventDefault();
+			setLoading(true);
+			konvey(API_RESETPASSWORD, null, null, 'POST', {
+				userId: query?.get('id'),
+				token: query?.get('token'),
+				password: userCredential.password,
 			})
-			.finally(() => {
-				setLoading(false);
-			});
+				.catch(catchError)
+				.then((data) => {
+					setAlert({
+						display: true,
+						icon: <FaCheckCircle />,
+						msg: data.message,
+					});
+					setUserCredential({ name: '', email: '', password: '' });
+					forwardPage('/');
+				})
+				.finally(() => {
+					setLoading(false);
+				});
+		};
 	};
 
 	return {

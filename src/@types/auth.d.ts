@@ -11,9 +11,9 @@ export interface LoginProps {
 export interface AuthState {
 	user: boolean;
 	userCredential: IUserCredential;
-	userId: string;
-	jwt: string;
-	userName: string;
+	userId: any;
+	jwt: any;
+	userName: any;
 	checkSigninInput: () => void;
 	login: () => (e: any) => void;
 	signup: () => (e: any) => void;

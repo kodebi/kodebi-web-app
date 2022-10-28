@@ -1,17 +1,19 @@
 import { AuthState } from './auth';
 
 export interface IBook {
-	_id: string;
+	_id?: string;
 	name: string;
 	author: string;
 	category: string;
 	language: string;
 	condition: string;
-	ownerId: string;
-	ownerName: string;
+	ownerId?: string;
+	ownerName?: string;
+	borrowerId?: string;
+	borrowerName?: string;
 	status: string;
 	description: string;
-	image: string;
+	image?: string;
 }
 
 export interface BookState {
@@ -36,4 +38,5 @@ export interface BookState {
 	deleteBook: () => void;
 	updateBookDetails: () => (e: any) => void;
 	changeBookDetails: () => (e: any) => void;
+	returnBook: (id?: string) => void;
 }

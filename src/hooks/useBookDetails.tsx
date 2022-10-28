@@ -28,7 +28,8 @@ const useBookDetails = () => {
 		description: '',
 		image: '',
 	});
-	const [showEditBook, setShowEditBook] = React.useState<boolean>(false);
+	const [showEditBook, setShowEditBook] =
+		React.useState<LayoutState['showEditBook']>(false);
 	const { id } = useParams<string>();
 	const { catchError } = useError();
 	const history = useNavigate();

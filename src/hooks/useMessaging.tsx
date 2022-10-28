@@ -13,7 +13,7 @@ const useMessaging = () => {
 	const [conversations, setConversations] = React.useState<
 		MessageState['conversations']
 	>([]);
-	const [chat, setChat] = React.useState<MessageState['chat']>(null);
+	const [chat, setChat] = React.useState<MessageState['chat']>();
 	const [selectedConversation, setSelectedConversation] =
 		React.useState<boolean>(false);
 	const [isMessageSent, setIsMessageSent] = React.useState<boolean>(false);

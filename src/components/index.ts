@@ -4,7 +4,6 @@ export * from './ChatWindow';
 export * from './Conversation';
 export * from './Conversations';
 export * from './EditBook';
-export * from './FooterLink';
 export * from './Form';
 export * from './ImageUploader';
 export * from './List';
