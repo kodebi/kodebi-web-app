@@ -7,7 +7,7 @@ import useBookUpload from '../../hooks/useBookUpload';
 import { Box, Button, Input, Dropdown } from '@kodebi/libkodebi-ui';
 import { LayoutState } from '../../@types/layout';
 
-export function UploadBook(): JSX.Element {
+export const UploadBook: React.FC = (): JSX.Element => {
 	const { loading, alert, closeSubmenu } = React.useContext(
 		LayoutContext
 	) as LayoutState;
@@ -95,13 +95,13 @@ export function UploadBook(): JSX.Element {
 						<Input
 							label
 							labelTag="Beschreibung"
-							id="desc"
-							name="desc"
+							id="description"
+							name="description"
 							textarea
 							rows={4}
 							placeholder="Kurze Beschreibung des Buches"
 							position="above"
-							value={newBook.desc}
+							value={newBook.description}
 							onChange={textChange}
 						/>
 						<Box variant="flex-col" padding="0" margin="1rem 0">
@@ -125,4 +125,4 @@ export function UploadBook(): JSX.Element {
 			</motion.main>
 		</>
 	);
-}
+};

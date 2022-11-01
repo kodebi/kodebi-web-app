@@ -13,6 +13,7 @@ import confetti from 'canvas-confetti';
 import useError from './useError';
 import { AuthState } from '../@types/auth';
 import { LayoutState } from '../@types/layout';
+import { BookState } from '../@types/books';
 
 const useBorrow = (
 	bookId?: string,
@@ -25,7 +26,11 @@ const useBorrow = (
 		LayoutContext
 	) as LayoutState;
 	const [confirm, setConfirm] = React.useState<boolean>(true);
-	const [lendingList, setLendingList] = React.useState({});
+	const [lendingList, setLendingList] = React.useState<
+		BookState['lendingList']
+	>({
+		books: [],
+	});
 	const [bookReturned, setBookReturned] = React.useState<boolean>(false);
 	const { catchError } = useError();
 
@@ -70,7 +75,7 @@ const useBorrow = (
 					msg: data?.message,
 				});
 			})
-			.then(() => setLendingList({}))
+			.then(() => setLendingList({ books: [] }))
 			.then(() => {
 				confetti({
 					particleCount: 100,

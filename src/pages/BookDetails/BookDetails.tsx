@@ -51,6 +51,7 @@ export const BookDetails: React.FC = (): JSX.Element => {
 					changeBookDetails={changeBookDetails}
 					updateBookDetails={updateBookDetails}
 					closeEditWindow={closeEditWindow}
+					showEditBook={showEditBook}
 				/>
 			) : null}
 			{loading ? <Loading2 /> : null}

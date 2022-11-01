@@ -10,7 +10,7 @@ export const OpenChat: React.FC = (): JSX.Element => {
 		chat: { recipients, _id, messages, book },
 		chatEnd,
 	} = React.useContext(MessageContext) as MessageState;
-	const requestingUser = messages && messages[0].senderName;
+	const requestingUser = messages && messages[0]?.senderName;
 	const borrowerId = recipients && recipients[0];
 	const { confirm, lendBook } = useBorrow(
 		book?.bookId,
@@ -22,14 +22,14 @@ export const OpenChat: React.FC = (): JSX.Element => {
 	return (
 		<>
 			<section className="chat">
-				{confirm && (
+				{confirm ? (
 					<MessageTopic
 						requestingUser={requestingUser}
 						bookName={book?.bookName}
 						lendBook={lendBook}
 					/>
-				)}
-				{messages?.map((message) => {
+				) : null}
+				{messages.map((message) => {
 					return <Message key={message._id} {...message} />;
 				})}
 				<div ref={chatEnd} />

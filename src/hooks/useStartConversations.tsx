@@ -7,7 +7,7 @@ import { AuthContext } from '../context/AuthContext';
 import useError from './useError';
 import { LayoutState } from '../@types/layout';
 import { AuthState } from '../@types/auth';
-import { MessageState } from '../@types/messages';
+import { IStartConv } from '../@types/messages';
 
 const useStartConversations = (
 	ownerId: string,
@@ -21,7 +21,7 @@ const useStartConversations = (
 	const [showMessageModal, setShowMessageModal] =
 		React.useState<boolean>(false);
 	const { userId, userName, jwt } = React.useContext(AuthContext) as AuthState;
-	const [newConv, setNewConv] = React.useState<MessageState['newConv']>({
+	const [newConv, setNewConv] = React.useState<IStartConv>({
 		senderId: '',
 		senderName: '',
 		recieverId: '',
@@ -38,18 +38,16 @@ const useStartConversations = (
 	};
 
 	// Input des Nachrichtenfensters
-	const msgModalInput = () => {
-		return (e: any) =>
-			setNewConv({
-				senderId: userId,
-				senderName: userName,
-				recieverId: ownerId,
-				recieverName: ownerName,
-				message: e.target.value,
-				bookId: bookId,
-				bookName: bookName,
-			});
-	};
+	const msgModalInput = (e: any) =>
+		setNewConv({
+			senderId: userId,
+			senderName: userName,
+			recieverId: ownerId,
+			recieverName: ownerName,
+			message: e.target.value,
+			bookId: bookId,
+			bookName: bookName,
+		});
 
 	// schließe Nachrichtenfenster
 	const closeMessageModal = (): void => {
@@ -57,33 +55,31 @@ const useStartConversations = (
 	};
 
 	// starte neue Konversation mit Buchnutzer
-	const startConv = () => {
-		return (e: any) => {
-			e.preventDefault();
-			setLoading(true);
-			konvey(API_MESSAGES, null, jwt, 'POST', newConv)
-				.then(() => setLoading(false))
-				.then(() => setShowMessageModal(false))
-				.catch(catchError)
-				.then(() =>
-					setAlert({
-						display: true,
-						icon: <FaCheckCircle />,
-						msg: 'Nachricht wurde erfolgreich verschickt',
-					})
-				)
-				.finally(() =>
-					setNewConv({
-						senderId: '',
-						senderName: '',
-						recieverId: '',
-						recieverName: '',
-						message: '',
-						bookId: '',
-						bookName: '',
-					})
-				);
-		};
+	const startConv = (e: any) => {
+		e.preventDefault();
+		setLoading(true);
+		konvey(API_MESSAGES, null, jwt, 'POST', newConv)
+			.then(() => setLoading(false))
+			.then(() => setShowMessageModal(false))
+			.catch(catchError)
+			.then(() =>
+				setAlert({
+					display: true,
+					icon: <FaCheckCircle />,
+					msg: 'Nachricht wurde erfolgreich verschickt',
+				})
+			)
+			.finally(() =>
+				setNewConv({
+					senderId: '',
+					senderName: '',
+					recieverId: '',
+					recieverName: '',
+					message: '',
+					bookId: '',
+					bookName: '',
+				})
+			);
 	};
 
 	return {

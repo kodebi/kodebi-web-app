@@ -25,9 +25,7 @@ const useDiscover = () => {
 	];
 
 	// verarbeite den Input des Suchfeldes
-	const handleSearch = () => {
-		return (e: any) => setSearch(e.target.value);
-	};
+	const handleSearch = (e: any) => setSearch(e.target.value);
 
 	const backToAll = () => {
 		setBooks(allBooks);
@@ -35,31 +33,25 @@ const useDiscover = () => {
 	};
 
 	// filtert Bücher anhand der Kategorien
-	const filterByCategory = () => {
-		return (e: any) => {
-			let filteredBooks = allBooks?.filter(
-				(book: IBook) => book.category === e.target.value
-			);
-			setBooks(filteredBooks);
-		};
+	const filterByCategory = (e: any) => {
+		let filteredBooks = allBooks?.filter(
+			(book: IBook) => book.category === e.target.value
+		);
+		setBooks(filteredBooks);
 	};
 
-	const filterByStatus = () => {
-		return (e: any) => {
-			let filteredBooks = allBooks?.filter(
-				(book: IBook) => book.status === e.target.value
-			);
-			setBooks(filteredBooks);
-		};
+	const filterByStatus = (e: any) => {
+		let filteredBooks = allBooks?.filter(
+			(book: IBook) => book.status === e.target.value
+		);
+		setBooks(filteredBooks);
 	};
 
-	const filterByLanguage = () => {
-		return (e: any) => {
-			let filteredBooks = allBooks?.filter(
-				(book) => book.language === e.target.value
-			);
-			setBooks(filteredBooks);
-		};
+	const filterByLanguage = (e: any) => {
+		let filteredBooks = allBooks?.filter(
+			(book) => book.language === e.target.value
+		);
+		setBooks(filteredBooks);
 	};
 
 	React.useEffect(() => {

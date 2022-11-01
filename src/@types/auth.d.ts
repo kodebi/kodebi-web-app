@@ -14,11 +14,11 @@ export interface AuthState {
 	userId: any;
 	jwt: any;
 	userName: any;
-	checkSigninInput: () => void;
-	login: () => (e: any) => void;
-	signup: () => (e: any) => void;
+	checkSigninInput: (e: any) => void;
+	login: (e: any) => void;
+	signup: (e: any) => void;
 	logout: () => void;
-	activate: () => (e: any) => void;
-	reset: () => (e: any) => void;
-	requestReset: () => (e: any) => void;
+	activate: (e: any) => void;
+	reset: (e: any) => void;
+	requestReset: (e: any) => void;
 }

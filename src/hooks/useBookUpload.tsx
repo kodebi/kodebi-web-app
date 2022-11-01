@@ -14,11 +14,14 @@ function useBookUpload() {
 	) as LayoutState;
 	const { userId, userName, jwt } = React.useContext(AuthContext) as AuthState;
 	const [newBook, setNewBook] = React.useState<BookState['book']>({
+		_id: '',
 		name: '',
 		author: '',
 		category: genres[0],
 		language: languages[0],
 		condition: conditions[0],
+		ownerId: userId,
+		ownerName: userName,
 		status: status[0],
 		description: '',
 	});
@@ -61,11 +64,14 @@ function useBookUpload() {
 			});
 		} finally {
 			setNewBook({
+				_id: '',
 				name: '',
 				author: '',
 				category: genres[0],
 				language: languages[0],
 				condition: conditions[0],
+				ownerId: userId,
+				ownerName: userName,
 				status: status[0],
 				description: '',
 			});
@@ -74,56 +80,51 @@ function useBookUpload() {
 	};
 
 	// Buch hochladen
-	const startUpload = () => {
-		return (e: any) => {
-			e.preventDefault();
-			if (
-				bookImage &&
-				newBook.name &&
-				newBook.author &&
-				newBook.category &&
-				newBook.language &&
-				newBook.condition &&
-				newBook.status &&
-				newBook.description
-			) {
-				const bookData = new FormData();
-				bookData.append('bookImage', bookImage);
-				bookData.append('name', newBook.name);
-				bookData.append('author', newBook.author);
-				bookData.append('category', newBook.category);
-				bookData.append('language', newBook.language);
-				bookData.append('condition', newBook.condition);
-				bookData.append('ownerId', userId);
-				bookData.append('ownerName', userName);
-				bookData.append('status', newBook.status);
-				bookData.append('description', newBook.description);
-				bookUpload(API_BOOK, jwt, bookData);
-			} else {
-				setAlert({
-					display: true,
-					icon: <FaFlushed />,
-					msg: 'Halt, da fehlen paar Felder!',
-				});
-			}
-		};
+	const startUpload = (e: any) => {
+		e.preventDefault();
+		if (
+			bookImage &&
+			newBook.name &&
+			newBook.author &&
+			newBook.category &&
+			newBook.language &&
+			newBook.condition &&
+			newBook.status &&
+			newBook.description
+		) {
+			const bookData = new FormData();
+			bookData.append('bookImage', bookImage);
+			bookData.append('name', newBook.name);
+			bookData.append('author', newBook.author);
+			bookData.append('category', newBook.category);
+			bookData.append('language', newBook.language);
+			bookData.append('condition', newBook.condition);
+			bookData.append('ownerId', userId);
+			bookData.append('ownerName', userName);
+			bookData.append('status', newBook.status);
+			bookData.append('description', newBook.description);
+			bookUpload(API_BOOK, jwt, bookData);
+		} else {
+			setAlert({
+				display: true,
+				icon: <FaFlushed />,
+				msg: 'Halt, da fehlen paar Felder!',
+			});
+		}
 	};
 
 	// Textfeldeingabe
-	const textChange = () => {
-		return (e: any) =>
-			setNewBook({ ...newBook, [e.target.name]: e.target.value });
-	};
+	const textChange = (e: any) =>
+		setNewBook({ ...newBook, [e.target.name]: e.target.value });
 
 	// Bilddatei hinzufügen
-	const imageChange = () => {
-		return (e: any) => setBookImage(e.target.files[0]);
-	};
+	const imageChange = (e: any) => setBookImage(e.target.files[0]);
 
 	// resette die komplette Eingabe
 	const resetInput = () => {
 		setBookImage(null);
 		setNewBook({
+			_id: '',
 			name: '',
 			author: '',
 			category: genres[0],

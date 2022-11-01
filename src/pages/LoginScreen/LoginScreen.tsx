@@ -11,7 +11,7 @@ import { LayoutContext } from '../../context/LayoutContext';
 import { motion } from 'framer-motion';
 import { LayoutState } from '../../@types/layout';
 
-export function LoginScreen(): JSX.Element {
+export const LoginScreen: React.FC = (): JSX.Element => {
 	const { alert, loading, isTabLeft } = React.useContext(
 		LayoutContext
 	) as LayoutState;
@@ -65,4 +65,4 @@ export function LoginScreen(): JSX.Element {
 			</>
 		);
 	}
-}
+};

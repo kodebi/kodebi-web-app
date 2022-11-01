@@ -35,33 +35,29 @@ const useNavInteraction = () => {
 	}, [location]);
 
 	// toggle Navbar in mobiler Ansicht
-	const toggleNavbar = () => {
+	const toggleNavbar = (): void => {
 		setShowLinks(!showLinks);
 	};
 
 	// öffne das Usermenu rechts oben
-	const openSubmenu = (coordinates: any) => {
+	const openSubmenu = (coordinates: any): void => {
 		setLocation(coordinates);
 		setIsSubmenuOpen(true);
 	};
 
 	// schliesse das Usermenu unabhängig davon wo der User hinklickt (außerhalb des Usermenus)
-	const hideSubmenu = () => {
-		return (e: any) => {
-			if (!e.target.classList.contains('helper')) {
-				closeSubmenu();
-			}
-		};
+	const hideSubmenu = (e: any): void => {
+		if (!e.target.classList.contains('helper')) {
+			closeSubmenu();
+		}
 	};
 
 	// bestimme die Position des Submenus
-	const showUserSubmenu = () => {
-		return (e: any) => {
-			const divSize = e.currentTarget.getBoundingClientRect();
-			const divCenter = (divSize.left + divSize.right) / 2;
-			const divBottom = divSize.bottom - 3;
-			openSubmenu({ divCenter, divBottom });
-		};
+	const showUserSubmenu = (e: any): void => {
+		const divSize = e.currentTarget.getBoundingClientRect();
+		const divCenter = (divSize.left + divSize.right) / 2;
+		const divBottom = divSize.bottom - 3;
+		openSubmenu({ divCenter, divBottom });
 	};
 
 	return {

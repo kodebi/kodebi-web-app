@@ -4,10 +4,12 @@ import { AuthContext } from '../../context/AuthContext';
 import { Alert, Loading2 } from '../../components';
 import { Form } from '../../components/Form';
 import { Box, Button } from '@kodebi/libkodebi-ui';
+import { LayoutState } from '../../@types/layout';
+import { AuthState } from '../../@types/auth';
 
 export const Activate = () => {
-	const { alert, loading } = React.useContext(LayoutContext);
-	const { activate } = React.useContext(AuthContext);
+	const { alert, loading } = React.useContext(LayoutContext) as LayoutState;
+	const { activate } = React.useContext(AuthContext) as AuthState;
 
 	return (
 		<>

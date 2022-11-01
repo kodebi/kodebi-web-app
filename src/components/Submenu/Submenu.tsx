@@ -5,7 +5,7 @@ import { LayoutState } from '../../@types/layout';
 import { LayoutContext } from '../../context/LayoutContext';
 
 interface SubmenuProps {
-	container: LayoutState['container'];
+	container: React.RefObject<HTMLUListElement>;
 	logout: AuthState['logout'];
 }
 

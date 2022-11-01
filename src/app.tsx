@@ -7,7 +7,7 @@ import { Loading } from './components';
 const UnauthenticatedApp = React.lazy(() => import('./unauthenticated-app'));
 const AuthenticatedApp = React.lazy(() => import('./authenticated-app'));
 
-export function App() {
+export const App: React.FC = (): JSX.Element => {
 	const { user } = React.useContext(AuthContext) as AuthState;
 	return (
 		<>
@@ -16,4 +16,4 @@ export function App() {
 			</React.Suspense>
 		</>
 	);
-}
+};

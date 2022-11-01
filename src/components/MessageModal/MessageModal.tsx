@@ -3,14 +3,14 @@ import { Form } from '../Form';
 import { ModalWrapper } from '../ModalWrapper';
 import { motion } from 'framer-motion';
 import { Button, Input } from '@kodebi/libkodebi-ui';
-import { MessageState } from '../../@types/messages';
+import { IStartConv, MessageState } from '../../@types/messages';
 
 interface MessageModalProps {
-	showMessageModal: MessageState['showMessageModal'];
-	newConv: MessageState['newConv'];
-	msgModalInput: MessageState['msgModalInput'];
-	startConv: MessageState['startConv'];
-	closeMessageModal: MessageState['closeMessageModal'];
+	showMessageModal: boolean;
+	newConv: IStartConv;
+	msgModalInput: (e: any) => void;
+	startConv: (e: any) => void;
+	closeMessageModal: () => void;
 }
 
 export const MessageModal: React.FC<MessageModalProps> = ({

@@ -3,7 +3,7 @@ import { FaFileImage } from 'react-icons/fa';
 
 interface ImageUploaderProps {
 	bookImage: any;
-	imageChange: () => void;
+	imageChange: (e?: any) => void;
 }
 
 export const ImageUploader: React.FC<ImageUploaderProps> = ({

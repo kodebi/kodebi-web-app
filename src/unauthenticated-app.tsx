@@ -7,7 +7,7 @@ import LoginScreen from './pages/LoginScreen';
 const Activate = React.lazy(() => import('./pages/Activate'));
 const Reset = React.lazy(() => import('./pages/Reset'));
 
-function UnauthApp() {
+function UnauthApp(): JSX.Element {
 	return (
 		<>
 			<React.Suspense fallback={<Loading />}>

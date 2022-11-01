@@ -1,11 +1,9 @@
 import * as React from 'react';
-import { LayoutState } from '../../@types/layout';
-import { MessageState } from '../../@types/messages';
 
 interface ModalWrapperProps {
-	showEditBook?: LayoutState['showEditBook'];
-	showMessageModal?: MessageState['showMessageModal'];
-	onClick?: () => void;
+	showEditBook?: boolean;
+	showMessageModal?: boolean;
+	onClick?: (e?: any) => void;
 	children?: React.ReactNode;
 }
 

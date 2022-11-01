@@ -20,7 +20,7 @@
 	"homepage": "https://app.kodebi.de",
 	"dependencies": {
 		"@babel/runtime": "^7.16.3",
-		"@kodebi/libkodebi-ui": "^1.1.9",
+		"@kodebi/libkodebi-ui": "^1.2.0",
 		"canvas-confetti": "^1.5.1",
 		"framer-motion": "^5.4.5",
 		"react": "^18.2.0",

@@ -6,7 +6,7 @@ import { App } from './app';
 import { LayoutProvider } from './context/LayoutContext';
 import { AuthProvider } from './context/AuthContext';
 
-const app = document.getElementById('root');
+const app = document.getElementById('root') as HTMLElement;
 const root = createRoot(app);
 
 root.render(

@@ -13,7 +13,19 @@ const useMessaging = () => {
 	const [conversations, setConversations] = React.useState<
 		MessageState['conversations']
 	>([]);
-	const [chat, setChat] = React.useState<MessageState['chat']>();
+	const [chat, setChat] = React.useState<MessageState['chat']>({
+		_id: '',
+		messages: [],
+		recipients: [],
+		book: {
+			bookId: '',
+			bookName: '',
+			borrowed: false,
+		},
+		createdAt: '',
+		updatedAt: '',
+		readAt: '',
+	});
 	const [selectedConversation, setSelectedConversation] =
 		React.useState<boolean>(false);
 	const [isMessageSent, setIsMessageSent] = React.useState<boolean>(false);
@@ -96,22 +108,18 @@ const useMessaging = () => {
 	}, [isMessageSent, getChatOfConv, jwt, userId, userName]);
 
 	// rufe eine Konversation und die dazugehörigen Nachrichten auf
-	const openConversation = () => {
-		return (e: any) => {
-			setSelectedConversation(true);
-			localStorage.setItem('convId', e.currentTarget.id);
-			getChatOfConv(API_MESSAGES, e.currentTarget.id, jwt, userId, userName);
-		};
+	const openConversation = (e: any) => {
+		setSelectedConversation(true);
+		localStorage.setItem('convId', e.currentTarget.id);
+		getChatOfConv(API_MESSAGES, e.currentTarget.id, jwt, userId, userName);
 	};
 
 	// Nachrichteneingabe
-	const handleMessage = () => {
-		return (e: any) =>
-			setNewMessage({ ...newMessage, [e.target.name]: e.target.value });
-	};
+	const handleMessage = (e: any) =>
+		setNewMessage({ ...newMessage, [e.target.name]: e.target.value });
 
 	// schicke die Nachricht ab
-	const sendMessage = () => {
+	const sendMessage = (e: any) => {
 		if (!selectedConversation) {
 			setAlert({
 				display: true,
@@ -120,22 +128,20 @@ const useMessaging = () => {
 			});
 			return;
 		}
-		return (e: any) => {
-			e.preventDefault();
-			konvey(API_MESSAGES, chat?._id, jwt, 'POST', newMessage)
-				.catch(catchError)
-				.finally(() => {
-					setLoading(false);
-					setNewMessage({
-						senderId: '',
-						senderName: '',
-						recieverId: '',
-						recieverName: '',
-						message: '',
-					});
-					setIsMessageSent(true);
+		e.preventDefault();
+		konvey(API_MESSAGES, chat?._id, jwt, 'POST', newMessage)
+			.catch(catchError)
+			.finally(() => {
+				setLoading(false);
+				setNewMessage({
+					senderId: '',
+					senderName: '',
+					recieverId: '',
+					recieverName: '',
+					message: '',
 				});
-		};
+				setIsMessageSent(true);
+			});
 	};
 
 	return {

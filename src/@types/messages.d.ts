@@ -37,16 +37,11 @@ export interface MessageState {
 	conversations: IConversation[];
 	chat: IConversation;
 	newMessage: IMessage;
-	newConv: IStartConv;
 	selectedConversation: boolean;
 	isMessageSent: boolean;
 	chatEnd: React.MutableRefObject<null | HTMLDivElement>;
-	showMessageModal: boolean;
-	openConversation: () => (e: any) => void;
-	handleMessage: () => (e: any) => void;
+	openConversation: (e: any) => void;
+	handleMessage: (e: any) => void;
 	scrollToBottom: () => void;
-	sendMessage: () => (e: any) => void;
-	msgModalInput: () => (e: any) => void;
-	startConv: () => (e: any) => void;
-	closeMessageModal: () => void;
+	sendMessage: (e: any) => void | undefined;
 }

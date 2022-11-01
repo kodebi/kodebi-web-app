@@ -28,29 +28,26 @@ const useBookDetails = () => {
 		description: '',
 		image: '',
 	});
-	const [showEditBook, setShowEditBook] =
-		React.useState<LayoutState['showEditBook']>(false);
+	const [showEditBook, setShowEditBook] = React.useState<boolean>(false);
 	const { id } = useParams<string>();
 	const { catchError } = useError();
 	const history = useNavigate();
 
 	// update book details
-	const updateBookDetails = () => {
-		return (e: any) => {
-			e.preventDefault();
-			setLoading(true);
-			konvey(API_BOOK, id, jwt, 'PUT', book)
-				.then(() => setLoading(false))
-				.then(() => setShowEditBook(false))
-				.then(() =>
-					setAlert({
-						display: true,
-						icon: <FaCheckCircle />,
-						msg: 'Du hast die Buchinfo erfolgreich geändert!',
-					})
-				)
-				.catch(catchError);
-		};
+	const updateBookDetails = (e: any) => {
+		e.preventDefault();
+		setLoading(true);
+		konvey(API_BOOK, id, jwt, 'PUT', book)
+			.then(() => setLoading(false))
+			.then(() => setShowEditBook(false))
+			.then(() =>
+				setAlert({
+					display: true,
+					icon: <FaCheckCircle />,
+					msg: 'Du hast die Buchinfo erfolgreich geändert!',
+				})
+			)
+			.catch(catchError);
 	};
 
 	const deleteBook = () => {
@@ -79,9 +76,8 @@ const useBookDetails = () => {
 	};
 
 	// Textfeldeingabe
-	const changeBookDetails = () => {
-		return (e: any) => setBook({ ...book, [e.target.name]: e.target.value });
-	};
+	const changeBookDetails = (e: any) =>
+		setBook({ ...book, [e.target.name]: e.target.value });
 
 	// öffne Buch
 	React.useEffect(() => {

@@ -16,10 +16,5 @@ export interface LayoutState {
 	setIsSubmenuOpen: React.Dispatch<React.SetStateAction<boolean>>;
 	showLinks: boolean;
 	setShowLinks: React.Dispatch<React.SetStateAction<boolean>>;
-	openEditWindow: () => void;
-	closeEditWindow: () => void;
-	showEditBook: boolean;
 	hideLinks: () => void;
-	showUserSubmenu: () => void;
-	container: React.RefObject<HTMLUListElement>;
 }

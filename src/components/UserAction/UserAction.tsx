@@ -46,7 +46,7 @@ export const UserAction: React.FC<UserActionProps> = ({
 						<p>Dieses Buch ist:</p>
 						<h4>{book?.status}</h4>
 					</Box>
-					{status === 'Bereit zum Verleihen' && (
+					{book?.status === 'Bereit zum Verleihen' ? (
 						<>
 							<hr className="separation-line" />
 							<Box variant="flex-col-start" padding="0.75rem 0">
@@ -79,7 +79,7 @@ export const UserAction: React.FC<UserActionProps> = ({
 								)}
 							</Box>
 						</>
-					)}
+					) : null}
 				</Box>
 			</Card>
 		</>
