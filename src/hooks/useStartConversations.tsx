@@ -8,6 +8,7 @@ import useError from './useError';
 import { LayoutState } from '../@types/layout';
 import { AuthState } from '../@types/auth';
 import { IStartConv } from '../@types/messages';
+import { noScroll } from '../helpers/noScroll';
 
 const useStartConversations = (
 	ownerId: string,
@@ -81,6 +82,10 @@ const useStartConversations = (
 				})
 			);
 	};
+
+	React.useEffect(() => {
+		noScroll();
+	}, [showMessageModal]);
 
 	return {
 		state: { newConv, showMessageModal },

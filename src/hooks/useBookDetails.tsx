@@ -9,6 +9,7 @@ import useError from './useError';
 import { LayoutState } from '../@types/layout';
 import { AuthState } from '../@types/auth';
 import { BookState } from '../@types/books';
+import { noScroll } from '../helpers/noScroll';
 
 const useBookDetails = () => {
 	const { setAlert, setLoading } = React.useContext(
@@ -87,6 +88,10 @@ const useBookDetails = () => {
 			.then(() => setLoading(false));
 		return () => setLoading(false);
 	}, []);
+
+	React.useEffect(() => {
+		noScroll();
+	}, [showEditBook]);
 
 	return {
 		state: { book, showEditBook },

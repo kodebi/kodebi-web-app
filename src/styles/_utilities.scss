@@ -51,6 +51,10 @@
 	align-items: center;
 }
 
+.no-scroll {
+	overflow: hidden;
+}
+
 .separation-line {
 	border: 1px solid $bckgrnd-clr-2;
 	width: 100%;
