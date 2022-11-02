@@ -13,8 +13,8 @@ export const ChatWindow: React.FC = () => {
 	return (
 		<>
 			<aside className="chat-window">
-				{selectedConversation && <OpenChat />}
-				{selectedConversation && (
+				{selectedConversation ? <OpenChat /> : null}
+				{selectedConversation ? (
 					<Form className="input-message" onSubmit={sendMessage}>
 						<Input
 							textarea
@@ -30,7 +30,7 @@ export const ChatWindow: React.FC = () => {
 							</IconWrapper>
 						</Button>
 					</Form>
-				)}
+				) : null}
 			</aside>
 		</>
 	);
