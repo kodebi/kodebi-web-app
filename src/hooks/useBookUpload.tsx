@@ -52,7 +52,6 @@ function useBookUpload() {
         throw new Error("Hoppala, da ist was schief gegangen");
       }
     } catch (error) {
-      console.log("Hochladen fehlgeschlagen", error);
       setLoading(false);
       setAlert({
         display: true,
@@ -77,7 +76,7 @@ function useBookUpload() {
   };
 
   // Buch hochladen
-  const startUpload = (e: any) => {
+  const startUpload = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     if (
       bookImage &&
@@ -111,13 +110,17 @@ function useBookUpload() {
   };
 
   // Textfeldeingabe
-  const textChange = (e: any) => setNewBook({ ...newBook, [e.target.name]: e.target.value });
+  const textChange = (e: React.ChangeEvent<HTMLInputElement>): void =>
+    setNewBook({ ...newBook, [e.target.name]: e.target.value });
 
   // Bilddatei hinzufügen
-  const imageChange = (e: any) => setBookImage(e.target.files[0]);
+  const imageChange = (e: React.ChangeEvent<HTMLInputElement>): void => {
+    if (!e.target.files) return;
+    setBookImage(e.target.files[0]);
+  };
 
   // resette die komplette Eingabe
-  const resetInput = () => {
+  const resetInput = (): void => {
     setBookImage(null);
     setNewBook({
       _id: "",

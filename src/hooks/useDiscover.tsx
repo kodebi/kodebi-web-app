@@ -1,11 +1,12 @@
 import * as React from "react";
+
 import { LayoutContext } from "../context/LayoutContext";
 import { konvey } from "../helpers/konvey";
 import { API_BOOKS } from "../config/config";
 import { LayoutState } from "../@types/layout";
 import { BookState, IBook } from "../@types/books";
 
-const useDiscover = () => {
+function useDiscover() {
   const { setLoading } = React.useContext(LayoutContext) as LayoutState;
   const [allBooks, setAllBooks] = React.useState<BookState["allBooks"]>([]);
   const [books, setBooks] = React.useState<BookState["books"]>([]);
@@ -21,25 +22,25 @@ const useDiscover = () => {
   const lenguajes = [...new Set(allBooks?.map((book: IBook): any => book.language))];
 
   // verarbeite den Input des Suchfeldes
-  const handleSearch = (e: any) => setSearch(e.target.value);
+  const handleSearch: BookState["handleSearch"] = (e) => setSearch(e.target.value);
 
-  const backToAll = () => {
+  const backToAll: BookState["backToAll"] = () => {
     setBooks(allBooks);
     setSearch("");
   };
 
   // filtert Bücher anhand der Kategorien
-  const filterByCategory = (e: any) => {
+  const filterByCategory: BookState["filterByCategory"] = (e) => {
     const filteredBooks = allBooks?.filter((book: IBook) => book.category === e.target.value);
     setBooks(filteredBooks);
   };
 
-  const filterByStatus = (e: any) => {
+  const filterByStatus: BookState["filterByStatus"] = (e) => {
     const filteredBooks = allBooks?.filter((book: IBook) => book.status === e.target.value);
     setBooks(filteredBooks);
   };
 
-  const filterByLanguage = (e: any) => {
+  const filterByLanguage: BookState["filterByLanguage"] = (e) => {
     const filteredBooks = allBooks?.filter((book) => book.language === e.target.value);
     setBooks(filteredBooks);
   };
@@ -57,7 +58,7 @@ const useDiscover = () => {
       mounted = false;
       setLoading(false);
     };
-  }, []);
+  }, [setLoading]);
 
   // filter Bücher nach Suche
   React.useEffect(() => {
@@ -80,6 +81,6 @@ const useDiscover = () => {
     },
     sets: { categories, status, lenguajes },
   };
-};
+}
 
 export default useDiscover;

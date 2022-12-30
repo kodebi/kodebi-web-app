@@ -34,7 +34,7 @@ function useBookDetails() {
   const history = useNavigate();
 
   // update book details
-  const updateBookDetails = (e: React.MouseEvent<HTMLButtonElement>): void => {
+  const updateBookDetails: BookState["updateBookDetails"] = (e): void => {
     e.preventDefault();
     setLoading(true);
     konvey(API_BOOK, id, jwt, "PUT", book)
@@ -50,7 +50,7 @@ function useBookDetails() {
       .catch(catchError);
   };
 
-  const deleteBook = (): void => {
+  const deleteBook: BookState["deleteBook"] = (): void => {
     setLoading(true);
     konvey(API_BOOK, id, jwt, "DELETE")
       .then(() => setLoading(false))
@@ -76,7 +76,7 @@ function useBookDetails() {
   };
 
   // Textfeldeingabe
-  const changeBookDetails = (e: React.ChangeEvent<HTMLInputElement>): void =>
+  const changeBookDetails: BookState["changeBookDetails"] = (e): void =>
     setBook({ ...book, [e.target.name]: e.target.value });
 
   // öffne Buch
@@ -86,7 +86,7 @@ function useBookDetails() {
       .then(setBook)
       .then(() => setLoading(false));
     return () => setLoading(false);
-  }, []);
+  }, [id, jwt, setLoading]);
 
   React.useEffect(() => {
     noScroll();
