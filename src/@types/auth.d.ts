@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface IUserCredential {
   name: string;
   email: string;
@@ -14,11 +16,11 @@ export interface AuthState {
   userId: any;
   jwt: any;
   userName: any;
-  checkSigninInput: (e: any) => void;
-  login: (e: any) => void;
-  signup: (e: any) => void;
+  checkSigninInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  login: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  signup: (e: React.MouseEvent<HTMLButtonElement>) => void;
   logout: () => void;
-  activate: (e: any) => void;
-  reset: (e: any) => void;
-  requestReset: (e: any) => void;
+  activate: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  reset: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  requestReset: (e: React.MouseEvent<HTMLButtonElement>) => void;
 }

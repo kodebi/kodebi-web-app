@@ -17,11 +17,12 @@ import {
   API_USERS,
 } from "../config/config";
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 function useAuth() {
   const userName = localStorage.getItem("name");
   const userId = localStorage.getItem("id");
   const jwt = localStorage.getItem("token");
-  const [user, setUser] = React.useState<boolean>(jwt ? true : false);
+  const [user, setUser] = React.useState<AuthState["user"]>(jwt ? true : false);
   const [userCredential, setUserCredential] = React.useState<AuthState["userCredential"]>({
     name: "",
     email: "",
@@ -36,7 +37,7 @@ function useAuth() {
   const query = getUrlParams(search);
 
   // POST registriere neuen User im Backend / logge User ein (Backend)
-  const login = (e: React.MouseEvent<HTMLButtonElement>): void => {
+  const login: AuthState["login"] = (e): void => {
     e.preventDefault();
     setLoading(true);
     konvey(AUTH_SIGNIN, null, null, "POST", userCredential)
@@ -54,7 +55,7 @@ function useAuth() {
       });
   };
 
-  const signup = (e: React.MouseEvent<HTMLButtonElement>): void => {
+  const signup: AuthState["signup"] = (e): void => {
     e.preventDefault();
     setLoading(true);
     konvey(API_USERS, null, null, "POST", userCredential)
@@ -74,7 +75,7 @@ function useAuth() {
   };
 
   // logge den User aus (UI)
-  const logout = (): void => {
+  const logout: AuthState["logout"] = (): void => {
     setLoading(true);
     konvey(AUTH_SIGNOUT)
       .then(() => setShowLinks(false))
@@ -88,13 +89,13 @@ function useAuth() {
   };
 
   // verarbeite die Eingabe des Users
-  const checkSigninInput = (e: React.ChangeEvent<HTMLInputElement>): void =>
+  const checkSigninInput: AuthState["checkSigninInput"] = (e): void =>
     setUserCredential({
       ...userCredential,
       [e.target.name]: e.target.value,
     });
 
-  const activate = (e: React.MouseEvent<HTMLButtonElement>): void => {
+  const activate: AuthState["activate"] = (e): void => {
     e.preventDefault();
     setLoading(true);
     konvey(AUTH_USERACTIVATION, null, null, "POST", {
@@ -116,7 +117,7 @@ function useAuth() {
   };
 
   // schicke den Password Request mit useremail ab
-  const requestReset = (e: React.MouseEvent<HTMLButtonElement>): void => {
+  const requestReset: AuthState["requestReset"] = (e): void => {
     e.preventDefault();
     setLoading(true);
     konvey(API_REQUESTRESET, null, null, "POST", {
@@ -136,7 +137,7 @@ function useAuth() {
       });
   };
 
-  const reset = (e: React.MouseEvent<HTMLButtonElement>): void => {
+  const reset: AuthState["reset"] = (e): void => {
     e.preventDefault();
     setLoading(true);
     konvey(API_RESETPASSWORD, null, null, "POST", {

@@ -84,12 +84,14 @@ export const BookDetails: React.FC = (): JSX.Element => {
               <p>{book?.description}</p>
             </div>
           </section>
-          <UserAction
-            book={book}
-            deleteBook={deleteBook}
-            openEditWindow={openEditWindow}
-            messageUser={messageUser}
-          />
+          <div className="sticky-wrapper">
+            <UserAction
+              book={book}
+              deleteBook={deleteBook}
+              openEditWindow={openEditWindow}
+              messageUser={messageUser}
+            />
+          </div>
         </article>
         {alert.display ? <Alert /> : null}
       </motion.main>
