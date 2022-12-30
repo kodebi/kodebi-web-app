@@ -1,26 +1,26 @@
 /* Search Bar */
 .search-bar {
-	display: flex;
-	justify-content: center;
-	padding: 1rem 0.05rem;
-	width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0.05rem;
+    width: 100%;
 
-	.search-form {
-		padding: 0.75rem;
-		border: 1px solid $brnd-clr;
-		border-radius: $brdr-rds-3;
-		box-shadow: $mn-shdw;
-	}
+    .search-form {
+        padding: 0.75rem;
+        border: 1px solid $brnd-clr;
+        border-radius: $brdr-rds-3;
+        box-shadow: $mn-shdw;
+    }
 }
 
 @media (min-width: 800px) {
-	.search-bar {
-		width: auto;
-		padding: 1rem;
+    .search-bar {
+        width: auto;
+        padding: 1rem;
 
-		.search-form {
-			width: 40vw;
-			padding: 1rem;
-		}
-	}
+        .search-form {
+            width: 40vw;
+            padding: 1rem;
+        }
+    }
 }

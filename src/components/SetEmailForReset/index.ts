@@ -1,1 +1,1 @@
-export * from './SetEmailForReset'
+export * from "./SetEmailForReset";

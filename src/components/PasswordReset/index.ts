@@ -1,1 +1,1 @@
-export * from './PasswordReset'
+export * from "./PasswordReset";

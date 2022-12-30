@@ -1,1 +1,1 @@
-export * from './Submenu'
+export * from "./Submenu";

@@ -1,21 +1,21 @@
 .user-bar {
-  display: inline-flex;
-  z-index: 2;
-  border: none;
-  background-color: transparent;
-  transition: $trnstn;
-  margin-left: 0.5rem;
-  color: $brnd-clr;
-  transform: perspective(1px) translateZ(0);
-  border-radius: $brdr-rds-3;
+    display: inline-flex;
+    z-index: 2;
+    border: none;
+    background-color: transparent;
+    transition: $trnstn;
+    margin-left: 0.5rem;
+    color: $brnd-clr;
+    transform: perspective(1px) translateZ(0);
+    border-radius: $brdr-rds-3;
 
-  &:hover {
-    animation: buzz-up 3s 75ms;
-  }
+    &:hover {
+        animation: buzz-up 3s 75ms;
+    }
 }
 
 @media (min-width: 800px) {
-  .user-bar {
-    margin-left: 2rem;
-  }
+    .user-bar {
+        margin-left: 2rem;
+    }
 }

@@ -1,138 +1,138 @@
 .message-container {
-  max-width: $mx-wdth;
-  -moz-max-wdth: $mx-wdth;
-  display: grid;
-  width: 100%;
-  grid-template-columns: 1fr 2fr;
-  -moz-grid-template-columns: 1fr 2fr;
-  height: calc(100vh - 24vh);
-  border-top: 1px solid $bckgrnd-clr-2;
-  border-bottom: 1px solid $bckgrnd-clr-2;
+    max-width: $mx-wdth;
+    -moz-max-wdth: $mx-wdth;
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 2fr;
+    -moz-grid-template-columns: 1fr 2fr;
+    height: calc(100vh - 24vh);
+    border-top: 1px solid $bckgrnd-clr-2;
+    border-bottom: 1px solid $bckgrnd-clr-2;
 }
 
 .conversations {
-  @include flex-column;
-  overflow: auto;
+    @include flex-column;
+    overflow: auto;
 }
 
 .conversation {
-  display: grid;
-  grid-template-columns: 25% 75%;
-  border: none;
-  border-bottom: 1px solid $bckgrnd-clr-2;
-  color: $fnt-clr;
-  background-color: $bckgrnd-clr;
-  padding: 0.25rem;
-  cursor: pointer;
-  transition: $trnstn;
-
-  &:last-child {
+    display: grid;
+    grid-template-columns: 25% 75%;
     border: none;
-  }
+    border-bottom: 1px solid $bckgrnd-clr-2;
+    color: $fnt-clr;
+    background-color: $bckgrnd-clr;
+    padding: 0.25rem;
+    cursor: pointer;
+    transition: $trnstn;
 
-  &:hover {
-    background-color: $brnd-clr;
-    border-color: $brnd-clr;
-    color: $bckgrnd-clr;
-  }
+    &:last-child {
+        border: none;
+    }
+
+    &:hover {
+        background-color: $brnd-clr;
+        border-color: $brnd-clr;
+        color: $bckgrnd-clr;
+    }
 }
 
 .glimpse-message {
-  margin-left: 0.1rem;
-  text-align: left;
-  padding: 0.25rem;
+    margin-left: 0.1rem;
+    text-align: left;
+    padding: 0.25rem;
 
-  h4 {
-    margin: 0;
-  }
+    h4 {
+        margin: 0;
+    }
 
-  p {
-    margin-bottom: 0;
-  }
+    p {
+        margin-bottom: 0;
+    }
 }
 
 .chat-window {
-  @include flex-column;
-  justify-content: space-between;
-  overflow: hidden;
-  border-left: 1px solid $bckgrnd-clr-2;
-  overscroll-behavior: none;
+    @include flex-column;
+    justify-content: space-between;
+    overflow: hidden;
+    border-left: 1px solid $bckgrnd-clr-2;
+    overscroll-behavior: none;
 
-  .chat {
-    overflow: auto;
-    position: relative;
-  }
+    .chat {
+        overflow: auto;
+        position: relative;
+    }
 }
 
 .message {
-  padding: 0.5rem 0.75rem;
+    padding: 0.5rem 0.75rem;
 
-  .message-header {
-    margin-bottom: 0.25rem;
-    display: flex;
-    flex-direction: column;
+    .message-header {
+        margin-bottom: 0.25rem;
+        display: flex;
+        flex-direction: column;
 
-    h4 {
-      display: flex;
+        h4 {
+            display: flex;
+        }
     }
-  }
 
-  .message-body {
-    display: inline-block;
-  }
+    .message-body {
+        display: inline-block;
+    }
 }
 
 .input-message {
-  display: flex;
-  padding: 0.5rem;
-  border-top: 1px solid $bckgrnd-clr-2;
+    display: flex;
+    padding: 0.5rem;
+    border-top: 1px solid $bckgrnd-clr-2;
 
-  .enter-message {
-    border-color: $bckgrnd-clr-2;
-    margin-right: 0.5rem;
-    width: 100%;
-    flex-grow: 1;
-  }
+    .enter-message {
+        border-color: $bckgrnd-clr-2;
+        margin-right: 0.5rem;
+        width: 100%;
+        flex-grow: 1;
+    }
 }
 
 @media (min-width: 800px) {
-  .conversation {
-    grid-template-columns: 20% 80%;
-    padding: 0.5rem;
-  }
-
-  .glimpse-message {
-    margin-left: 0.5rem;
-    width: 100%;
-
-    h4 {
-      margin-bottom: 0.5rem;
+    .conversation {
+        grid-template-columns: 20% 80%;
+        padding: 0.5rem;
     }
-  }
 
-  .message {
-    padding: 0.75rem 1rem;
+    .glimpse-message {
+        margin-left: 0.5rem;
+        width: 100%;
 
-    .message-header {
-      margin-bottom: 0.5rem;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      width: 100%;
+        h4 {
+            margin-bottom: 0.5rem;
+        }
     }
-  }
 
-  .input-message {
-    padding: 0.75rem;
+    .message {
+        padding: 0.75rem 1rem;
 
-    .enter-message {
-      margin-right: 1rem;
+        .message-header {
+            margin-bottom: 0.5rem;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+        }
     }
-  }
+
+    .input-message {
+        padding: 0.75rem;
+
+        .enter-message {
+            margin-right: 1rem;
+        }
+    }
 }
 
 .active-chat {
-  background-color: $brnd-clr;
-  border-color: $brnd-clr;
-  color: $bckgrnd-clr;
+    background-color: $brnd-clr;
+    border-color: $brnd-clr;
+    color: $bckgrnd-clr;
 }

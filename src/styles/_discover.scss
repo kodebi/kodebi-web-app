@@ -1,15 +1,15 @@
 .search-and-filter {
-  @include flex-column;
-  @include card;
-  width: 100%;
-  align-items: center;
-  padding: 0.75rem;
-  margin: 0 0.5rem;
+    @include flex-column;
+    @include card;
+    width: 100%;
+    align-items: center;
+    padding: 0.75rem;
+    margin: 0 0.5rem;
 
-  @media (min-width: 800px) {
-    justify-content: space-around;
-    flex-flow: row;
-    max-width: $mx-wdth;
-    padding: 1rem;
-  }
+    @media (min-width: 800px) {
+        justify-content: space-around;
+        flex-flow: row;
+        max-width: $mx-wdth;
+        padding: 1rem;
+    }
 }

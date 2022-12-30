@@ -1,1 +1,1 @@
-export { MyDashboard as default } from './MyDashboard';
+export { MyDashboard as default } from "./MyDashboard";

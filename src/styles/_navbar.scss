@@ -1,107 +1,107 @@
 .nav-center {
-  width: 100%;
-  position: absolute;
-  transition: $nvbr-trns;
-  z-index: 1;
+    width: 100%;
+    position: absolute;
+    transition: $nvbr-trns;
+    z-index: 1;
 
-  &:before {
-    content: '';
-    display: block;
-    flex: 1;
-  }
-
-  &:after {
-    content: '';
-    display: block;
-    flex: 1;
-  }
-
-  .nav-content {
-    max-width: $mx-wdth;
-    margin: 0 0.5rem;
-    background-color: $bckgrnd-clr;
-
-    .nav-header {
-      justify-content: space-between;
-      margin: 0 0.5rem;
+    &:before {
+        content: "";
+        display: block;
+        flex: 1;
     }
-  }
+
+    &:after {
+        content: "";
+        display: block;
+        flex: 1;
+    }
+
+    .nav-content {
+        max-width: $mx-wdth;
+        margin: 0 0.5rem;
+        background-color: $bckgrnd-clr;
+
+        .nav-header {
+            justify-content: space-between;
+            margin: 0 0.5rem;
+        }
+    }
 }
 
 .nav-toggle {
-  display: flex;
-  align-self: center;
-  font-size: 1.5rem;
-  border: 0;
-  background: transparent;
-  color: $brnd-clr;
-  transition: $trnstn;
-  cursor: pointer;
+    display: flex;
+    align-self: center;
+    font-size: 1.5rem;
+    border: 0;
+    background: transparent;
+    color: $brnd-clr;
+    transition: $trnstn;
+    cursor: pointer;
 }
 
 .nav-menu {
-  text-align: start;
-  font-size: 1rem;
-  height: 0;
-  overflow: hidden;
-  transition: $trnstn;
+    text-align: start;
+    font-size: 1rem;
+    height: 0;
+    overflow: hidden;
+    transition: $trnstn;
 
-  .links-container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+    .links-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 }
 
 .show-menu {
-  height: 12rem;
-  padding: 0 0.5rem;
-  box-shadow: $bx-shdw;
+    height: 12rem;
+    padding: 0 0.5rem;
+    box-shadow: $bx-shdw;
 }
 
 @media (min-width: 800px) {
-  .nav-center {
-    display: flex;
-    justify-content: space-around;
-    height: auto;
-    flex: 0 0 auto;
-
-    .nav-content {
-      display: flex;
-      justify-content: space-around;
-      width: 100%;
-
-      .nav-toggle {
-        display: none;
-      }
-
-      .nav-menu {
+    .nav-center {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
         height: auto;
-        flex: 1;
+        flex: 0 0 auto;
 
-        .links-container {
-          flex-direction: row;
-          justify-content: space-evenly;
-          flex: 1;
-          margin: 0 2rem;
+        .nav-content {
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+
+            .nav-toggle {
+                display: none;
+            }
+
+            .nav-menu {
+                display: flex;
+                justify-content: space-between;
+                height: auto;
+                flex: 1;
+
+                .links-container {
+                    flex-direction: row;
+                    justify-content: space-evenly;
+                    flex: 1;
+                    margin: 0 2rem;
+                }
+            }
         }
-      }
     }
-  }
 }
 
 .sticky-nav {
-  top: 12px;
-  position: fixed;
-  width: 100%;
+    top: 12px;
+    position: fixed;
+    width: 100%;
 }
 
 .sticky-nav-content {
-  @include card;
-  box-shadow: $bx-shdw-2;
+    @include card;
+    box-shadow: $bx-shdw-2;
 }
 
 .animate-nav {
-  animation: navBar-slideIn 0.3s ease-in-out;
+    animation: navBar-slideIn 0.3s ease-in-out;
 }

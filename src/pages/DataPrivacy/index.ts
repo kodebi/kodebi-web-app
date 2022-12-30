@@ -1,1 +1,1 @@
-export { DataPrivacy as default } from './DataPrivacy'
+export { DataPrivacy as default } from "./DataPrivacy";

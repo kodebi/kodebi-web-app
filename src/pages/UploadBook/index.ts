@@ -1,1 +1,1 @@
-export { UploadBook as default } from './UploadBook'
+export { UploadBook as default } from "./UploadBook";

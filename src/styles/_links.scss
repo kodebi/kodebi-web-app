@@ -1,45 +1,45 @@
 @mixin link {
-  transition: $trnstn;
-  display: inline-block;
+    transition: $trnstn;
+    display: inline-block;
 
-  a {
-    color: $fnt-clr;
-  }
+    a {
+        color: $fnt-clr;
+    }
 }
 
 .menu-link {
-  @include link;
-  margin: 0.5rem;
+    @include link;
+    margin: 0.5rem;
 
-  a:hover {
-    color: $brnd-clr;
-  }
+    a:hover {
+        color: $brnd-clr;
+    }
 }
 
 .footer-link {
-  @include link;
-  margin-right: 0.5rem;
+    @include link;
+    margin-right: 0.5rem;
 
-  a {
-    color: $fnt-clr;
+    a {
+        color: $fnt-clr;
 
-    &:hover {
-      color: $bckgrnd-clr-2;
+        &:hover {
+            color: $bckgrnd-clr-2;
+        }
     }
-  }
 }
 
 @media (min-width: 800px) {
-  .menu-link {
-    margin: 1rem;
-    align-self: center;
+    .menu-link {
+        margin: 1rem;
+        align-self: center;
 
-    &:hover {
-      padding-left: 0;
+        &:hover {
+            padding-left: 0;
+        }
     }
-  }
 
-  .footer-link {
-    margin-right: 1rem;
-  }
+    .footer-link {
+        margin-right: 1rem;
+    }
 }
