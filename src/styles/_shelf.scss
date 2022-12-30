@@ -1,37 +1,37 @@
 /* Shelf */
 @mixin show-shelf {
-    @include card;
-    max-width: $mx-wdth;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
+  @include card;
+  max-width: $mx-wdth;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }
 
 .shelf-container {
-    @include show-shelf;
-    padding: 0.75rem;
-    gap: 1rem;
-    flex-flow: column nowrap;
+  @include show-shelf;
+  padding: 0.75rem;
+  gap: 1rem;
+  flex-flow: column nowrap;
 }
 
 .empty-shelf {
-    @include show-shelf;
-    place-items: center;
+  @include show-shelf;
+  place-items: center;
 
-    .error-message {
-        justify-content: center;
-        width: 60vw;
-        margin: 2rem auto;
-        height: 50vh;
-    }
+  .error-message {
+    justify-content: center;
+    width: 60vw;
+    margin: 2rem auto;
+    height: 50vh;
+  }
 }
 
 @media (min-width: 800px) {
-    .shelf-container {
-        flex-flow: row wrap;
-        gap: 1.5rem;
-        padding: 1.25rem;
-        justify-content: flex-start;
-    }
+  .shelf-container {
+    flex-flow: row wrap;
+    gap: 1.5rem;
+    padding: 1.25rem;
+    justify-content: flex-start;
+  }
 }

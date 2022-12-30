@@ -7,122 +7,122 @@
 *,
 ::before,
 ::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-    font-family: $fnt-fmly;
-    background-color: $bckgrnd-clr;
-    color: $fnt-clr;
-    font-size: $fnt-sz;
-    line-height: 1.5;
-    text-align: center;
+  font-family: $fnt-fmly;
+  background-color: $bckgrnd-clr;
+  color: $fnt-clr;
+  font-size: $fnt-sz;
+  line-height: 1.5;
+  text-align: center;
 }
 
 main {
-    display: grid;
-    place-items: center;
-    gap: 1rem;
-    margin: 0 0.5rem;
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+  margin: 0 0.5rem;
 
-    &:before {
-        margin-top: 15vh;
-        content: "";
-    }
+  &:before {
+    margin-top: 15vh;
+    content: "";
+  }
 
-    &:after {
-        margin-bottom: 15vh;
-        content: "";
-    }
+  &:after {
+    margin-bottom: 15vh;
+    content: "";
+  }
 }
 
 ul {
-    list-style-type: none;
+  list-style-type: none;
 }
 
 a {
-    text-transform: capitalize;
-    text-decoration: none;
-    font-size: $fnt-sz;
+  text-transform: capitalize;
+  text-decoration: none;
+  font-size: $fnt-sz;
 }
 
 h1,
 h2,
 h3,
 h4 {
-    letter-spacing: $lttr-spcng;
-    line-height: 1.25;
-    margin-bottom: 0.5rem;
+  letter-spacing: $lttr-spcng;
+  line-height: 1.25;
+  margin-bottom: 0.5rem;
 }
 
 h1 {
-    font-size: 1.5rem;
+  font-size: 1.5rem;
 }
 
 h2 {
-    font-size: 1.25rem;
+  font-size: 1.25rem;
 }
 
 h3 {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
 h4 {
-    font-size: $fnt-sz;
+  font-size: $fnt-sz;
 }
 
 p {
-    font-size: 0.75rem;
-    margin-bottom: 0.5rem;
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
 }
 
 button {
-    font-family: $fnt-fmly;
-    font-size: 0.75rem;
+  font-family: $fnt-fmly;
+  font-size: 0.75rem;
 
-    &:focus {
-        outline: none;
-    }
+  &:focus {
+    outline: none;
+  }
 }
 
 @media (min-width: 800px) {
-    h1,
-    h2,
-    h3,
-    h4,
-    p {
-        text-align: left;
-    }
+  h1,
+  h2,
+  h3,
+  h4,
+  p {
+    text-align: left;
+  }
 
-    a {
-        font-size: 1rem;
-    }
+  a {
+    font-size: 1rem;
+  }
 
-    h1 {
-        font-size: 3rem;
-    }
+  h1 {
+    font-size: 3rem;
+  }
 
-    h2 {
-        font-size: 2rem;
-    }
+  h2 {
+    font-size: 2rem;
+  }
 
-    h3 {
-        font-size: 1.5rem;
-    }
+  h3 {
+    font-size: 1.5rem;
+  }
 
-    h4 {
-        font-size: 1rem;
-    }
+  h4 {
+    font-size: 1rem;
+  }
 
-    p {
-        font-size: $fnt-sz;
-    }
+  p {
+    font-size: $fnt-sz;
+  }
 
-    button {
-        font-size: $fnt-sz;
-    }
+  button {
+    font-size: $fnt-sz;
+  }
 }
 
 // component styling

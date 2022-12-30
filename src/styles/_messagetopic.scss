@@ -1,18 +1,18 @@
 .topic-box {
-    border-bottom: 1px solid $bckgrnd-clr-2;
-    padding: 0.5rem 0.75rem;
-    height: 5rem;
-    width: 100%;
-    transition: $nvbr-trns;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  border-bottom: 1px solid $bckgrnd-clr-2;
+  padding: 0.5rem 0.75rem;
+  height: 5rem;
+  width: 100%;
+  transition: $nvbr-trns;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-    .topic-wrapper {
-        @include flex-column;
+  .topic-wrapper {
+    @include flex-column;
 
-        .topic-body {
-            margin-bottom: 0;
-        }
+    .topic-body {
+      margin-bottom: 0;
     }
+  }
 }
