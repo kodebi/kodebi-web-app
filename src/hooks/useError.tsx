@@ -3,10 +3,10 @@ import { LayoutContext } from "../context/LayoutContext";
 import { FaPoop } from "react-icons/fa";
 import { LayoutState } from "../@types/layout";
 
-const useError = () => {
+function useError(): { catchError: (e: Error) => void } {
   const { setAlert } = React.useContext(LayoutContext) as LayoutState;
 
-  const catchError = (e: any): void => {
+  const catchError = (e: Error): void => {
     setAlert({
       display: true,
       icon: <FaPoop />,
@@ -17,6 +17,6 @@ const useError = () => {
   return {
     catchError,
   };
-};
+}
 
 export default useError;

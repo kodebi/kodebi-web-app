@@ -2,9 +2,12 @@ import * as React from "react";
 import { LayoutState } from "../@types/layout";
 import { LayoutContext } from "../context/LayoutContext";
 
-const useNavInteraction = () => {
+function useNavInteraction() {
   const [navbar, setNavbar] = React.useState<boolean>(false);
-  const [location, setLocation] = React.useState<any>({});
+  const [location, setLocation] = React.useState<{ divCenter: number; divBottom: number }>({
+    divCenter: 0,
+    divBottom: 0,
+  });
   const container = React.useRef<HTMLUListElement>(null);
   const { closeSubmenu, setIsSubmenuOpen, setShowLinks, showLinks } = React.useContext(
     LayoutContext
@@ -41,20 +44,20 @@ const useNavInteraction = () => {
   };
 
   // öffne das Usermenu rechts oben
-  const openSubmenu = (coordinates: any): void => {
+  const openSubmenu = (coordinates: { divCenter: number; divBottom: number }): void => {
     setLocation(coordinates);
     setIsSubmenuOpen(true);
   };
 
   // schliesse das Usermenu unabhängig davon wo der User hinklickt (außerhalb des Usermenus)
-  const hideSubmenu = (e: any): void => {
-    if (!e.target.classList.contains("helper")) {
+  const hideSubmenu = (e: React.MouseEvent<HTMLElement>): void => {
+    if (!(e.target as HTMLElement).classList.contains("helper")) {
       closeSubmenu();
     }
   };
 
   // bestimme die Position des Submenus
-  const showUserSubmenu = (e: any): void => {
+  const showUserSubmenu = (e: React.MouseEvent<HTMLButtonElement>): void => {
     const divSize = e.currentTarget.getBoundingClientRect();
     const divCenter = (divSize.left + divSize.right) / 2;
     const divBottom = divSize.bottom - 3;
@@ -73,6 +76,6 @@ const useNavInteraction = () => {
       showUserSubmenu,
     },
   };
-};
+}
 
 export default useNavInteraction;

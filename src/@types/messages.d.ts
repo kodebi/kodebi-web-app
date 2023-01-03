@@ -1,3 +1,5 @@
+import React from "react";
+
 interface IMessage {
   _id?: string;
   senderId?: string;
@@ -40,8 +42,8 @@ export interface MessageState {
   selectedConversation: boolean;
   isMessageSent: boolean;
   chatEnd: React.MutableRefObject<null | HTMLDivElement>;
-  openConversation: (e: any) => void;
-  handleMessage: (e: any) => void;
+  openConversation: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  handleMessage: (e: React.ChangeEvent<HTMLInputElement>) => void;
   scrollToBottom: () => void;
-  sendMessage: (e: any) => void | undefined;
+  sendMessage: (e: React.FormEvent<HTMLFormElement>) => void | undefined;
 }

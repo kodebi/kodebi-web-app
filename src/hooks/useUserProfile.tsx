@@ -15,13 +15,13 @@ function useUserProfile(id?: string) {
   const [userBooks, setUserBooks] = React.useState<BookState["books"]>([]);
   const { catchError } = useError();
 
-  const loadUserProfile = React.useCallback((): void => {
+  const loadUserProfile = (): void => {
     setLoading(true);
     konvey(API_BOOKSBYUSER, id ?? userId, jwt)
       .then(setUserBooks)
       .catch(catchError)
       .finally(() => setLoading(false));
-  }, []);
+  };
 
   React.useEffect(() => {
     loadUserProfile();

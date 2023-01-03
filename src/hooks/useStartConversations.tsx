@@ -10,12 +10,12 @@ import { AuthState } from "../@types/auth";
 import { IStartConv } from "../@types/messages";
 import { noScroll } from "../helpers/noScroll";
 
-const useStartConversations = (
+function useStartConversations(
   ownerId: string,
   ownerName: string,
   bookId: string,
   bookName: string
-) => {
+) {
   const { setAlert, setLoading } = React.useContext(LayoutContext) as LayoutState;
   const [showMessageModal, setShowMessageModal] = React.useState<boolean>(false);
   const { userId, userName, jwt } = React.useContext(AuthContext) as AuthState;
@@ -36,7 +36,7 @@ const useStartConversations = (
   };
 
   // Input des Nachrichtenfensters
-  const msgModalInput = (e: any) =>
+  const msgModalInput = (e: React.ChangeEvent<HTMLInputElement>): void =>
     setNewConv({
       senderId: userId,
       senderName: userName,
@@ -53,7 +53,7 @@ const useStartConversations = (
   };
 
   // starte neue Konversation mit Buchnutzer
-  const startConv = (e: any) => {
+  const startConv = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     setLoading(true);
     konvey(API_MESSAGES, null, jwt, "POST", newConv)
@@ -93,6 +93,6 @@ const useStartConversations = (
       startConv,
     },
   };
-};
+}
 
 export default useStartConversations;

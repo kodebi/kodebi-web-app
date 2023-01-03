@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from "react";
 import { FaGrinStars } from "react-icons/fa";
 import confetti from "canvas-confetti";
@@ -21,7 +22,7 @@ function useBorrow(bookId?: string, borrowerId?: string, bookBorrowed?: boolean,
   const [bookReturned, setBookReturned] = React.useState<boolean>(false);
   const { catchError } = useError();
 
-  const lendBook = (): void => {
+  const lendBook: BookState["lendBook"] = () => {
     setLoading(true);
     const triggerBorrow = konvey(`${API_BORROW}${bookId}${API_ADDUSER}`, borrowerId, jwt, "PUT");
     const updateConv = konvey(API_MESSAGES, chatId, jwt, "PATCH");
@@ -47,7 +48,7 @@ function useBorrow(bookId?: string, borrowerId?: string, bookBorrowed?: boolean,
       });
   };
 
-  const returnBook = (id?: string): void => {
+  const returnBook: BookState["returnBook"] = (id) => {
     setLoading(true);
     konvey(API_RETURN, id, jwt, "PUT")
       .then((data) => {

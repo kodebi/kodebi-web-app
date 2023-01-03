@@ -37,7 +37,7 @@ function useAuth() {
   const query = getUrlParams(search);
 
   // POST registriere neuen User im Backend / logge User ein (Backend)
-  const login: AuthState["login"] = (e): void => {
+  const login: AuthState["login"] = (e) => {
     e.preventDefault();
     setLoading(true);
     konvey(AUTH_SIGNIN, null, null, "POST", userCredential)
@@ -55,7 +55,7 @@ function useAuth() {
       });
   };
 
-  const signup: AuthState["signup"] = (e): void => {
+  const signup: AuthState["signup"] = (e) => {
     e.preventDefault();
     setLoading(true);
     konvey(API_USERS, null, null, "POST", userCredential)
@@ -75,7 +75,7 @@ function useAuth() {
   };
 
   // logge den User aus (UI)
-  const logout: AuthState["logout"] = (): void => {
+  const logout: AuthState["logout"] = () => {
     setLoading(true);
     konvey(AUTH_SIGNOUT)
       .then(() => setShowLinks(false))
@@ -89,13 +89,13 @@ function useAuth() {
   };
 
   // verarbeite die Eingabe des Users
-  const checkSigninInput: AuthState["checkSigninInput"] = (e): void =>
+  const checkSigninInput: AuthState["checkSigninInput"] = (e) =>
     setUserCredential({
       ...userCredential,
       [e.target.name]: e.target.value,
     });
 
-  const activate: AuthState["activate"] = (e): void => {
+  const activate: AuthState["activate"] = (e) => {
     e.preventDefault();
     setLoading(true);
     konvey(AUTH_USERACTIVATION, null, null, "POST", {
@@ -117,7 +117,7 @@ function useAuth() {
   };
 
   // schicke den Password Request mit useremail ab
-  const requestReset: AuthState["requestReset"] = (e): void => {
+  const requestReset: AuthState["requestReset"] = (e) => {
     e.preventDefault();
     setLoading(true);
     konvey(API_REQUESTRESET, null, null, "POST", {
@@ -137,7 +137,7 @@ function useAuth() {
       });
   };
 
-  const reset: AuthState["reset"] = (e): void => {
+  const reset: AuthState["reset"] = (e) => {
     e.preventDefault();
     setLoading(true);
     konvey(API_RESETPASSWORD, null, null, "POST", {

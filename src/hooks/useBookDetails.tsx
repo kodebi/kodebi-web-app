@@ -34,7 +34,7 @@ function useBookDetails() {
   const history = useNavigate();
 
   // update book details
-  const updateBookDetails: BookState["updateBookDetails"] = (e): void => {
+  const updateBookDetails: BookState["updateBookDetails"] = (e) => {
     e.preventDefault();
     setLoading(true);
     konvey(API_BOOK, id, jwt, "PUT", book)
@@ -50,7 +50,7 @@ function useBookDetails() {
       .catch(catchError);
   };
 
-  const deleteBook: BookState["deleteBook"] = (): void => {
+  const deleteBook: BookState["deleteBook"] = () => {
     setLoading(true);
     konvey(API_BOOK, id, jwt, "DELETE")
       .then(() => setLoading(false))
@@ -76,7 +76,7 @@ function useBookDetails() {
   };
 
   // Textfeldeingabe
-  const changeBookDetails: BookState["changeBookDetails"] = (e): void =>
+  const changeBookDetails: BookState["changeBookDetails"] = (e) =>
     setBook({ ...book, [e.target.name]: e.target.value });
 
   // öffne Buch

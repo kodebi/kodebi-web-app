@@ -1,6 +1,8 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import * as React from "react";
-import { LayoutContext } from "../../context/LayoutContext";
 import { Box } from "@kodebi/libkodebi-ui";
+
+import { LayoutContext } from "../../context/LayoutContext";
 import { LayoutState } from "../../@types/layout";
 
 export const Alert: React.FC = (): JSX.Element => {

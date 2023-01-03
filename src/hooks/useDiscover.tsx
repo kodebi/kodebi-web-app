@@ -13,13 +13,19 @@ function useDiscover() {
   const [search, setSearch] = React.useState<string>("");
 
   // ziehe Kategorien der Bücher
-  const categories = [...new Set(allBooks?.map((book: IBook): any => book.category))];
+  const categories: BookState["categoryOptions"] = [
+    ...new Set(allBooks?.map((book: IBook): string => book.category)),
+  ];
 
   // ziehe Status der Bücher
-  const status = [...new Set(allBooks?.map((book: IBook): any => book.status))];
+  const status: BookState["statusOptions"] = [
+    ...new Set(allBooks?.map((book: IBook): string => book.status)),
+  ];
 
   // ziehe Sprache der Bücher
-  const lenguajes = [...new Set(allBooks?.map((book: IBook): any => book.language))];
+  const lenguajes: BookState["languageOptions"] = [
+    ...new Set(allBooks?.map((book: IBook): string => book.language)),
+  ];
 
   // verarbeite den Input des Suchfeldes
   const handleSearch: BookState["handleSearch"] = (e) => setSearch(e.target.value);

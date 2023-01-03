@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { AuthContext } from "../context/AuthContext";
 import { LayoutContext } from "../context/LayoutContext";
@@ -9,7 +10,7 @@ import { LayoutState } from "../@types/layout";
 import { AuthState } from "../@types/auth";
 import { MessageState } from "../@types/messages";
 
-const useMessaging = () => {
+function useMessaging() {
   const [conversations, setConversations] = React.useState<MessageState["conversations"]>([]);
   const [chat, setChat] = React.useState<MessageState["chat"]>({
     _id: "",
@@ -38,7 +39,7 @@ const useMessaging = () => {
   const { userId, userName, jwt } = React.useContext(AuthContext) as AuthState;
   const { catchError } = useError();
 
-  const scrollToBottom = () => {
+  const scrollToBottom: MessageState["scrollToBottom"] = () => {
     if (chatEnd?.current)
       chatEnd.current?.scrollIntoView({
         block: "end",
@@ -93,18 +94,18 @@ const useMessaging = () => {
   }, [isMessageSent, getChatOfConv, jwt, userId, userName]);
 
   // rufe eine Konversation und die dazugehörigen Nachrichten auf
-  const openConversation = (e: any) => {
+  const openConversation: MessageState["openConversation"] = (e): void => {
     setSelectedConversation(true);
     localStorage.setItem("convId", e.currentTarget.id);
     getChatOfConv(API_MESSAGES, e.currentTarget.id, jwt, userId, userName);
   };
 
   // Nachrichteneingabe
-  const handleMessage = (e: any) =>
+  const handleMessage: MessageState["handleMessage"] = (e) =>
     setNewMessage({ ...newMessage, [e.target.name]: e.target.value });
 
   // schicke die Nachricht ab
-  const sendMessage = (e: any) => {
+  const sendMessage: MessageState["sendMessage"] = (e) => {
     if (!selectedConversation) {
       setAlert({
         display: true,
@@ -147,6 +148,6 @@ const useMessaging = () => {
       chatEnd,
     },
   };
-};
+}
 
 export default useMessaging;

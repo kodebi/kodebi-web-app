@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
 import { IBook } from "../../@types/books";
 
 export const BookCard: React.FC<IBook> = ({ _id, image, name, author, category }): JSX.Element => {

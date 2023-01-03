@@ -7,7 +7,7 @@ import { AuthState } from "../../@types/auth";
 import { LayoutState } from "../../@types/layout";
 
 interface BarProps {
-  showUserSubmenu: (e: any) => void;
+  showUserSubmenu: (e: React.MouseEvent<HTMLButtonElement>) => void;
   container: React.RefObject<HTMLUListElement>;
   logout: AuthState["logout"];
 }

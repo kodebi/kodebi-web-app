@@ -1,5 +1,6 @@
 import * as React from "react";
 import { FaUserCircle } from "react-icons/fa";
+
 import { dateFormatter } from "../../helpers/dateFormatter";
 import { MessageContext } from "../../context/MessageContext";
 import { AuthContext } from "../../context/AuthContext";
