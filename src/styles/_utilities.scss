@@ -1,129 +1,129 @@
 @mixin flex-column {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 @mixin grid-center {
-	display: grid;
-	place-items: center;
+  display: grid;
+  place-items: center;
 }
 
 @mixin card {
-	border: 1px solid $bckgrnd-clr-2;
-	border-radius: $brdr-rds-3;
-	box-shadow: $bx-shdw;
+  border: 1px solid $bckgrnd-clr-2;
+  border-radius: $brdr-rds-3;
+  box-shadow: $bx-shdw;
 }
 
 .action-btn-container {
-	margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .btn-container {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	padding: 0.75rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0.75rem;
 }
 
 .form-control {
-	margin: 0.5rem 0;
-	display: grid;
-	align-items: center;
-	text-align: start;
-	width: 100%;
+  margin: 0.5rem 0;
+  display: grid;
+  align-items: center;
+  text-align: start;
+  width: 100%;
 }
 
 .title {
-	color: $brnd-clr;
+  color: $brnd-clr;
 }
 
 .title-2 {
-	color: $brnd-clr;
-	text-align: left;
+  color: $brnd-clr;
+  text-align: left;
 }
 
 .italic {
-	font-style: italic;
+  font-style: italic;
 }
 
 .basic-flex {
-	display: flex;
-	align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .no-scroll {
-	overflow: hidden;
+  overflow: hidden;
 }
 
 .separation-line {
-	border: 1px solid $bckgrnd-clr-2;
-	width: 100%;
-	margin-bottom: 0.5rem;
+  border: 1px solid $bckgrnd-clr-2;
+  width: 100%;
+  margin-bottom: 0.5rem;
 }
 
 .txt-center {
-	text-align: center;
-	margin: 0.5rem 0;
+  text-align: center;
+  margin: 0.5rem 0;
 }
 
 .collapse {
-	border: none;
-	color: $brnd-clr;
-	background: transparent;
-	cursor: pointer;
+  border: none;
+  color: $brnd-clr;
+  background: transparent;
+  cursor: pointer;
 }
 
 .user-icon {
-	align-self: center;
-	font-size: 2rem;
-	padding: 0.25rem;
+  align-self: center;
+  font-size: 2rem;
+  padding: 0.25rem;
 }
 
 input,
 select,
 textarea {
-	padding: 0.25rem;
-	border: 1px solid $brnd-clr;
-	border-radius: $brdr-rds;
-	resize: none;
-	font-size: 0.75rem;
-	width: 100%;
-	font-family: $fnt-fmly;
+  padding: 0.25rem;
+  border: 1px solid $brnd-clr;
+  border-radius: $brdr-rds;
+  resize: none;
+  font-size: 0.75rem;
+  width: 100%;
+  font-family: $fnt-fmly;
 
-	&:focus {
-		outline: none;
-	}
+  &:focus {
+    outline: none;
+  }
 }
 
 .m-top {
-	margin-top: 1rem;
+  margin-top: 1rem;
 }
 
 .active {
-	border-bottom: 2px solid $brnd-clr;
+  border-bottom: 2px solid $brnd-clr;
 }
 
 @media (min-width: 800px) {
-	.form-control {
-		width: auto;
-	}
+  .form-control {
+    width: auto;
+  }
 
-	input,
-	select,
-	textarea {
-		padding: 0.5rem;
-		font-size: $fnt-sz;
-	}
+  input,
+  select,
+  textarea {
+    padding: 0.5rem;
+    font-size: $fnt-sz;
+  }
 
-	.user-icon {
-		padding: 0.5rem;
-	}
+  .user-icon {
+    padding: 0.5rem;
+  }
 
-	.m-top {
-		margin-top: 1.5rem;
-	}
+  .m-top {
+    margin-top: 1.5rem;
+  }
 
-	.txt-center {
-		margin: 1rem 0;
-	}
+  .txt-center {
+    margin: 1rem 0;
+  }
 }

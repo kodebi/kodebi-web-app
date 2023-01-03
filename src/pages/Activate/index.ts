@@ -1,1 +1,1 @@
-export { Activate as default } from './Activate';
+export { Activate as default } from "./Activate";

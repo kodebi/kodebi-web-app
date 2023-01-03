@@ -1,1 +1,1 @@
-export * from './UserBar'
+export * from "./UserBar";

@@ -1,22 +1,22 @@
 .user-action {
-	color: $bckgrnd-clr;
-	text-align: left;
+  color: $bckgrnd-clr;
+  text-align: left;
 
-	.action-section {
-		margin: 0.75rem 0;
-	}
+  .action-section {
+    margin: 0.75rem 0;
+  }
 
-	.username-link {
-		color: $bckgrnd-clr;
-		font-family: $fnt-fmly;
-		font-weight: 700;
-		letter-spacing: $lttr-spcng;
-		text-transform: none;
-	}
+  .username-link {
+    color: $bckgrnd-clr;
+    font-family: $fnt-fmly;
+    font-weight: 700;
+    letter-spacing: $lttr-spcng;
+    text-transform: none;
+  }
 }
 
 @media (min-width: 800px) {
-	.user-action {
-		padding: 1rem 1rem 0 1rem;
-	}
+  .user-action {
+    padding: 1rem 1rem 0 1rem;
+  }
 }

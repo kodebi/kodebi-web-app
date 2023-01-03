@@ -43,5 +43,10 @@
       text-align: start;
       margin: 0;
     }
+
+    .sticky-wrapper {
+      position: sticky;
+      top: 120px;
+    }
   }
 }

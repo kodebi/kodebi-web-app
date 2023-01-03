@@ -1,109 +1,108 @@
-import * as React from 'react';
-import { LayoutContext } from '../context/LayoutContext';
-import { AuthContext } from '../context/AuthContext';
-import { konvey } from '../helpers/konvey';
-import { FaCheckCircle } from 'react-icons/fa';
-import { useNavigate, useParams } from 'react-router-dom';
-import { API_BOOK } from '../config/config';
-import useError from './useError';
-import { LayoutState } from '../@types/layout';
-import { AuthState } from '../@types/auth';
-import { BookState } from '../@types/books';
-import { noScroll } from '../helpers/noScroll';
+import * as React from "react";
+import { FaCheckCircle } from "react-icons/fa";
+import { useNavigate, useParams } from "react-router-dom";
 
-const useBookDetails = () => {
-	const { setAlert, setLoading } = React.useContext(
-		LayoutContext
-	) as LayoutState;
-	const { jwt } = React.useContext(AuthContext) as AuthState;
-	const [book, setBook] = React.useState<BookState['book']>({
-		_id: '',
-		name: '',
-		author: '',
-		category: '',
-		language: '',
-		condition: '',
-		ownerId: '',
-		ownerName: '',
-		status: '',
-		description: '',
-		image: '',
-	});
-	const [showEditBook, setShowEditBook] = React.useState<boolean>(false);
-	const { id } = useParams<string>();
-	const { catchError } = useError();
-	const history = useNavigate();
+import { LayoutContext } from "../context/LayoutContext";
+import { AuthContext } from "../context/AuthContext";
+import { konvey } from "../helpers/konvey";
+import { API_BOOK } from "../config/config";
+import useError from "./useError";
+import { LayoutState } from "../@types/layout";
+import { AuthState } from "../@types/auth";
+import { BookState } from "../@types/books";
+import { noScroll } from "../helpers/noScroll";
 
-	// update book details
-	const updateBookDetails = (e: any) => {
-		e.preventDefault();
-		setLoading(true);
-		konvey(API_BOOK, id, jwt, 'PUT', book)
-			.then(() => setLoading(false))
-			.then(() => setShowEditBook(false))
-			.then(() =>
-				setAlert({
-					display: true,
-					icon: <FaCheckCircle />,
-					msg: 'Du hast die Buchinfo erfolgreich geändert!',
-				})
-			)
-			.catch(catchError);
-	};
+function useBookDetails() {
+  const { setAlert, setLoading } = React.useContext(LayoutContext) as LayoutState;
+  const { jwt } = React.useContext(AuthContext) as AuthState;
+  const [book, setBook] = React.useState<BookState["book"]>({
+    _id: "",
+    name: "",
+    author: "",
+    category: "",
+    language: "",
+    condition: "",
+    ownerId: "",
+    ownerName: "",
+    status: "",
+    description: "",
+    image: "",
+  });
+  const [showEditBook, setShowEditBook] = React.useState<boolean>(false);
+  const { id } = useParams<string>();
+  const { catchError } = useError();
+  const history = useNavigate();
 
-	const deleteBook = () => {
-		setLoading(true);
-		konvey(API_BOOK, id, jwt, 'DELETE')
-			.then(() => setLoading(false))
-			.catch(catchError)
-			.then(() => history(-1))
-			.then(() =>
-				setAlert({
-					display: true,
-					icon: <FaCheckCircle />,
-					msg: 'Das Buch wurde erfolgreich gelöscht',
-				})
-			);
-	};
+  // update book details
+  const updateBookDetails: BookState["updateBookDetails"] = (e) => {
+    e.preventDefault();
+    setLoading(true);
+    konvey(API_BOOK, id, jwt, "PUT", book)
+      .then(() => setLoading(false))
+      .then(() => setShowEditBook(false))
+      .then(() =>
+        setAlert({
+          display: true,
+          icon: <FaCheckCircle />,
+          msg: "Du hast die Buchinfo erfolgreich geändert!",
+        })
+      )
+      .catch(catchError);
+  };
 
-	// öffne Fenster zum Bearbeiten
-	const openEditWindow = (): void => {
-		setShowEditBook(true);
-	};
+  const deleteBook: BookState["deleteBook"] = () => {
+    setLoading(true);
+    konvey(API_BOOK, id, jwt, "DELETE")
+      .then(() => setLoading(false))
+      .catch(catchError)
+      .then(() => history(-1))
+      .then(() =>
+        setAlert({
+          display: true,
+          icon: <FaCheckCircle />,
+          msg: "Das Buch wurde erfolgreich gelöscht",
+        })
+      );
+  };
 
-	// schließe Fenster zum Bearbeiten
-	const closeEditWindow = (): void => {
-		setShowEditBook(false);
-	};
+  // öffne Fenster zum Bearbeiten
+  const openEditWindow = (): void => {
+    setShowEditBook(true);
+  };
 
-	// Textfeldeingabe
-	const changeBookDetails = (e: any) =>
-		setBook({ ...book, [e.target.name]: e.target.value });
+  // schließe Fenster zum Bearbeiten
+  const closeEditWindow = (): void => {
+    setShowEditBook(false);
+  };
 
-	// öffne Buch
-	React.useEffect(() => {
-		setLoading(true);
-		konvey(API_BOOK, id, jwt)
-			.then(setBook)
-			.then(() => setLoading(false));
-		return () => setLoading(false);
-	}, []);
+  // Textfeldeingabe
+  const changeBookDetails: BookState["changeBookDetails"] = (e) =>
+    setBook({ ...book, [e.target.name]: e.target.value });
 
-	React.useEffect(() => {
-		noScroll();
-	}, [showEditBook]);
+  // öffne Buch
+  React.useEffect(() => {
+    setLoading(true);
+    konvey(API_BOOK, id, jwt)
+      .then(setBook)
+      .then(() => setLoading(false));
+    return () => setLoading(false);
+  }, [id, jwt, setLoading]);
 
-	return {
-		state: { book, showEditBook },
-		setter: { setBook },
-		functions: {
-			changeBookDetails,
-			updateBookDetails,
-			openEditWindow,
-			closeEditWindow,
-			deleteBook,
-		},
-	};
-};
+  React.useEffect(() => {
+    noScroll();
+  }, [showEditBook]);
+
+  return {
+    state: { book, showEditBook },
+    setter: { setBook },
+    functions: {
+      changeBookDetails,
+      updateBookDetails,
+      openEditWindow,
+      closeEditWindow,
+      deleteBook,
+    },
+  };
+}
 
 export default useBookDetails;

@@ -1,1 +1,1 @@
-export * from './MessageTopic'
+export * from "./MessageTopic";

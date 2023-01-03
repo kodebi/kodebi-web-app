@@ -1,1 +1,1 @@
-export { Discover as default } from './Discover'
+export { Discover as default } from "./Discover";

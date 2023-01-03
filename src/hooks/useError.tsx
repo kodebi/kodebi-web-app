@@ -1,22 +1,22 @@
-import * as React from 'react';
-import { LayoutContext } from '../context/LayoutContext';
-import { FaPoop } from 'react-icons/fa';
-import { LayoutState } from '../@types/layout';
+import * as React from "react";
+import { LayoutContext } from "../context/LayoutContext";
+import { FaPoop } from "react-icons/fa";
+import { LayoutState } from "../@types/layout";
 
-const useError = () => {
-	const { setAlert } = React.useContext(LayoutContext) as LayoutState;
+function useError(): { catchError: (e: Error) => void } {
+  const { setAlert } = React.useContext(LayoutContext) as LayoutState;
 
-	const catchError = (e: any): void => {
-		setAlert({
-			display: true,
-			icon: <FaPoop />,
-			msg: e.message,
-		});
-	};
+  const catchError = (e: Error): void => {
+    setAlert({
+      display: true,
+      icon: <FaPoop />,
+      msg: e.message,
+    });
+  };
 
-	return {
-		catchError,
-	};
-};
+  return {
+    catchError,
+  };
+}
 
 export default useError;

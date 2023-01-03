@@ -1,13 +1,13 @@
-import React from 'react';
+import React from "react";
 
 interface TitleProps {
-	content: string;
+  content: string;
 }
 
 export const Title: React.FC<TitleProps> = ({ content }): JSX.Element => {
-	return (
-		<>
-			<h3 className="title-2">{content}</h3>
-		</>
-	);
+  return (
+    <>
+      <h3 className="title-2">{content}</h3>
+    </>
+  );
 };

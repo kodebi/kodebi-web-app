@@ -1,1 +1,1 @@
-export { Reset as default } from './Reset'
+export { Reset as default } from "./Reset";
