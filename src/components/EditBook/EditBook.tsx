@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Box, Button, Input, Dropdown } from "@kodebi/libkodebi-ui";
+import { Box, Button, Input, Dropdown, OptionProps } from "@kodebi/libkodebi-ui";
 
 import { ModalWrapper } from "../ModalWrapper";
 import { genres, languages, conditions, status } from "../../utils/dropdown";
@@ -59,7 +59,7 @@ export const EditBook: React.FC<EditBookProps> = ({
               labelTag="Genre"
               id="category"
               name="category"
-              options={genres}
+              options={genres as OptionProps[]}
               value={book.category}
               onChange={changeBookDetails}
             />
@@ -69,7 +69,7 @@ export const EditBook: React.FC<EditBookProps> = ({
               labelTag="Sprache"
               name="language"
               id="language"
-              options={languages}
+              options={languages as OptionProps[]}
               value={book.language}
               onChange={changeBookDetails}
             />
@@ -79,7 +79,7 @@ export const EditBook: React.FC<EditBookProps> = ({
               labelTag="Zustand"
               id="condition"
               name="condition"
-              options={conditions}
+              options={conditions as OptionProps[]}
               value={book.condition}
               onChange={changeBookDetails}
             />
@@ -89,7 +89,7 @@ export const EditBook: React.FC<EditBookProps> = ({
               labelTag="Status"
               id="status"
               name="status"
-              options={status}
+              options={status as OptionProps[]}
               value={book.status}
               onChange={changeBookDetails}
             />

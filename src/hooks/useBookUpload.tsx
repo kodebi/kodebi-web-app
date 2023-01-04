@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import * as React from "react";
 import { LayoutContext } from "../context/LayoutContext";
 import { AuthContext } from "../context/AuthContext";
@@ -120,7 +121,8 @@ function useBookUpload() {
   };
 
   // resette die komplette Eingabe
-  const resetInput = (): void => {
+  const resetInput = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
     setBookImage(null);
     setNewBook({
       _id: "",

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable react-hooks/exhaustive-deps */
 import * as React from "react";
 import { FaGrinStars } from "react-icons/fa";
@@ -12,7 +13,12 @@ import { AuthState } from "../@types/auth";
 import { LayoutState } from "../@types/layout";
 import { BookState } from "../@types/books";
 
-function useBorrow(bookId?: string, borrowerId?: string, bookBorrowed?: boolean, chatId?: string) {
+function useBorrow({
+  bookId,
+  borrowerId,
+  bookBorrowed,
+  chatId,
+}: { bookId?: string; borrowerId?: string; bookBorrowed?: boolean; chatId?: string } = {}) {
   const { userId, jwt } = React.useContext(AuthContext) as AuthState;
   const { setLoading, setAlert } = React.useContext(LayoutContext) as LayoutState;
   const [confirm, setConfirm] = React.useState<boolean>(true);
@@ -24,8 +30,13 @@ function useBorrow(bookId?: string, borrowerId?: string, bookBorrowed?: boolean,
 
   const lendBook: BookState["lendBook"] = () => {
     setLoading(true);
-    const triggerBorrow = konvey(`${API_BORROW}${bookId}${API_ADDUSER}`, borrowerId, jwt, "PUT");
-    const updateConv = konvey(API_MESSAGES, chatId, jwt, "PATCH");
+    const triggerBorrow = konvey({
+      url: `${API_BORROW}${bookId}${API_ADDUSER}`,
+      id: borrowerId,
+      token: jwt,
+      method: "PUT",
+    });
+    const updateConv = konvey({ url: API_MESSAGES, id: chatId, token: jwt, method: "PATCH" });
     Promise.all([triggerBorrow, updateConv])
       .then(() =>
         setAlert({
@@ -50,7 +61,7 @@ function useBorrow(bookId?: string, borrowerId?: string, bookBorrowed?: boolean,
 
   const returnBook: BookState["returnBook"] = (id) => {
     setLoading(true);
-    konvey(API_RETURN, id, jwt, "PUT")
+    konvey({ url: API_RETURN, id, token: jwt, method: "PUT" })
       .then((data) => {
         setAlert({
           display: true,
@@ -73,7 +84,7 @@ function useBorrow(bookId?: string, borrowerId?: string, bookBorrowed?: boolean,
 
   const getLendingList = React.useCallback((): void => {
     setLoading(true);
-    konvey(API_BORROW, null, jwt)
+    konvey({ url: API_BORROW, id: null, token: jwt })
       .then(setLendingList)
       .catch(catchError)
       .finally(() => setLoading(false));

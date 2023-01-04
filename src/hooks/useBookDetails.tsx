@@ -38,7 +38,7 @@ function useBookDetails() {
   const updateBookDetails: BookState["updateBookDetails"] = (e) => {
     e.preventDefault();
     setLoading(true);
-    konvey(API_BOOK, id, jwt, "PUT", book)
+    konvey({ url: API_BOOK, id, token: jwt, method: "PUT", body: book })
       .then(() => setLoading(false))
       .then(() => setShowEditBook(false))
       .then(() =>
@@ -53,7 +53,7 @@ function useBookDetails() {
 
   const deleteBook: BookState["deleteBook"] = () => {
     setLoading(true);
-    konvey(API_BOOK, id, jwt, "DELETE")
+    konvey({ url: API_BOOK, id, token: jwt, method: "DELETE" })
       .then(() => setLoading(false))
       .catch(catchError)
       .then(() => history(-1))
@@ -83,7 +83,7 @@ function useBookDetails() {
   // öffne Buch
   React.useEffect(() => {
     setLoading(true);
-    konvey(API_BOOK, id, jwt)
+    konvey({ url: API_BOOK, id, token: jwt })
       .then(setBook)
       .then(() => setLoading(false));
     return () => setLoading(false);

@@ -12,7 +12,12 @@ export const OpenChat: React.FC = (): JSX.Element => {
   } = React.useContext(MessageContext) as MessageState;
   const requestingUser = messages && messages[0]?.senderName;
   const borrowerId = recipients && recipients[0];
-  const { confirm, lendBook } = useBorrow(book?.bookId, borrowerId, book?.borrowed, _id);
+  const { confirm, lendBook } = useBorrow({
+    bookId: book?.bookId,
+    borrowerId,
+    bookBorrowed: book?.borrowed,
+    chatId: _id,
+  });
 
   return (
     <>

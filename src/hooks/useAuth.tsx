@@ -34,13 +34,13 @@ function useAuth() {
   const forwardPage = useNavigate();
   const { state, search } = useLocation();
   const { catchError } = useError();
-  const query = getUrlParams(search);
+  const query = getUrlParams({ searchObj: search });
 
   // POST registriere neuen User im Backend / logge User ein (Backend)
   const login: AuthState["login"] = (e) => {
     e.preventDefault();
     setLoading(true);
-    konvey(AUTH_SIGNIN, null, null, "POST", userCredential)
+    konvey({ url: AUTH_SIGNIN, id: null, token: null, method: "POST", body: userCredential })
       .then((data): void => {
         localStorage.setItem("id", data.user._id);
         localStorage.setItem("name", data.user.name);
@@ -58,7 +58,7 @@ function useAuth() {
   const signup: AuthState["signup"] = (e) => {
     e.preventDefault();
     setLoading(true);
-    konvey(API_USERS, null, null, "POST", userCredential)
+    konvey({ url: API_USERS, id: null, token: null, method: "POST", body: userCredential })
       .then((data) => {
         setIsTabLeft(true);
         setAlert({
@@ -77,7 +77,7 @@ function useAuth() {
   // logge den User aus (UI)
   const logout: AuthState["logout"] = () => {
     setLoading(true);
-    konvey(AUTH_SIGNOUT)
+    konvey({ url: AUTH_SIGNOUT })
       .then(() => setShowLinks(false))
       .then(() => localStorage.clear())
       .then(() => setUser(false))
@@ -98,9 +98,15 @@ function useAuth() {
   const activate: AuthState["activate"] = (e) => {
     e.preventDefault();
     setLoading(true);
-    konvey(AUTH_USERACTIVATION, null, null, "POST", {
-      userId: query?.get("id"),
-      token: query?.get("token"),
+    konvey({
+      url: AUTH_USERACTIVATION,
+      id: null,
+      token: null,
+      method: "POST",
+      body: {
+        userId: query?.get("id"),
+        token: query?.get("token"),
+      },
     })
       .catch(catchError)
       .then((data) => {
@@ -120,8 +126,14 @@ function useAuth() {
   const requestReset: AuthState["requestReset"] = (e) => {
     e.preventDefault();
     setLoading(true);
-    konvey(API_REQUESTRESET, null, null, "POST", {
-      email: userCredential.email,
+    konvey({
+      url: API_REQUESTRESET,
+      id: null,
+      token: null,
+      method: "POST",
+      body: {
+        email: userCredential.email,
+      },
     })
       .then((data) =>
         setAlert({
@@ -140,10 +152,16 @@ function useAuth() {
   const reset: AuthState["reset"] = (e) => {
     e.preventDefault();
     setLoading(true);
-    konvey(API_RESETPASSWORD, null, null, "POST", {
-      userId: query?.get("id"),
-      token: query?.get("token"),
-      password: userCredential.password,
+    konvey({
+      url: API_RESETPASSWORD,
+      id: null,
+      token: null,
+      method: "POST",
+      body: {
+        userId: query?.get("id"),
+        token: query?.get("token"),
+        password: userCredential.password,
+      },
     })
       .catch(catchError)
       .then((data) => {

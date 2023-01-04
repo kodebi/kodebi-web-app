@@ -1,4 +1,4 @@
-export const genres: any[] = [
+export const genres: string[] = [
   "Thriller",
   "Sci-Fi",
   "Biografie",
@@ -18,7 +18,7 @@ export const genres: any[] = [
   "Manga",
 ];
 
-export const languages: any[] = [
+export const languages: string[] = [
   "Deutsch",
   "Englisch",
   "Spanisch",
@@ -30,6 +30,6 @@ export const languages: any[] = [
   "Portugiesisch",
 ];
 
-export const conditions: any[] = ["Druckfrisch", "Gut", "Viele Eselsohren"];
+export const conditions: string[] = ["Druckfrisch", "Gut", "Viele Eselsohren"];
 
-export const status: any[] = ["Bereit zum Verleihen", "Verliehen"];
+export const status: string[] = ["Bereit zum Verleihen", "Verliehen"];

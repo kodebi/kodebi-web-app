@@ -24,6 +24,7 @@ export interface BookState {
   allBooks: IBook[];
   books: IBook[];
   book: IBook;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   bookImage: any | null;
   search: string;
   userBooks: IBook[];

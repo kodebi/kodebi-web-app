@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import * as React from "react";
 
 import { LayoutContext } from "../context/LayoutContext";
@@ -17,7 +18,7 @@ function useUserProfile(id?: string) {
 
   const loadUserProfile = (): void => {
     setLoading(true);
-    konvey(API_BOOKSBYUSER, id ?? userId, jwt)
+    konvey({ url: API_BOOKSBYUSER, id: id ?? userId, token: jwt })
       .then(setUserBooks)
       .catch(catchError)
       .finally(() => setLoading(false));
@@ -25,6 +26,7 @@ function useUserProfile(id?: string) {
 
   React.useEffect(() => {
     loadUserProfile();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
 
   return { state: { userBooks }, setter: { setUserBooks } };

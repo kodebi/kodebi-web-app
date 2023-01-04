@@ -56,7 +56,7 @@ function useStartConversations(
   const startConv = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     setLoading(true);
-    konvey(API_MESSAGES, null, jwt, "POST", newConv)
+    konvey({ url: API_MESSAGES, id: null, token: jwt, method: "POST", body: newConv })
       .then(() => setLoading(false))
       .then(() => setShowMessageModal(false))
       .catch(catchError)
