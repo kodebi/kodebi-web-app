@@ -30,7 +30,7 @@ export const BookDetails: React.FC = (): JSX.Element => {
   const {
     state: { newConv, showMessageModal },
     functions: { closeMessageModal, messageUser, msgModalInput, startConv },
-  } = useStartConversations(book.ownerId, book.ownerName, book._id, book.name);
+  } = useStartConversations(book.ownerId as string, book.ownerName as string, book._id, book.name);
 
   return loading ? (
     <Loading />

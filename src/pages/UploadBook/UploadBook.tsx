@@ -1,6 +1,6 @@
 import * as React from "react";
 import { motion } from "framer-motion";
-import { Box, Button, Input, Dropdown } from "@kodebi/libkodebi-ui";
+import { Box, Button, Input, Dropdown, OptionProps } from "@kodebi/libkodebi-ui";
 
 import useBookUpload from "../../hooks/useBookUpload";
 import { LayoutContext } from "../../context/LayoutContext";
@@ -57,7 +57,7 @@ export const UploadBook: React.FC = (): JSX.Element => {
               labelTag="Genre"
               id="category"
               name="category"
-              options={genres}
+              options={genres as OptionProps[]}
               value={newBook.category}
               onChange={textChange}
             />
@@ -67,7 +67,7 @@ export const UploadBook: React.FC = (): JSX.Element => {
               labelTag="Sprache"
               id="language"
               name="language"
-              options={languages}
+              options={languages as OptionProps[]}
               value={newBook.language}
               onChange={textChange}
             />
@@ -77,7 +77,7 @@ export const UploadBook: React.FC = (): JSX.Element => {
               labelTag="Zustand"
               id="condition"
               name="condition"
-              options={conditions}
+              options={conditions as OptionProps[]}
               value={newBook.condition}
               onChange={textChange}
             />
@@ -87,7 +87,7 @@ export const UploadBook: React.FC = (): JSX.Element => {
               labelTag="Status"
               id="status"
               name="status"
-              options={status}
+              options={status as OptionProps[]}
               value={newBook.status}
               onChange={textChange}
             />

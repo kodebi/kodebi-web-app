@@ -1,7 +1,8 @@
 import * as React from "react";
+import { Box, Input, Button } from "@kodebi/libkodebi-ui";
+
 import { Form } from "../Form";
 import { AuthContext } from "../../context/AuthContext";
-import { Box, Input, Button } from "@kodebi/libkodebi-ui";
 import { AuthState } from "../../@types/auth";
 
 export const Signup: React.FC = (): JSX.Element => {

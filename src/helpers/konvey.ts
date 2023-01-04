@@ -1,10 +1,17 @@
-export async function konvey(
-  url: string,
-  id?: string | null,
-  token?: string | null,
-  method?: string,
-  body?: any
-) {
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export async function konvey({
+  url,
+  id,
+  token,
+  method,
+  body,
+}: {
+  url: string;
+  id?: string | null;
+  token?: string | null;
+  method?: string;
+  body?: any;
+}): Promise<any> {
   const config = {
     method: method,
     headers: {

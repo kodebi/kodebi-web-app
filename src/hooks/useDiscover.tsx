@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import * as React from "react";
 
 import { LayoutContext } from "../context/LayoutContext";
@@ -54,7 +55,7 @@ function useDiscover() {
   React.useEffect(() => {
     let mounted = true;
     setLoading(true);
-    konvey(API_BOOKS).then((res) => {
+    konvey({ url: API_BOOKS }).then((res) => {
       if (!mounted) return;
       setAllBooks(res);
       setBooks(res);

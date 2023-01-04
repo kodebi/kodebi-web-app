@@ -10,6 +10,7 @@ import { AuthState } from "../@types/auth";
 import { IStartConv } from "../@types/messages";
 import { noScroll } from "../helpers/noScroll";
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 function useStartConversations(
   ownerId: string,
   ownerName: string,
@@ -38,8 +39,8 @@ function useStartConversations(
   // Input des Nachrichtenfensters
   const msgModalInput = (e: React.ChangeEvent<HTMLInputElement>): void =>
     setNewConv({
-      senderId: userId,
-      senderName: userName,
+      senderId: userId as string,
+      senderName: userName as string,
       recieverId: ownerId,
       recieverName: ownerName,
       message: e.target.value,
@@ -56,7 +57,7 @@ function useStartConversations(
   const startConv = (e: React.FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
     setLoading(true);
-    konvey(API_MESSAGES, null, jwt, "POST", newConv)
+    konvey({ url: API_MESSAGES, id: null, token: jwt, method: "POST", body: newConv })
       .then(() => setLoading(false))
       .then(() => setShowMessageModal(false))
       .catch(catchError)

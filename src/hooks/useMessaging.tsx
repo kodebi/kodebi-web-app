@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import { AuthContext } from "../context/AuthContext";
@@ -57,7 +58,7 @@ function useMessaging() {
     ): void => {
       if (selectedConversation) {
         setLoading(true);
-        konvey(url, id, token)
+        konvey({ url, id, token })
           .then((data) => {
             setChat(data);
             setNewMessage({
@@ -82,7 +83,7 @@ function useMessaging() {
 
   // ziehe alle Konversationen eines Users
   React.useEffect(() => {
-    konvey(API_MESSAGESUSER, userId, jwt)
+    konvey({ url: API_MESSAGESUSER, id: userId, token: jwt })
       .then(setConversations)
       .then(() => setLoading(false));
     return () => setLoading(false);
@@ -115,7 +116,7 @@ function useMessaging() {
       return;
     }
     e.preventDefault();
-    konvey(API_MESSAGES, chat?._id, jwt, "POST", newMessage)
+    konvey({ url: API_MESSAGES, id: chat?._id, token: jwt, method: "POST", body: newMessage })
       .catch(catchError)
       .finally(() => {
         setLoading(false);

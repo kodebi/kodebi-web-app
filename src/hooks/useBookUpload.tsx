@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import * as React from "react";
 import { LayoutContext } from "../context/LayoutContext";
 import { AuthContext } from "../context/AuthContext";
@@ -95,8 +96,8 @@ function useBookUpload() {
       bookData.append("category", newBook.category);
       bookData.append("language", newBook.language);
       bookData.append("condition", newBook.condition);
-      bookData.append("ownerId", userId);
-      bookData.append("ownerName", userName);
+      bookData.append("ownerId", userId as string | Blob);
+      bookData.append("ownerName", userName as string | Blob);
       bookData.append("status", newBook.status);
       bookData.append("description", newBook.description);
       bookUpload(API_BOOK, jwt, bookData);
@@ -120,7 +121,8 @@ function useBookUpload() {
   };
 
   // resette die komplette Eingabe
-  const resetInput = (): void => {
+  const resetInput = (e: React.MouseEvent<HTMLButtonElement>): void => {
+    e.preventDefault();
     setBookImage(null);
     setNewBook({
       _id: "",

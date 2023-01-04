@@ -3,7 +3,7 @@ import * as React from "react";
 interface ModalWrapperProps {
   showEditBook?: boolean;
   showMessageModal?: boolean;
-  onClick?: (e?: any) => void;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   children?: React.ReactNode;
 }
 

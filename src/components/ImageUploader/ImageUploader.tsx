@@ -2,6 +2,7 @@ import React from "react";
 import { FaFileImage } from "react-icons/fa";
 
 interface ImageUploaderProps {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   bookImage: any;
   imageChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }

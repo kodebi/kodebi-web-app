@@ -33,7 +33,7 @@ export const MyDashboard: React.FC = (): JSX.Element => {
     >
       <Title content="Deine Zentrale" />
       <UserDashboard
-        user={userName}
+        user={userName as string}
         bookCount={userBooks?.length}
         totalLentBooks={totalLentBooks}
       />
