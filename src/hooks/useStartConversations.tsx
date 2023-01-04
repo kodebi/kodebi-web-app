@@ -10,6 +10,7 @@ import { AuthState } from "../@types/auth";
 import { IStartConv } from "../@types/messages";
 import { noScroll } from "../helpers/noScroll";
 
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 function useStartConversations(
   ownerId: string,
   ownerName: string,
