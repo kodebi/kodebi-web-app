@@ -13,14 +13,14 @@ export interface LoginProps {
 export interface AuthState {
   user: boolean;
   userCredential: IUserCredential;
-  userId: any;
-  jwt: any;
-  userName: any;
+  userId: string | null;
+  jwt: string | null;
+  userName: string | null;
   checkSigninInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  login: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  signup: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  login: (e: React.FormEvent<HTMLFormElement>) => void;
+  signup: (e: React.FormEvent<HTMLFormElement>) => void;
   logout: () => void;
-  activate: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  reset: (e: React.MouseEvent<HTMLButtonElement>) => void;
-  requestReset: (e: React.MouseEvent<HTMLButtonElement>) => void;
+  activate: (e: React.FormEvent<HTMLFormElement>) => void;
+  reset: (e: React.FormEvent<HTMLFormElement>) => void;
+  requestReset: (e: React.FormEvent<HTMLFormElement>) => void;
 }

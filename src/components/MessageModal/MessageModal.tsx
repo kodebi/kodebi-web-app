@@ -1,15 +1,16 @@
 import React from "react";
-import { Form } from "../Form";
-import { ModalWrapper } from "../ModalWrapper";
 import { motion } from "framer-motion";
 import { Button, Input } from "@kodebi/libkodebi-ui";
-import { IStartConv, MessageState } from "../../@types/messages";
+
+import { Form } from "../Form";
+import { ModalWrapper } from "../ModalWrapper";
+import { IStartConv } from "../../@types/messages";
 
 interface MessageModalProps {
   showMessageModal: boolean;
   newConv: IStartConv;
-  msgModalInput: (e: any) => void;
-  startConv: (e: any) => void;
+  msgModalInput: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  startConv: (e: React.FormEvent<HTMLFormElement>) => void;
   closeMessageModal: () => void;
 }
 

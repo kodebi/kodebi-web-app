@@ -9,11 +9,7 @@ interface AuthProviderProps {
 export const AuthContext = React.createContext<AuthState | null>(null);
 
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }): JSX.Element => {
-  const { state, creds, functions } = useAuth();
+  const { state, functions } = useAuth();
 
-  return (
-    <AuthContext.Provider value={{ ...state, ...creds, ...functions }}>
-      {children}
-    </AuthContext.Provider>
-  );
+  return <AuthContext.Provider value={{ ...state, ...functions }}>{children}</AuthContext.Provider>;
 };

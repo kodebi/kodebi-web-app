@@ -38,8 +38,8 @@ function useStartConversations(
   // Input des Nachrichtenfensters
   const msgModalInput = (e: React.ChangeEvent<HTMLInputElement>): void =>
     setNewConv({
-      senderId: userId,
-      senderName: userName,
+      senderId: userId as string,
+      senderName: userName as string,
       recieverId: ownerId,
       recieverName: ownerName,
       message: e.target.value,

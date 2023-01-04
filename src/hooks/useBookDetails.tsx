@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
 import * as React from "react";
 import { FaCheckCircle } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";

@@ -161,8 +161,7 @@ function useAuth() {
   };
 
   return {
-    state: { user, userCredential },
-    creds: { userId, userName, jwt },
+    state: { user, userCredential, userId, userName, jwt },
     functions: {
       checkSigninInput,
       login,

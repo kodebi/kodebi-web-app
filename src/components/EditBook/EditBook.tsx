@@ -1,8 +1,9 @@
 import React from "react";
-import { ModalWrapper } from "../ModalWrapper";
 import { motion } from "framer-motion";
-import { genres, languages, conditions, status } from "../../utils/dropdown";
 import { Box, Button, Input, Dropdown } from "@kodebi/libkodebi-ui";
+
+import { ModalWrapper } from "../ModalWrapper";
+import { genres, languages, conditions, status } from "../../utils/dropdown";
 import { BookState, IBook } from "../../@types/books";
 
 interface EditBookProps {

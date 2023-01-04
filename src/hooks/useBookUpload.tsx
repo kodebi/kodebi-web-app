@@ -95,8 +95,8 @@ function useBookUpload() {
       bookData.append("category", newBook.category);
       bookData.append("language", newBook.language);
       bookData.append("condition", newBook.condition);
-      bookData.append("ownerId", userId);
-      bookData.append("ownerName", userName);
+      bookData.append("ownerId", userId as string | Blob);
+      bookData.append("ownerName", userName as string | Blob);
       bookData.append("status", newBook.status);
       bookData.append("description", newBook.description);
       bookUpload(API_BOOK, jwt, bookData);

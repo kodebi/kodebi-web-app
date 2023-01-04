@@ -14,8 +14,8 @@ export const UserProfile: React.FC = (): JSX.Element => {
     state: { userBooks },
   } = useUserProfile(id);
 
-  const whose = userBooks[0]?.ownerName.concat("s");
-  const whoUser = userBooks[0]?.ownerName;
+  const whoUser = userBooks[0]?.ownerName as string;
+  const whose = whoUser?.concat("s");
 
   return loading ? (
     <Loading />

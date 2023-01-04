@@ -7,8 +7,8 @@ export interface IBook {
   category: string;
   language: string;
   condition: string;
-  ownerId: string;
-  ownerName: string;
+  ownerId: string | null;
+  ownerName: string | null;
   borrowerId?: string;
   borrowerName?: string;
   status: string;
@@ -28,10 +28,6 @@ export interface BookState {
   search: string;
   userBooks: IBook[];
   lendingList: ILendingList;
-  setAllBooks: React.Dispatch<React.SetStateAction<IBook[]>>;
-  setBooks: React.Dispatch<React.SetStateAction<IBook[]>>;
-  setBook: React.Dispatch<React.SetStateAction<IBook>>;
-  setBookImage: React.Dispatch<React.SetStateAction<any | null>>;
   handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
   backToAll: () => void;
   filterByCategory: (e: React.ChangeEvent<HTMLSelectElement>) => void;
