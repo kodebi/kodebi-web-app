@@ -1,7 +1,9 @@
 import * as React from "react";
+
 import { LayoutContext } from "../context/LayoutContext";
 import { FaPoop } from "react-icons/fa";
-import { LayoutState } from "../@types/layout";
+
+import type { LayoutState } from "../@types/layout";
 
 function useError(): { catchError: (e: Error) => void } {
   const { setAlert } = React.useContext(LayoutContext) as LayoutState;

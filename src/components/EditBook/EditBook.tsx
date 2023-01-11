@@ -4,7 +4,8 @@ import { Box, Button, Input, Dropdown, OptionProps } from "@kodebi/libkodebi-ui"
 
 import { ModalWrapper } from "../ModalWrapper";
 import { genres, languages, conditions, status } from "../../utils/dropdown";
-import { BookState, IBook } from "../../@types/books";
+
+import type { BookState, IBook } from "../../@types/books";
 
 interface EditBookProps {
   book: IBook;

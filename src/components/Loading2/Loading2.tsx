@@ -1,6 +1,8 @@
 import * as React from "react";
-import { LayoutState } from "../../@types/layout";
+
 import { LayoutContext } from "../../context/LayoutContext";
+
+import type { LayoutState } from "../../@types/layout";
 
 export const Loading2: React.FC = (): JSX.Element => {
   const { loading } = React.useContext(LayoutContext) as LayoutState;

@@ -1,14 +1,16 @@
-import React from "react";
+import * as React from "react";
+import { FaCheckCircle } from "react-icons/fa";
+
 import { LayoutContext } from "../context/LayoutContext";
 import { konvey } from "../helpers/konvey";
-import { FaCheckCircle } from "react-icons/fa";
 import { API_MESSAGES } from "../config/config";
 import { AuthContext } from "../context/AuthContext";
-import useError from "./useError";
-import { LayoutState } from "../@types/layout";
-import { AuthState } from "../@types/auth";
-import { IStartConv } from "../@types/messages";
 import { noScroll } from "../helpers/noScroll";
+import useError from "./useError";
+
+import type { LayoutState } from "../@types/layout";
+import type { AuthState } from "../@types/auth";
+import type { IStartConv } from "../@types/messages";
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 function useStartConversations(

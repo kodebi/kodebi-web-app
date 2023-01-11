@@ -6,9 +6,10 @@ import { AuthContext } from "../context/AuthContext";
 import { konvey } from "../helpers/konvey";
 import { API_BOOKSBYUSER } from "../config/config";
 import useError from "./useError";
-import { LayoutState } from "../@types/layout";
-import { AuthState } from "../@types/auth";
-import { BookState } from "../@types/books";
+
+import type { LayoutState } from "../@types/layout";
+import type { AuthState } from "../@types/auth";
+import type { BookState } from "../@types/books";
 
 function useUserProfile(id?: string) {
   const { setLoading } = React.useContext(LayoutContext) as LayoutState;

@@ -13,7 +13,8 @@ import {
 import { LayoutContext } from "../../context/LayoutContext";
 import useBookDetails from "../../hooks/useBookDetails";
 import useStartConversations from "../../hooks/useStartConversations";
-import { LayoutState } from "../../@types/layout";
+
+import type { LayoutState } from "../../@types/layout";
 
 export const BookDetails: React.FC = (): JSX.Element => {
   const { alert, closeSubmenu, loading } = React.useContext(LayoutContext) as LayoutState;

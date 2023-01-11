@@ -1,13 +1,15 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import * as React from "react";
+import { FaCheckCircle, FaPoo, FaFlushed } from "react-icons/fa";
+
 import { LayoutContext } from "../context/LayoutContext";
 import { AuthContext } from "../context/AuthContext";
-import { FaCheckCircle, FaPoo, FaFlushed } from "react-icons/fa";
 import { genres, languages, conditions, status } from "../utils/dropdown";
 import { API_BOOK } from "../config/config";
-import { LayoutState } from "../@types/layout";
-import { AuthState } from "../@types/auth";
-import { BookState } from "../@types/books";
+
+import type { LayoutState } from "../@types/layout";
+import type { AuthState } from "../@types/auth";
+import type { BookState } from "../@types/books";
 
 function useBookUpload() {
   const { setLoading, setAlert } = React.useContext(LayoutContext) as LayoutState;

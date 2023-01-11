@@ -3,7 +3,8 @@ import { Box, Input, Button } from "@kodebi/libkodebi-ui";
 
 import { Form } from "../Form";
 import { AuthContext } from "../../context/AuthContext";
-import { AuthState } from "../../@types/auth";
+
+import type { AuthState } from "../../@types/auth";
 
 export const Signup: React.FC = (): JSX.Element => {
   const {

@@ -1,10 +1,12 @@
 import * as React from "react";
+
 import { FaUserCircle } from "react-icons/fa";
 import { Submenu } from "../Submenu";
 import { AuthContext } from "../../context/AuthContext";
 import { LayoutContext } from "../../context/LayoutContext";
-import { AuthState } from "../../@types/auth";
-import { LayoutState } from "../../@types/layout";
+
+import type { AuthState } from "../../@types/auth";
+import type { LayoutState } from "../../@types/layout";
 
 interface BarProps {
   showUserSubmenu: (e: React.MouseEvent<HTMLButtonElement>) => void;

@@ -2,7 +2,8 @@ import * as React from "react";
 import { motion } from "framer-motion";
 
 import { LayoutContext } from "../../context/LayoutContext";
-import { LayoutState } from "../../@types/layout";
+
+import type { LayoutState } from "../../@types/layout";
 
 export const DataPrivacy: React.FC = (): JSX.Element => {
   const { closeSubmenu } = React.useContext(LayoutContext) as LayoutState;

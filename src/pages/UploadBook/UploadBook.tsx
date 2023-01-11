@@ -6,7 +6,8 @@ import useBookUpload from "../../hooks/useBookUpload";
 import { LayoutContext } from "../../context/LayoutContext";
 import { Alert, ImageUploader, Form, Loading2, Title } from "../../components";
 import { genres, languages, conditions, status } from "../../utils/dropdown";
-import { LayoutState } from "../../@types/layout";
+
+import type { LayoutState } from "../../@types/layout";
 
 export const UploadBook: React.FC = (): JSX.Element => {
   const { loading, alert, closeSubmenu } = React.useContext(LayoutContext) as LayoutState;

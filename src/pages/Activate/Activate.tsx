@@ -5,8 +5,9 @@ import { LayoutContext } from "../../context/LayoutContext";
 import { AuthContext } from "../../context/AuthContext";
 import { Alert, Loading2 } from "../../components";
 import { Form } from "../../components/Form";
-import { LayoutState } from "../../@types/layout";
-import { AuthState } from "../../@types/auth";
+
+import type { LayoutState } from "../../@types/layout";
+import type { AuthState } from "../../@types/auth";
 
 export const Activate: React.FC = (): JSX.Element => {
   const { alert, loading } = React.useContext(LayoutContext) as LayoutState;

@@ -3,7 +3,7 @@ import { Box, Button, Input } from "@kodebi/libkodebi-ui";
 
 import { Form } from "../Form";
 import { AuthContext } from "../../context/AuthContext";
-import { AuthState, LoginProps } from "../../@types/auth";
+import type { AuthState, LoginProps } from "../../@types/auth";
 
 export const SetEmailForReset: React.FC<LoginProps> = ({ openPasswordResetTab }): JSX.Element => {
   const { userCredential, checkSigninInput, requestReset } = React.useContext(

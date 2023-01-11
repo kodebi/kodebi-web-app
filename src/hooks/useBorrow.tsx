@@ -9,9 +9,10 @@ import { LayoutContext } from "../context/LayoutContext";
 import { API_BORROW, API_ADDUSER, API_RETURN, API_MESSAGES } from "../config/config";
 import { konvey } from "../helpers/konvey";
 import useError from "./useError";
-import { AuthState } from "../@types/auth";
-import { LayoutState } from "../@types/layout";
-import { BookState } from "../@types/books";
+
+import type { AuthState } from "../@types/auth";
+import type { LayoutState } from "../@types/layout";
+import type { BookState } from "../@types/books";
 
 function useBorrow({
   bookId,

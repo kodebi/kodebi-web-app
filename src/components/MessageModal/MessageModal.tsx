@@ -4,7 +4,8 @@ import { Button, Input } from "@kodebi/libkodebi-ui";
 
 import { Form } from "../Form";
 import { ModalWrapper } from "../ModalWrapper";
-import { IStartConv } from "../../@types/messages";
+
+import type { IStartConv } from "../../@types/messages";
 
 interface MessageModalProps {
   showMessageModal: boolean;

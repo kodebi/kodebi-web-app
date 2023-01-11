@@ -8,10 +8,12 @@ import { AuthContext } from "../context/AuthContext";
 import { konvey } from "../helpers/konvey";
 import { API_BOOK } from "../config/config";
 import useError from "./useError";
-import { LayoutState } from "../@types/layout";
-import { AuthState } from "../@types/auth";
-import { BookState } from "../@types/books";
+
 import { noScroll } from "../helpers/noScroll";
+
+import type { LayoutState } from "../@types/layout";
+import type { AuthState } from "../@types/auth";
+import type { BookState } from "../@types/books";
 
 function useBookDetails() {
   const { setAlert, setLoading } = React.useContext(LayoutContext) as LayoutState;

@@ -3,7 +3,8 @@ import * as React from "react";
 import { Box } from "@kodebi/libkodebi-ui";
 
 import { LayoutContext } from "../../context/LayoutContext";
-import { LayoutState } from "../../@types/layout";
+
+import type { LayoutState } from "../../@types/layout";
 
 export const Alert: React.FC = (): JSX.Element => {
   const { alert, setAlert } = React.useContext(LayoutContext) as LayoutState;

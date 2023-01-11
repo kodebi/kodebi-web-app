@@ -1,7 +1,9 @@
 import * as React from "react";
 import { NavLink } from "react-router-dom";
-import { LayoutState } from "../../@types/layout";
+
 import { LayoutContext } from "../../context/LayoutContext";
+
+import type { LayoutState } from "../../@types/layout";
 
 interface MenuLinkProps {
   id: number;

@@ -1,9 +1,11 @@
 import * as React from "react";
+
 import { MessageContext } from "../../context/MessageContext";
 import { Message } from "../Message";
 import { MessageTopic } from "../MessageTopic";
 import useBorrow from "../../hooks/useBorrow";
-import { MessageState } from "../../@types/messages";
+
+import type { MessageState } from "../../@types/messages";
 
 export const OpenChat: React.FC = (): JSX.Element => {
   const {

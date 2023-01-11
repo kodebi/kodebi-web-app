@@ -2,8 +2,9 @@ import * as React from "react";
 import { Box, Card, Text } from "@kodebi/libkodebi-ui";
 
 import { BookCard } from "../BookCard";
-import { IBook } from "../../@types/books";
-import { AuthState } from "../../@types/auth";
+
+import type { IBook } from "../../@types/books";
+import type { AuthState } from "../../@types/auth";
 
 interface ShelfProps {
   element: IBook[];

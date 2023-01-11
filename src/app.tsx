@@ -1,8 +1,9 @@
 import * as React from "react";
 
-import { AuthState } from "./@types/auth";
 import { AuthContext } from "./context/AuthContext";
 import { Loading } from "./components";
+
+import type { AuthState } from "./@types/auth";
 
 // lazy import von zwei separaten apps
 const UnauthenticatedApp = React.lazy(() => import("./unauthenticated-app"));
