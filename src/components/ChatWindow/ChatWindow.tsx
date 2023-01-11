@@ -5,7 +5,8 @@ import { FaPaperPlane } from "react-icons/fa";
 import { Form } from "../Form";
 import { OpenChat } from "../OpenChat";
 import { MessageContext } from "../../context/MessageContext";
-import { MessageState } from "../../@types/messages";
+
+import type { MessageState } from "../../@types/messages";
 
 export const ChatWindow: React.FC = (): JSX.Element => {
   const { selectedConversation, sendMessage, newMessage, handleMessage } = React.useContext(

@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 import { LayoutContext } from "../../context/LayoutContext";
 import { UserDashboard, Loading, Alert, Shelf, Title } from "../../components";
 import useUserProfile from "../../hooks/useUserProfile";
-import { LayoutState } from "../../@types/layout";
+
+import type { LayoutState } from "../../@types/layout";
 
 export const UserProfile: React.FC = (): JSX.Element => {
   const { alert, closeSubmenu, loading } = React.useContext(LayoutContext) as LayoutState;

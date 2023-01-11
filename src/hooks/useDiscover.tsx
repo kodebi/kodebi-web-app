@@ -1,12 +1,14 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import * as React from "react";
-import { OptionProps } from "@kodebi/libkodebi-ui";
+
+import type { OptionProps } from "@kodebi/libkodebi-ui";
 
 import { LayoutContext } from "../context/LayoutContext";
 import { konvey } from "../helpers/konvey";
 import { API_BOOKS } from "../config/config";
-import { LayoutState } from "../@types/layout";
-import { BookState, IBook } from "../@types/books";
+
+import type { LayoutState } from "../@types/layout";
+import type { BookState, IBook } from "../@types/books";
 
 function useDiscover() {
   const { setLoading } = React.useContext(LayoutContext) as LayoutState;

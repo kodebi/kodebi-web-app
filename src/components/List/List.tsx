@@ -2,8 +2,8 @@ import * as React from "react";
 import { Box, Button, Card, Text } from "@kodebi/libkodebi-ui";
 
 import { AuthContext } from "../../context/AuthContext";
-import { AuthState } from "../../@types/auth";
-import { IBook } from "../../@types/books";
+import type { AuthState } from "../../@types/auth";
+import type { IBook } from "../../@types/books";
 
 interface ListProps {
   elements?: IBook[];

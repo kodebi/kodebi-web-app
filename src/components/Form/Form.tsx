@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 
 interface FormProps {
   onSubmit?: (e: React.FormEvent<HTMLFormElement>) => void;

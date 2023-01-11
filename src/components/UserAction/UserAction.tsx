@@ -3,12 +3,13 @@ import { Link } from "react-router-dom";
 import { Box, Button, Card } from "@kodebi/libkodebi-ui";
 
 import { AuthContext } from "../../context/AuthContext";
-import { IBook } from "../../@types/books";
-import { AuthState } from "../../@types/auth";
+
+import type { BookState } from "../../@types/books";
+import type { AuthState } from "../../@types/auth";
 
 interface UserActionProps {
-  book?: IBook;
-  deleteBook: () => void;
+  book?: BookState["book"];
+  deleteBook: BookState["deleteBook"];
   openEditWindow: () => void;
   messageUser: () => void;
 }
@@ -41,40 +42,38 @@ export const UserAction: React.FC<UserActionProps> = ({
             <p>Dieses Buch ist:</p>
             <h4>{book?.status}</h4>
           </Box>
-          {book?.status === "Bereit zum Verleihen" ? (
-            <>
-              <hr className="separation-line" />
-              <Box variant="flex-col-start" padding="0.75rem 0">
-                <p>Was möchtest du tun?</p>
-                {book?.ownerId === userId ? (
-                  <>
-                    <Button
-                      variant="action"
-                      onClick={openEditWindow}
-                      margin="0.5rem 0"
-                      width="100%"
-                      label="Jetzt bearbeiten"
-                    />
-                    <Button
-                      variant="action"
-                      margin="0.5rem 0"
-                      width="100%"
-                      onClick={deleteBook}
-                      label="Jetzt löschen"
-                    />
-                  </>
-                ) : (
+          <hr className="separation-line" />
+          <Box variant="flex-col-start" padding="0.75rem 0">
+            <p>Was möchtest du tun?</p>
+            {book?.ownerId === userId ? (
+              <>
+                <Button
+                  variant="action"
+                  onClick={openEditWindow}
+                  margin="0.5rem 0"
+                  width="100%"
+                  label="Bearbeiten"
+                />
+                {book?.status === "Bereit zum Verleihen" ? (
                   <Button
                     variant="action"
                     margin="0.5rem 0"
                     width="100%"
-                    onClick={messageUser}
-                    label="Jetzt ausleihen"
+                    onClick={deleteBook}
+                    label="Löschen"
                   />
-                )}
-              </Box>
-            </>
-          ) : null}
+                ) : null}
+              </>
+            ) : (
+              <Button
+                variant="action"
+                margin="0.5rem 0"
+                width="100%"
+                onClick={messageUser}
+                label="Jetzt ausleihen"
+              />
+            )}
+          </Box>
         </Box>
       </Card>
     </>

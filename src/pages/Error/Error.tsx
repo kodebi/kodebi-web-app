@@ -3,7 +3,8 @@ import { FaMeh } from "react-icons/fa";
 
 import { LayoutContext } from "../../context/LayoutContext";
 import { ReturnTo } from "../../components";
-import { LayoutState } from "../../@types/layout";
+
+import type { LayoutState } from "../../@types/layout";
 
 export const Error: React.FC = (): JSX.Element => {
   const { closeSubmenu } = React.useContext(LayoutContext) as LayoutState;

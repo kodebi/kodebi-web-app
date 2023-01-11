@@ -5,7 +5,8 @@ import { Box, Button, Input, Dropdown, Card, Text } from "@kodebi/libkodebi-ui";
 import { LayoutContext } from "../../context/LayoutContext";
 import useDiscover from "../../hooks/useDiscover";
 import { Shelf, Loading, Alert, Title } from "../../components";
-import { LayoutState } from "../../@types/layout";
+
+import type { LayoutState } from "../../@types/layout";
 
 export const Discover: React.FC = (): JSX.Element => {
   const { alert, loading, closeSubmenu } = React.useContext(LayoutContext) as LayoutState;

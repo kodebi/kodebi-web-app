@@ -3,8 +3,9 @@ import { motion } from "framer-motion";
 
 import { LayoutContext } from "../../context/LayoutContext";
 import { MessageProvider } from "../../context/MessageContext";
-import { LayoutState } from "../../@types/layout";
 import { Alert, Conversations, ChatWindow, Loading2, Title } from "../../components";
+
+import type { LayoutState } from "../../@types/layout";
 
 export const Messages: React.FC = (): JSX.Element => {
   const { alert, closeSubmenu, loading } = React.useContext(LayoutContext) as LayoutState;

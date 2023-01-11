@@ -1,15 +1,18 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { FaBook, FaBookOpen } from "react-icons/fa";
+import { Box } from "@kodebi/libkodebi-ui";
+
 import { MenuLink } from "../MenuLink";
 import { links } from "../../utils/linksDB";
 import { UserBar } from "../UserBar";
 import { AuthContext } from "../../context/AuthContext";
 import { LayoutContext } from "../../context/LayoutContext";
 import useNavInteraction from "../../hooks/useNavInteraction";
-import { Box } from "@kodebi/libkodebi-ui";
-import { AuthState } from "../../@types/auth";
-import { LayoutState } from "../../@types/layout";
+
+import type { AuthState } from "../../@types/auth";
+import type { LayoutState } from "../../@types/layout";
+
 import logo from "../../static/kodebi_logo_classic.svg";
 
 export const Navbar: React.FC = (): JSX.Element => {

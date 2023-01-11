@@ -1,9 +1,10 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 
-import { AuthState } from "../../@types/auth";
-import { LayoutState } from "../../@types/layout";
 import { LayoutContext } from "../../context/LayoutContext";
+
+import type { AuthState } from "../../@types/auth";
+import type { LayoutState } from "../../@types/layout";
 
 interface SubmenuProps {
   container: React.RefObject<HTMLUListElement>;

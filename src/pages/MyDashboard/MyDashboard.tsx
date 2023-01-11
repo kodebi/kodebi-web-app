@@ -6,8 +6,9 @@ import { UserDashboard, Loading, Alert, Shelf, Title, List } from "../../compone
 import useUserProfile from "../../hooks/useUserProfile";
 import useBorrow from "../../hooks/useBorrow";
 import { AuthContext } from "../../context/AuthContext";
-import { LayoutState } from "../../@types/layout";
-import { AuthState } from "../../@types/auth";
+
+import type { LayoutState } from "../../@types/layout";
+import type { AuthState } from "../../@types/auth";
 
 export const MyDashboard: React.FC = (): JSX.Element => {
   const { alert, closeSubmenu, loading } = React.useContext(LayoutContext) as LayoutState;

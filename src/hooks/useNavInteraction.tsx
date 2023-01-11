@@ -1,7 +1,9 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import * as React from "react";
-import { LayoutState } from "../@types/layout";
+
 import { LayoutContext } from "../context/LayoutContext";
+
+import type { LayoutState } from "../@types/layout";
 
 function useNavInteraction() {
   const [navbar, setNavbar] = React.useState<boolean>(false);

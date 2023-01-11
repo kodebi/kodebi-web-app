@@ -1,6 +1,8 @@
 import * as React from "react";
-import { AuthState } from "../@types/auth";
+
 import useAuth from "../hooks/useAuth";
+
+import type { AuthState } from "../@types/auth";
 
 interface AuthProviderProps {
   children?: React.ReactNode;

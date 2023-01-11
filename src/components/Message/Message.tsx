@@ -1,7 +1,9 @@
 import * as React from "react";
+
 import { FaUserCircle } from "react-icons/fa";
-import { IMessage } from "../../@types/messages";
 import { dateFormatter } from "../../helpers/dateFormatter";
+
+import type { IMessage } from "../../@types/messages";
 
 export const Message: React.FC<IMessage> = ({ message, senderName, createdAt }): JSX.Element => {
   const formattedDate = React.useMemo(() => dateFormatter({ date: createdAt }), [createdAt]);

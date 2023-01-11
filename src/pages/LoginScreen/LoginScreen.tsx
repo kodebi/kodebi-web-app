@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 
 import { Alert, Login, Tab, Signup, Loading2, SetEmailForReset } from "../../components";
 import { LayoutContext } from "../../context/LayoutContext";
-import { LayoutState } from "../../@types/layout";
+
+import type { LayoutState } from "../../@types/layout";
 
 export const LoginScreen: React.FC = (): JSX.Element => {
   const { alert, loading, isTabLeft } = React.useContext(LayoutContext) as LayoutState;

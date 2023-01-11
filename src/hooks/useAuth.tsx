@@ -6,8 +6,6 @@ import useError from "./useError";
 import { LayoutContext } from "../context/LayoutContext";
 import { getUrlParams } from "../helpers/getUrlParams";
 import { konvey } from "../helpers/konvey";
-import { AuthState } from "../@types/auth";
-import { LayoutState } from "../@types/layout";
 import {
   AUTH_SIGNIN,
   AUTH_SIGNOUT,
@@ -16,6 +14,9 @@ import {
   API_RESETPASSWORD,
   API_USERS,
 } from "../config/config";
+
+import type { AuthState } from "../@types/auth";
+import type { LayoutState } from "../@types/layout";
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 function useAuth() {

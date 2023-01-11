@@ -1,15 +1,17 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
+import { FaFlushed } from "react-icons/fa";
+
 import { AuthContext } from "../context/AuthContext";
 import { LayoutContext } from "../context/LayoutContext";
 import { API_MESSAGES, API_MESSAGESUSER } from "../config/config";
-import { FaFlushed } from "react-icons/fa";
 import { konvey } from "../helpers/konvey";
 import useError from "./useError";
-import { LayoutState } from "../@types/layout";
-import { AuthState } from "../@types/auth";
-import { MessageState } from "../@types/messages";
+
+import type { LayoutState } from "../@types/layout";
+import type { AuthState } from "../@types/auth";
+import type { MessageState } from "../@types/messages";
 
 function useMessaging() {
   const [conversations, setConversations] = React.useState<MessageState["conversations"]>([]);

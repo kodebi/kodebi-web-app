@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { Button } from "@kodebi/libkodebi-ui";
 

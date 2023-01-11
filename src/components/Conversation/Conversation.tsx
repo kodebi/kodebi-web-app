@@ -4,8 +4,9 @@ import { FaUserCircle } from "react-icons/fa";
 import { dateFormatter } from "../../helpers/dateFormatter";
 import { MessageContext } from "../../context/MessageContext";
 import { AuthContext } from "../../context/AuthContext";
-import { IConversation, MessageState } from "../../@types/messages";
-import { AuthState } from "../../@types/auth";
+
+import type { IConversation, MessageState } from "../../@types/messages";
+import type { AuthState } from "../../@types/auth";
 
 export const Conversation: React.FC<IConversation> = ({
   _id,

@@ -1,5 +1,6 @@
 import * as React from "react";
-import { LayoutState } from "../@types/layout";
+
+import type { LayoutState } from "../@types/layout";
 
 interface LayoutProviderProps {
   children?: React.ReactNode;

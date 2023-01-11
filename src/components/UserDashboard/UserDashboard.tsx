@@ -1,4 +1,4 @@
-import React from "react";
+import * as React from "react";
 import { Box, Card } from "@kodebi/libkodebi-ui";
 import { FaBookOpen, FaUserCircle } from "react-icons/fa";
 
