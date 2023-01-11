@@ -1,6 +1,6 @@
 import React from "react";
 
-interface IMessage {
+export interface IMessage {
   _id?: string;
   senderId?: string;
   senderName?: string;
@@ -11,7 +11,7 @@ interface IMessage {
   updatedAt?: string;
 }
 
-interface IConversation {
+export interface IConversation {
   _id: string;
   messages: IMessage[];
   recipients: string[];
@@ -25,7 +25,7 @@ interface IConversation {
   readAt: string;
 }
 
-interface IStartConv {
+export interface IStartConv {
   senderId: string;
   senderName: string;
   recieverId: string;
@@ -35,7 +35,7 @@ interface IStartConv {
   bookName: string;
 }
 
-export interface MessageState {
+export type MessageState = {
   conversations: IConversation[];
   chat: IConversation;
   newMessage: IMessage;
@@ -46,4 +46,4 @@ export interface MessageState {
   handleMessage: (e: React.ChangeEvent<HTMLInputElement>) => void;
   scrollToBottom: () => void;
   sendMessage: (e: React.FormEvent<HTMLFormElement>) => void | undefined;
-}
+};

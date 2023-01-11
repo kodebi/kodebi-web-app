@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/explicit-function-return-type */
 import * as React from "react";
+import { OptionProps } from "@kodebi/libkodebi-ui";
 
 import { LayoutContext } from "../context/LayoutContext";
 import { konvey } from "../helpers/konvey";
@@ -16,17 +17,17 @@ function useDiscover() {
   // ziehe Kategorien der Bücher
   const categories: BookState["categoryOptions"] = [
     ...new Set(allBooks?.map((book: IBook): string => book.category)),
-  ];
+  ] as OptionProps[];
 
   // ziehe Status der Bücher
   const status: BookState["statusOptions"] = [
     ...new Set(allBooks?.map((book: IBook): string => book.status)),
-  ];
+  ] as OptionProps[];
 
   // ziehe Sprache der Bücher
   const lenguajes: BookState["languageOptions"] = [
     ...new Set(allBooks?.map((book: IBook): string => book.language)),
-  ];
+  ] as OptionProps[];
 
   // verarbeite den Input des Suchfeldes
   const handleSearch: BookState["handleSearch"] = (e) => setSearch(e.target.value);

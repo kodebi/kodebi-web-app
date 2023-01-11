@@ -1,4 +1,5 @@
 import * as React from "react";
+import { OptionProps } from "@kodebi/libkodebi-ui";
 
 export interface IBook {
   _id: string;
@@ -20,7 +21,7 @@ export interface ILendingList {
   books: IBook[];
 }
 
-export interface BookState {
+export type BookState = {
   allBooks: IBook[];
   books: IBook[];
   book: IBook;
@@ -42,4 +43,4 @@ export interface BookState {
   changeBookDetails: (e: React.ChangeEvent<HTMLInputElement>) => void;
   lendBook: () => void;
   returnBook: (id?: string) => void;
-}
+};
