@@ -99,7 +99,7 @@ function useBorrow({
     return () => setBookReturned(false);
   }, [bookReturned]);
 
-  React.useEffect(() => {
+  React.useLayoutEffect(() => {
     checkBorrower(borrowerId, bookBorrowed);
   }, [borrowerId, bookBorrowed]);
 

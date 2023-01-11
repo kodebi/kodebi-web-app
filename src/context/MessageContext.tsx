@@ -2,7 +2,7 @@ import * as React from "react";
 import useMessaging from "../hooks/useMessaging";
 import { MessageState } from "../@types/messages";
 
-export interface MessageProviderProps {
+interface MessageProviderProps {
   children?: React.ReactNode;
 }
 

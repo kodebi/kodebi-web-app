@@ -10,7 +10,7 @@ export interface LoginProps {
   openPasswordResetTab: () => void;
 }
 
-export interface AuthState {
+export type AuthState = {
   user: boolean;
   userCredential: IUserCredential;
   userId: string | null;
@@ -23,4 +23,4 @@ export interface AuthState {
   activate: (e: React.FormEvent<HTMLFormElement>) => void;
   reset: (e: React.FormEvent<HTMLFormElement>) => void;
   requestReset: (e: React.FormEvent<HTMLFormElement>) => void;
-}
+};
