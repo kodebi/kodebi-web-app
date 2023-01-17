@@ -19,6 +19,10 @@
     place-items: center;
     margin-top: 1rem;
   }
+
+  .sticky-wrapper {
+    display: flex;
+  }
 }
 
 @media (min-width: 800px) {
